@@ -494,7 +494,7 @@ class _RegisterPageState extends State<registerPage>
                       ),
                       Container(
                           alignment: Alignment.center,
-                          child: Text('mail@paydayinvestor.ng',
+                          child: Text('mail@xxx.ng',
                             style: greenBodyStyle,textAlign: TextAlign.center,)
                       ),
                       Container(

@@ -2,20 +2,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:payday_investor/welcome_packs/advisorsummary.dart';
-import 'package:payday_investor/welcome_packs/dump.dart';
-import 'package:payday_investor/welcome_packs/getstarted.dart';
-import 'package:payday_investor/welcome_packs/kycuploads.dart';
-import 'package:payday_investor/welcome_packs/personalinfo1.dart';
-import 'package:payday_investor/welcome_packs/personalinfo2.dart';
-import 'package:payday_investor/welcome_packs/personalinfo3.dart';
-import 'package:payday_investor/welcome_packs/register.dart';
-import 'package:payday_investor/welcome_packs/registrationtoken.dart';
-import 'package:payday_investor/welcome_packs/roboadvisor.dart';
-import 'package:payday_investor/welcome_packs/setupinvestment.dart';
-import 'package:payday_investor/welcome_packs/walkthrough.dart';
+import 'package:payday_investor/UI/welcome_packs/advisorsummary.dart';
+import 'package:payday_investor/UI/welcome_packs/dump.dart';
+import 'package:payday_investor/UI/welcome_packs/getstarted.dart';
+import 'package:payday_investor/UI/welcome_packs/kycuploads.dart';
+import 'package:payday_investor/UI/welcome_packs/personalinfo1.dart';
+import 'package:payday_investor/UI/welcome_packs/personalinfo2.dart';
+import 'package:payday_investor/UI/welcome_packs/personalinfo3.dart';
+import 'package:payday_investor/UI/welcome_packs/register.dart';
+import 'package:payday_investor/UI/welcome_packs/registrationtoken.dart';
+import 'package:payday_investor/UI/welcome_packs/roboadvisor.dart';
+import 'package:payday_investor/UI/welcome_packs/setupinvestment.dart';
+import 'package:payday_investor/UI/welcome_packs/walkthrough.dart';
 
-import 'externals/logins.dart';
+import 'UI/externals/logins.dart';
 
 void main() {
   runApp(MyApp());
