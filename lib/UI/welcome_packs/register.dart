@@ -5,9 +5,7 @@ import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/styles.dart';
 
 class registerPage extends StatefulWidget {
-  registerPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  registerPage();
 
   @override
   _RegisterPageState createState() => _RegisterPageState();
@@ -50,7 +48,7 @@ class _RegisterPageState extends State<registerPage>
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
@@ -61,7 +59,11 @@ class _RegisterPageState extends State<registerPage>
                 height: MediaQuery.of(context).size.height * 0.3,
                 width: MediaQuery.of(context).size.width,
                 child: imgAnimation2(
-                  url: bgMain1,beginx:0.03,endx: -0, beginy: 0.2,endy: -0.0,
+                  url: bgMain1,
+                  beginx: 0.03,
+                  endx: -0,
+                  beginy: 0.2,
+                  endy: -0.0,
                   time: Duration(seconds: 4),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
@@ -87,7 +89,11 @@ class _RegisterPageState extends State<registerPage>
                 height: MediaQuery.of(context).size.height * 0.5,
                 width: MediaQuery.of(context).size.width,
                 child: imgAnimation2(
-                  url: bgMain2,beginx:0.03,endx: -0, beginy: 0.2,endy: -0.0,
+                  url: bgMain2,
+                  beginx: 0.03,
+                  endx: -0,
+                  beginy: 0.2,
+                  endy: -0.0,
                   time: Duration(seconds: 3),
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
@@ -112,10 +118,14 @@ class _RegisterPageState extends State<registerPage>
                 width: MediaQuery.of(context).size.width,
                 child: Hero(
                   tag: "iconTag",
-                  child:WidgetAnimator(
+                  child: WidgetAnimator(
                     component: imgAnimation2(
                       url: 'assets/logo.png',
-                      time: Duration(seconds: 3),beginx:0,endx: -0, beginy: 0,endy: 0,
+                      time: Duration(seconds: 3),
+                      beginx: 0,
+                      endx: -0,
+                      beginy: 0,
+                      endy: 0,
                       width: MediaQuery.of(context).size.width * 0.4,
                       height: MediaQuery.of(context).size.height * 0.3,
                       transition: PositionedTransition,
@@ -135,7 +145,7 @@ class _RegisterPageState extends State<registerPage>
               top: MediaQuery.of(context).size.height * 0.92,
               duration: Duration(seconds: 1),
               child: Container(
-                //color: Colors.red,
+                  //color: Colors.red,
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width,
@@ -157,11 +167,12 @@ class _RegisterPageState extends State<registerPage>
                       ],
                     ),
                   ))),
-          AnimatedPositioned  (
+          AnimatedPositioned(
               top: MediaQuery.of(context).size.height * 0.15,
               duration: Duration(seconds: 1),
               child: Container(
-                  padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
                   alignment: Alignment.topLeft,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
@@ -189,10 +200,12 @@ class _RegisterPageState extends State<registerPage>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Text(
-                                  'First Name',style: purple14Style,
+                                  'First Name',
+                                  style: purple14Style,
                                 ),
                                 Container(
-                                  height:MediaQuery.of(context).size.height * 0.06,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
                                   child: TextField(
                                     textAlignVertical: TextAlignVertical.bottom,
                                     textAlign: TextAlign.left,
@@ -202,8 +215,12 @@ class _RegisterPageState extends State<registerPage>
                                     ),
                                     cursorColor: paydayGreen,
                                     decoration: InputDecoration(
-                                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
-                                    ),),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: paydayGreen),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -220,7 +237,8 @@ class _RegisterPageState extends State<registerPage>
                                   style: purple14Style,
                                 ),
                                 Container(
-                                  height:MediaQuery.of(context).size.height * 0.06,
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.06,
                                   child: TextField(
                                     textAlignVertical: TextAlignVertical.bottom,
                                     textAlign: TextAlign.left,
@@ -230,8 +248,12 @@ class _RegisterPageState extends State<registerPage>
                                     ),
                                     cursorColor: paydayGreen,
                                     decoration: InputDecoration(
-                                      focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
-                                    ),),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: paydayGreen),
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -252,7 +274,7 @@ class _RegisterPageState extends State<registerPage>
                               style: purple14Style,
                             ),
                             Container(
-                              height:MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.06,
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.bottom,
                                 textAlign: TextAlign.left,
@@ -262,8 +284,11 @@ class _RegisterPageState extends State<registerPage>
                                 ),
                                 cursorColor: paydayGreen,
                                 decoration: InputDecoration(
-                                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
-                                ),),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: paydayGreen),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -282,7 +307,7 @@ class _RegisterPageState extends State<registerPage>
                               style: purple14Style,
                             ),
                             Container(
-                              height:MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.06,
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.bottom,
                                 textAlign: TextAlign.left,
@@ -292,9 +317,12 @@ class _RegisterPageState extends State<registerPage>
                                 ),
                                 cursorColor: paydayGreen,
                                 decoration: InputDecoration(
-                                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: paydayGreen),
+                                  ),
                                   suffixIcon: Icon(Icons.remove_red_eye),
-                                ),),
+                                ),
+                              ),
                             ),
                           ],
                         ),
@@ -319,7 +347,7 @@ class _RegisterPageState extends State<registerPage>
                               style: purple14Style,
                             ),
                             Container(
-                              height:MediaQuery.of(context).size.height * 0.06,
+                              height: MediaQuery.of(context).size.height * 0.06,
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.bottom,
                                 textAlign: TextAlign.left,
@@ -329,13 +357,15 @@ class _RegisterPageState extends State<registerPage>
                                 ),
                                 cursorColor: paydayGreen,
                                 decoration: InputDecoration(
-                                  focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
-                                ),),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(color: paydayGreen),
+                                  ),
+                                ),
+                              ),
                             ),
                           ],
                         ),
                       ),
-
                       Container(
                         width: MediaQuery.of(context).size.width,
                         //padding: const EdgeInsets.all(16.0),
@@ -346,73 +376,73 @@ class _RegisterPageState extends State<registerPage>
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
-                            Switch(value: true,activeTrackColor: paydayGreen,
-                              inactiveTrackColor: paydayGreen,activeColor: paydayGreen,inactiveThumbColor: accent,),
+                            Switch(
+                              value: true,
+                              activeTrackColor: paydayGreen,
+                              onChanged: (value) {},
+                              inactiveTrackColor: paydayGreen,
+                              activeColor: paydayGreen,
+                              inactiveThumbColor: accent,
+                            ),
                             Flexible(
-                                child:  RichText(
-                                  textAlign: TextAlign.start,overflow: TextOverflow.clip,
-                                  text: TextSpan(
-                                    text: 'Agree to the ',
-                                    style: footerGrayStyle,
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                        text: 'terms of service',
-                                        style: footerGreenStyle,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            Navigator.pushNamed(
-                                                context, '/termsAndCondition');
-                                          },
-                                      ),
-                                      TextSpan(
-                                        text: ' and our ',
-                                        style: footerGrayStyle,
-                                        recognizer: TapGestureRecognizer()
-                                          ..onTap = () {
-                                            Navigator.pushNamed(
-                                                context, '/termsAndCondition');
-                                          },
-                                      ),
-                                      TextSpan(
-                                          text: 'privacy policy',
-                                          style: footerGreenStyle,
-                                          recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              Navigator.pushNamed(
-                                                  context, '/termsAndCondition');
-                                            }
-                                      ),
-                                    ],
+                                child: RichText(
+                              textAlign: TextAlign.start,
+                              overflow: TextOverflow.clip,
+                              text: TextSpan(
+                                text: 'Agree to the ',
+                                style: footerGrayStyle,
+                                children: <TextSpan>[
+                                  TextSpan(
+                                    text: 'terms of service',
+                                    style: footerGreenStyle,
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.pushNamed(
+                                            context, '/termsAndCondition');
+                                      },
                                   ),
-                                )
-                            )
+                                  TextSpan(
+                                    text: ' and our ',
+                                    style: footerGrayStyle,
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        Navigator.pushNamed(
+                                            context, '/termsAndCondition');
+                                      },
+                                  ),
+                                  TextSpan(
+                                      text: 'privacy policy',
+                                      style: footerGreenStyle,
+                                      recognizer: TapGestureRecognizer()
+                                        ..onTap = () {
+                                          Navigator.pushNamed(
+                                              context, '/termsAndCondition');
+                                        }),
+                                ],
+                              ),
+                            ))
                           ],
                         ),
                       ),
-
                       Container(
                         alignment: Alignment.center,
-                        child:
-                        Hero(
+                        child: Hero(
                           tag: "btnInvestingTag",
-                          child:
-                          ButtonTheme(
+                          child: ButtonTheme(
                               minWidth: MediaQuery.of(context).size.width,
                               height: 50.0,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: buttonShape, // Button shape
+                                  backgroundColor: paydayGreen, // Button color
                                 ),
+                                onPressed: () {
+                                  confimationPosition = 0.03;
+                                },
                                 child: Text(
                                   'Create Account',
                                   style: lightBodyStyle,
                                 ),
-                                onPressed: () {
-                                  setState(() {
-                                    confimationPosition = 0.03;
-                                  });
-                                },
-                                color: paydayGreen,
                               )),
                         ),
                         width: MediaQuery.of(context).size.width,
@@ -451,8 +481,11 @@ class _RegisterPageState extends State<registerPage>
               duration: Duration(milliseconds: 500),
               child: Container(
                   color: accent,
-                  padding:
-                  EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.05,0,MediaQuery.of(context).size.width * 0.05,0),
+                  padding: EdgeInsets.fromLTRB(
+                      MediaQuery.of(context).size.width * 0.05,
+                      0,
+                      MediaQuery.of(context).size.width * 0.05,
+                      0),
                   alignment: Alignment.topLeft,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
@@ -472,7 +505,10 @@ class _RegisterPageState extends State<registerPage>
                       ),
                       Container(
                         alignment: Alignment.center,
-                        child: Text('Account Setup',style: dark24Style,),
+                        child: Text(
+                          'Account Setup',
+                          style: dark24Style,
+                        ),
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.05,
@@ -488,17 +524,22 @@ class _RegisterPageState extends State<registerPage>
                       ),
                       Container(
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.07),
-                          child: Text('Your PayDay Investor account is being created and an email verification link has been sent to',
-                            style: dark16Style,textAlign: TextAlign.center,)
-                      ),
+                          padding: EdgeInsets.all(
+                              MediaQuery.of(context).size.width * 0.07),
+                          child: Text(
+                            'Your PayDay Investor account is being created and an email verification link has been sent to',
+                            style: dark16Style,
+                            textAlign: TextAlign.center,
+                          )),
                       Container(
                           alignment: Alignment.center,
-                          child: Text('mail@xxx.ng',
-                            style: greenBodyStyle,textAlign: TextAlign.center,)
-                      ),
+                          child: Text(
+                            'mail@xxx.ng',
+                            style: greenBodyStyle,
+                            textAlign: TextAlign.center,
+                          )),
                       Container(
-                        //color: Colors.red,
+                          //color: Colors.red,
                           alignment: Alignment.center,
                           height: MediaQuery.of(context).size.height * 0.1,
                           width: MediaQuery.of(context).size.width,
@@ -526,28 +567,28 @@ class _RegisterPageState extends State<registerPage>
                         child: ButtonTheme(
                             minWidth: MediaQuery.of(context).size.width,
                             height: 50.0,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                              ),
-                              child: Text(
-                                'Confirm email address',
-                                style: lightBodyStyle,
-                              ),
-                              onPressed: () {
+                            child: ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    shape: buttonShape, // Button shape
+    backgroundColor: paydayGreen, // Button color
+  ),
+  onPressed: () {
                                 Navigator.pushNamed(
                                     context, '/registerationToken');
+  },
+  child: Text(
+    'Confirm email address',
+    style: lightBodyStyle,
+  ),
+)
 
-                              },
-                              color: paydayGreen,
-                            )),
+                            
+                            ),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.1,
                       ),
-
                     ],
                   ))),
-
         ],
       ),
     );

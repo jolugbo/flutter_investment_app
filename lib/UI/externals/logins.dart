@@ -5,9 +5,7 @@ import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/styles.dart';
 
 class loginPage extends StatefulWidget {
-  loginPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  loginPage({super.key});
 
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -25,7 +23,7 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           if (!previouslySignedIn)
             AnimatedPositioned(
@@ -38,7 +36,11 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width,
                   child: imgAnimation2(
-                    url: bgMain1,beginx:0,endx: -0.1, beginy: 0,endy: 0,
+                    url: bgMain1,
+                    beginx: 0,
+                    endx: -0.1,
+                    beginy: 0,
+                    endy: 0,
                     time: Duration(seconds: 2),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
@@ -65,7 +67,11 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                   height: MediaQuery.of(context).size.height * 0.5,
                   width: MediaQuery.of(context).size.width,
                   child: imgAnimation2(
-                    url: bgMain2,beginx:0.1,endx: -0, beginy: 0,endy: 0,
+                    url: bgMain2,
+                    beginx: 0.1,
+                    endx: -0,
+                    beginy: 0,
+                    endy: 0,
                     time: Duration(seconds: 2),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
@@ -91,7 +97,11 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                 child: WidgetAnimator(
                   component: imgAnimation2(
                     url: 'assets/logo.png',
-                    time: Duration(seconds: 3),beginx:0,endx: -0, beginy: 0,endy: 0,
+                    time: Duration(seconds: 3),
+                    beginx: 0,
+                    endx: -0,
+                    beginy: 0,
+                    endy: 0,
                     width: MediaQuery.of(context).size.width * 0.4,
                     height: MediaQuery.of(context).size.height * 0.3,
                     transition: PositionedTransition,
@@ -137,8 +147,8 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                 duration: Duration(seconds: 1),
                 child: Container(
                     //color: Colors.red,
-                    padding:
-                        EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                    padding: EdgeInsets.all(
+                        MediaQuery.of(context).size.width * 0.05),
                     alignment: Alignment.topLeft,
                     width: MediaQuery.of(context).size.width,
                     child: Column(
@@ -156,12 +166,12 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                         ),
                         TextField(
                             decoration: InputDecoration(
-                          labelText: 'Email Address ',labelStyle: purple14Style
-                        )),
+                                labelText: 'Email Address ',
+                                labelStyle: purple14Style)),
                         TextField(
                             decoration: InputDecoration(
-                          labelText: 'Password ',labelStyle: purple14Style
-                        )),
+                                labelText: 'Password ',
+                                labelStyle: purple14Style)),
                         Container(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
@@ -176,21 +186,24 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          child: ButtonTheme(
-                              minWidth: MediaQuery.of(context).size.width,
-                              height: 50.0,
-                              child: RaisedButton(
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width,
+                            height: 50.0,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    paydayGreen, // Set button color
                                 shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                //side: BorderSide(color: Colors.red)
-                              ),
-                                child: Text(
-                                  'Login',
-                                  style: lightBodyStyle,
+                                  borderRadius: BorderRadius.circular(10.0),
                                 ),
-                                onPressed: () {},
-                                color: paydayGreen,
-                              )),
+                              ),
+                              onPressed: () {},
+                              child: Text(
+                                'Login',
+                                style: lightBodyStyle,
+                              ),
+                            ),
+                          ),
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),
@@ -286,8 +299,8 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                         ),
                         TextField(
                             decoration: InputDecoration(
-                          labelText: 'Enter your password ',labelStyle: purple18Style
-                        )),
+                                labelText: 'Enter your password ',
+                                labelStyle: purple18Style)),
                         Container(
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
@@ -302,22 +315,26 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                         ),
                         Container(
                           alignment: Alignment.center,
-                          child:
-                          Hero(
-                            tag: "btnLoginTag",
-                            child: ButtonTheme(
-                                minWidth: MediaQuery.of(context).size.width,
+                          child: Hero(
+                              tag: "btnLoginTag",
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
                                 height: 50.0,
-                                child: RaisedButton(
-                                  shape: buttonShape,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        paydayGreen, // Set button color
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  onPressed: () {},
                                   child: Text(
                                     'Login',
                                     style: lightBodyStyle,
                                   ),
-                                  onPressed: () {},
-                                  color: paydayGreen,
-                                )),
-                          ),
+                                ),
+                              )),
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.1,
                         ),

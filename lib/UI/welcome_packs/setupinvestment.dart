@@ -5,7 +5,6 @@ import 'package:fl_animated_linechart/common/pair.dart';
 import 'package:fl_animated_linechart/fl_animated_linechart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/linechart.dart';
 import 'package:payday_investor/utills/styles.dart';
@@ -13,16 +12,14 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class setUpInvestmentPage extends StatefulWidget {
-  setUpInvestmentPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  setUpInvestmentPage();
 
   @override
   _SetUpInvestmentPageState createState() => _SetUpInvestmentPageState();
 }
 
 class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
-    with TickerProviderStateMixin, FakeChartSeries {
+    with TickerProviderStateMixin {
   String leafIcon = 'assets/leaficon.png';
   String bgMain = 'assets/purplebg.png';
   String goalicon = 'assets/smallgoalicon.png';
@@ -107,8 +104,8 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
   ExpandableController bankController = ExpandableController();
   String _date = 'yyyy/mm/dd';
   Random random = new Random();
-  Widget Main1;
-  Widget Main2;
+  // Widget Main1;
+  // Widget Main2;
   int chartIndex = 0;
 
   List<double> _generateRandomData(int count) {
@@ -118,247 +115,263 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
     }
     return result;
   }
+
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
   }
 
-
   @override
   Widget build(BuildContext context) {
-    Widget investmentType1 = AnimatedPositioned (
-                  top: MediaQuery.of(context).size.height * 0.1,
-                  duration: Duration(seconds: 1),
-                  child: Container(
-                      padding: EdgeInsets.all(
-                          MediaQuery.of(context).size.width * 0.05),
-                      alignment: Alignment.topLeft,
-                      width: MediaQuery.of(context).size.width,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.max,
-                        children: <Widget>[
-                          Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Start investing',
-                              style: purple28Style,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          Container(
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Is your investment targeted towards a financial goal?',
-                              style: purple22Style,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          Container(
-                            child: Stack(
-                              children: <Widget>[
-                                imgAnimation2(
-                                  url: goalicon,
-                                  time: Duration(seconds: 5),
-                                  width:
-                                  MediaQuery.of(context).size.width * 0.8,
-                                  beginx: 0.0,
-                                  endx: -0,
-                                  beginy: 0,
-                                  endy: -0.0,
-                                  height:
-                                  MediaQuery.of(context).size.height * 0.1,
-                                  transition: PositionedTransition,
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.04,
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            //color: Colors.red,
-                            alignment: Alignment.center,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              mainAxisSize: MainAxisSize.max,
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    AnimatedCrossFade(
-                                      duration: const Duration(milliseconds: 200),
-                                      firstChild: Container(
-                                        child:  Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                                      secondChild: Container(
-                                        width: MediaQuery.of(context).size.width * 0.08,
-                                        height: MediaQuery.of(context).size.height * 0.08,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: accent,
-                                        ),
-                                      ),
-                                      crossFadeState: setUpGoal
-                                          ? CrossFadeState.showFirst
-                                          : CrossFadeState.showSecond,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width * 0.7,
-                                      alignment: Alignment.center,
-                                      color: Colors.transparent,
-                                      child: ButtonTheme(
-                                          minWidth:
-                                          MediaQuery.of(context).size.width,
-                                          height: MediaQuery.of(context).size.height * 0.1,
-                                          buttonColor: accent,
-                                          child: RaisedButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0),
-                                              side: BorderSide(color: setUpGoalColor)
-                                            ),
-                                            color: accent,
-                                            child: Text('Yes, I want to setup a goal',style: dark16Style,),
-                                            onPressed: () => {
-                                              setState(() {
-                                                setUpInvest = true;
-                                                setUpInvestColor = accent;
-                                                setUpGoal = true;
-                                                setUpGoalColor = paydayGreen;
-                                              })
-                                            }, 
-                                            highlightElevation: 0.8,
-                                          )),
-                                    ),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: <Widget>[
-                                    AnimatedCrossFade(
-                                      duration: const Duration(milliseconds: 200),
-                                      firstChild: Container(
-                                        width: MediaQuery.of(context).size.width * 0.08,
-                                        height: MediaQuery.of(context).size.height * 0.08,
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          color: accent,
-                                        ),
-                                      ),
-                                      secondChild: Container(
-                                        child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                                      crossFadeState: setUpInvest
-                                          ? CrossFadeState.showFirst
-                                          : CrossFadeState.showSecond,
-                                    ),
-                                    Container(
-                                      width: MediaQuery.of(context).size.width *
-                                          0.7,
-                                      alignment: Alignment.center,
-                                      color: accent,
-                                      child: ButtonTheme(
-                                          minWidth: MediaQuery.of(context).size.width,
-                                          height: MediaQuery.of(context).size.height *0.1,
-                                          buttonColor: accent,
-                                          child: RaisedButton(
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.circular(10.0),
-                                                side: BorderSide(color: setUpInvestColor)
-                                            ),
-                                            color: accent,
-                                            child: Text(
-                                              'No, I just want to invest',
-                                              style: dark16Style,
-                                            ),
-                                            onPressed: () => {
-                                              setState(() {
-                                                setUpGoal = false;
-                                                setUpGoalColor = accent;
-                                                setUpInvest = false;
-                                                setUpInvestColor = paydayGreen;
-                                              })
-                                            },
-                                            highlightElevation: 0.8,
-                                          )),
-                                    ),
-                                  ],
-                                )
-                              ],
-                            ),
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.1,
-                          ),
-                          Container(
-                            height: MediaQuery.of(context).size.height * 0.2,
-                            child: Container(
-                              width: MediaQuery.of(context).size.width,
-                              alignment: Alignment.center,
-                              child: ButtonTheme(
-                                  //minWidth: MediaQuery.of(context).size.width * 0.85,
-                                  height: 50.0,
-                                  child: RaisedButton(
-                                    shape: buttonShape,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: <Widget>[
-                                        Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                        Text(
-                                          'Proceed',
-                                          style: lightBodyStyle,
-                                        ),
-                                        Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                        Image(width: 50, height: 50, image: AssetImage(nextIcon),)
-                                      ],
-                                    ),
-                                    onPressed: () {
-                                      setState(() {
-                                        if(setUpGoal){
-                                          //panelController.open();
-                                          //panelController.show();
-                                          //sliderPosition =
-                                          goalNameSetupTop = 0;
-                                        }
-                                        else if(!setUpInvest){
-                                          showInvestmenttypes = false;
-                                          showCurrencyOptions = true;
-                                        }
-                                      });
-                                    },
-                                    color: paydayGreen,
-                                  )),
-                              height: MediaQuery.of(context).size.height * 0.1,
-                            ),
-                          ),
-
-                        ],
-                      )));
-
-    Widget nairaOptions =  AnimatedPositioned (
-        top: MediaQuery.of(context).size.height * 0.1,
+    var size = MediaQuery.of(context).size;
+    Widget investmentType1 = AnimatedPositioned(
+        top: size.height * 0.1,
         duration: Duration(seconds: 1),
         child: Container(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
-            //alignment: Alignment.topLeft,
-            width: MediaQuery.of(context).size.width,
+            padding: EdgeInsets.all(size.width * 0.05),
+            alignment: Alignment.topLeft,
+            width: size.width,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Start investing',
+                    style: purple28Style,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  height: size.height * 0.02,
+                ),
+                Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    'Is your investment targeted towards a financial goal?',
+                    style: purple22Style,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                Container(
+                  height: size.height * 0.02,
+                ),
+                Container(
+                  child: Stack(
+                    children: <Widget>[
+                      imgAnimation2(
+                        url: goalicon,
+                        time: Duration(seconds: 5),
+                        width: size.width * 0.8,
+                        beginx: 0.0,
+                        endx: -0,
+                        beginy: 0,
+                        endy: -0.0,
+                        height: size.height * 0.1,
+                        transition: PositionedTransition,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.height * 0.04,
+                ),
+                Container(
+                  height: size.height * 0.25,
+                  //color: Colors.red,
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          AnimatedCrossFade(
+                            duration: const Duration(milliseconds: 200),
+                            firstChild: Container(
+                                child: Image(
+                              image: AssetImage(check2),
+                              width: size.width * 0.2,
+                            )),
+                            secondChild: Container(
+                              width: size.width * 0.08,
+                              height: size.height * 0.08,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: accent,
+                              ),
+                            ),
+                            crossFadeState: setUpGoal
+                                ? CrossFadeState.showFirst
+                                : CrossFadeState.showSecond,
+                          ),
+                          Container(
+                            width: size.width * 0.7,
+                            alignment: Alignment.center,
+                            color: Colors.transparent,
+                            child: ButtonTheme(
+                                minWidth: size.width,
+                                height: size.height * 0.1,
+                                buttonColor: accent,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: BorderSide(color: setUpGoalColor),
+                                    ),
+                                    backgroundColor: accent, // Replaces `color`
+                                    elevation:
+                                        0.8, // Replaces `highlightElevation`
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      setUpInvest = true;
+                                      setUpInvestColor = accent;
+                                      setUpGoal = true;
+                                      setUpGoalColor = paydayGreen;
+                                    });
+                                  },
+                                  child: Text(
+                                    'Yes, I want to setup a goal',
+                                    style: dark16Style,
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisSize: MainAxisSize.max,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          AnimatedCrossFade(
+                            duration: const Duration(milliseconds: 200),
+                            firstChild: Container(
+                              width: size.width * 0.08,
+                              height: size.height * 0.08,
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: accent,
+                              ),
+                            ),
+                            secondChild: Container(
+                                child: Image(
+                              image: AssetImage(check2),
+                              width: size.width * 0.2,
+                            )),
+                            crossFadeState: setUpInvest
+                                ? CrossFadeState.showFirst
+                                : CrossFadeState.showSecond,
+                          ),
+                          Container(
+                            width: size.width * 0.7,
+                            alignment: Alignment.center,
+                            color: accent,
+                            child: ButtonTheme(
+                                minWidth: size.width,
+                                height: size.height * 0.1,
+                                buttonColor: accent,
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      side: BorderSide(color: setUpInvestColor),
+                                    ),
+                                    backgroundColor: accent, // Replaces `color`
+                                    elevation:
+                                        0.8, // Replaces `highlightElevation`
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      setUpGoal = false;
+                                      setUpGoalColor = accent;
+                                      setUpInvest = false;
+                                      setUpInvestColor = paydayGreen;
+                                    });
+                                  },
+                                  child: Text(
+                                    'No, I just want to invest',
+                                    style: dark16Style,
+                                  ),
+                                )),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Container(
+                  height: size.height * 0.1,
+                ),
+                Container(
+                  height: size.height * 0.2,
+                  child: Container(
+                    width: size.width,
+                    alignment: Alignment.center,
+                    child: ButtonTheme(
+                        //minWidth: size.width * 0.85,
+                        height: 50.0,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: buttonShape,
+                            backgroundColor: paydayGreen, // Replaces `color`
+                            elevation: 0.8, // Replaces `highlightElevation`
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              if (setUpGoal) {
+                                goalNameSetupTop = 0;
+                              } else if (!setUpInvest) {
+                                showInvestmenttypes = false;
+                                showCurrencyOptions = true;
+                              }
+                            });
+                          },
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: <Widget>[
+                              Container(
+                                width: size.width * 0.25,
+                                height: 50,
+                              ),
+                              Text(
+                                'Proceed',
+                                style: lightBodyStyle,
+                              ),
+                              Container(
+                                width: size.width * 0.25,
+                                height: 50,
+                              ),
+                              Image(
+                                width: 50,
+                                height: 50,
+                                image: AssetImage(nextIcon),
+                              )
+                            ],
+                          ),
+                        )),
+                    height: size.height * 0.1,
+                  ),
+                ),
+              ],
+            )));
+
+    Widget nairaOptions = AnimatedPositioned(
+        top: size.height * 0.1,
+        duration: Duration(seconds: 1),
+        child: Container(
+            padding: EdgeInsets.all(size.width * 0.05),
+            width: size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -373,7 +386,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                   ),
                 ),
                 Container(
-                  //height: MediaQuery.of(context).size.height * 0.7,
+                  //height: size.height * 0.7,
                   alignment: Alignment.center,
                   child: Column(
                     children: <Widget>[
@@ -383,18 +396,20 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
-                                firstChild:Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                                secondChild:Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                firstChild: Container(
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
+                                secondChild: Container(
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -406,35 +421,55 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth: MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.22,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.22,
                                     buttonColor: accent,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showMMFCheck ? paydayGreen:accent)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showMMFCheck
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Container(
                                               alignment: Alignment.center,
-                                              child:
-                                              Text('ARM Money Market Fund',style: gray16Style,textAlign: TextAlign.center,),
+                                              child: Text(
+                                                'ARM Money Market Fund',
+                                                style: gray16Style,
+                                                textAlign: TextAlign.center,
+                                              ),
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              height: MediaQuery.of(context).size.height * 0.03,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              child:Image(image:AssetImage(mmfChartIcon),width: MediaQuery.of(context).size.width * 0.15,),
+                                              child: Image(
+                                                image: AssetImage(mmfChartIcon),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                              ),
                                             ),
                                           ]),
                                       onPressed: () => {
@@ -445,24 +480,25 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           showFixedIncomeCheck = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
                           ),
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
                                 firstChild: Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
                                 secondChild: Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -474,47 +510,67 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth:
-                                    MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.22,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.22,
                                     buttonColor: accent,
-                                    child:  RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showFixedIncomeCheck ? paydayGreen:accent)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showFixedIncomeCheck
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Container(
                                               alignment: Alignment.center,
-                                              child:
-                                              Text('ARM Fixed Income Fund',style: gray16Style,textAlign: TextAlign.center,),
+                                              child: Text(
+                                                'ARM Fixed Income Fund',
+                                                style: gray16Style,
+                                                textAlign: TextAlign.center,
+                                              ),
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              height: MediaQuery.of(context).size.height * 0.03,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              child:Image(image:AssetImage(fixedIncomeIcon),width: MediaQuery.of(context).size.width * 0.15,),
+                                              child: Image(
+                                                image:
+                                                    AssetImage(fixedIncomeIcon),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                              ),
                                             ),
                                           ]),
                                       onPressed: () => {
                                         setState(() {
-                                          showFixedIncomeCheck = !showFixedIncomeCheck;
+                                          showFixedIncomeCheck =
+                                              !showFixedIncomeCheck;
                                           showMMFCheck = false;
                                           showEthicalFundCheck = false;
                                           showDiscoveryFundCheck = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
@@ -527,18 +583,20 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
-                                firstChild:Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                                secondChild:Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                firstChild: Container(
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
+                                secondChild: Container(
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -550,63 +608,86 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 //alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth: MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.22,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.22,
                                     buttonColor: accent,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showDiscoveryFundCheck ? paydayGreen:accent)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showDiscoveryFundCheck
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Container(
                                               alignment: Alignment.center,
-                                              child:Text('ARM Discovery Fund',style: gray16Style,textAlign: TextAlign.center,),
+                                              child: Text(
+                                                'ARM Discovery Fund',
+                                                style: gray16Style,
+                                                textAlign: TextAlign.center,
+                                              ),
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              height: MediaQuery.of(context).size.height * 0.03,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              child:Image(image:AssetImage(discoveryFundIcon),width: MediaQuery.of(context).size.width * 0.15,),
+                                              child: Image(
+                                                image: AssetImage(
+                                                    discoveryFundIcon),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                              ),
                                             ),
-
-                                          ]),padding: EdgeInsets.fromLTRB(0,0,0,0),
+                                          ]),
                                       onPressed: () => {
                                         setState(() {
-                                          showDiscoveryFundCheck = !showDiscoveryFundCheck;
+                                          showDiscoveryFundCheck =
+                                              !showDiscoveryFundCheck;
                                           showMMFCheck = false;
                                           showEthicalFundCheck = false;
                                           showFixedIncomeCheck = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
                           ),
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
                                 firstChild: Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
                                 secondChild: Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -618,104 +699,136 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth: MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.22,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.22,
                                     buttonColor: accent,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showEthicalFundCheck ? paydayGreen:accent)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showEthicalFundCheck
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Container(
                                               alignment: Alignment.center,
-                                              child:
-                                              Text('ARM Ethical Fund',style: gray16Style,textAlign: TextAlign.center,),
+                                              child: Text(
+                                                'ARM Ethical Fund',
+                                                style: gray16Style,
+                                                textAlign: TextAlign.center,
+                                              ),
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              height: MediaQuery.of(context).size.height * 0.03,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              child:Image(image:AssetImage(ethicalFundIcon),width: MediaQuery.of(context).size.width * 0.15,),
+                                              child: Image(
+                                                image:
+                                                    AssetImage(ethicalFundIcon),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                              ),
                                             ),
                                           ]),
                                       onPressed: () => {
                                         setState(() {
-                                          showEthicalFundCheck = !showEthicalFundCheck;
+                                          showEthicalFundCheck =
+                                              !showEthicalFundCheck;
                                           showMMFCheck = false;
                                           showDiscoveryFundCheck = false;
                                           showFixedIncomeCheck = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ],),
-
+                    ],
+                  ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: size.height * 0.2,
                   alignment: Alignment.center,
                   child: ButtonTheme(
                       height: 50.0,
-                      child: RaisedButton(
-                        shape: buttonShape,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: buttonShape,
+                          elevation: 0.8,
+                        ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                            Text('Proceed2',style: lightBodyStyle,),
-                            Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                            Image(width: 50, height: 50, image: AssetImage(nextIcon),)
+                            Container(
+                              width: size.width * 0.25,
+                              height: 50,
+                            ),
+                            Text(
+                              'Proceed2',
+                              style: lightBodyStyle,
+                            ),
+                            Container(
+                              width: size.width * 0.25,
+                              height: 50,
+                            ),
+                            Image(
+                              width: 50,
+                              height: 50,
+                              image: AssetImage(nextIcon),
+                            )
                           ],
                         ),
                         onPressed: () {
                           setState(() {
-                            if(showMMFCheck){
+                            if (showMMFCheck) {
                               mmfTop = 0;
                             }
-                            if(showFixedIncomeCheck){
+                            if (showFixedIncomeCheck) {
                               fixedIncomeTop = 0;
                             }
-                            if(showDiscoveryFundCheck){
+                            if (showDiscoveryFundCheck) {
                               discoveryFundTop = 0;
-
                             }
-                            if(showEthicalFundCheck){
-
-                            }
+                            if (showEthicalFundCheck) {}
                           });
                         },
-                        color: paydayGreen,
                       )),
                 ),
               ],
-            ))
-    );
+            )));
 
-    Widget dollarOptions =  AnimatedPositioned (
-        top: MediaQuery.of(context).size.height * 0.1,
+    Widget dollarOptions = AnimatedPositioned(
+        top: size.height * 0.1,
         duration: Duration(seconds: 1),
         child: Container(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+            padding: EdgeInsets.all(size.width * 0.05),
             //alignment: Alignment.topLeft,
-            width: MediaQuery.of(context).size.width,
+            width: size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -739,18 +852,20 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
-                                firstChild:Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                                secondChild:Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                firstChild: Container(
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
+                                secondChild: Container(
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -762,35 +877,56 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth: MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.22,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.22,
                                     buttonColor: accent,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showMMFCheck ? paydayGreen:accent)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showMMFCheck
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
                                             Container(
                                               alignment: Alignment.center,
-                                              child:
-                                              Text('ARM EuroBond Fund',style: gray16Style,textAlign: TextAlign.center,),
+                                              child: Text(
+                                                'ARM EuroBond Fund',
+                                                style: gray16Style,
+                                                textAlign: TextAlign.center,
+                                              ),
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              height: MediaQuery.of(context).size.height * 0.03,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.03,
                                             ),
                                             Container(
                                               alignment: Alignment.center,
-                                              child:Image(image:AssetImage(dollarchartIcon),width: MediaQuery.of(context).size.width * 0.15,),
+                                              child: Image(
+                                                image:
+                                                    AssetImage(dollarchartIcon),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.15,
+                                              ),
                                             ),
                                           ]),
                                       onPressed: () => {
@@ -801,31 +937,47 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           showFixedIncomeCheck = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ],),
+                    ],
+                  ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.4,
+                  height: size.height * 0.4,
                   alignment: Alignment.bottomCenter,
                   child: ButtonTheme(
                       height: 50.0,
-                      child: RaisedButton(
-                        shape: buttonShape,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          shape: buttonShape,
+                          elevation: 0.8, // Replaced highlightElevation
+                        ),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                            Text('Proceed',style: lightBodyStyle,),
-                            Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                            Image(width: 50, height: 50, image: AssetImage(nextIcon),)
+                            Container(
+                              width: size.width * 0.25,
+                              height: 50,
+                            ),
+                            Text(
+                              'Proceed',
+                              style: lightBodyStyle,
+                            ),
+                            Container(
+                              width: size.width * 0.25,
+                              height: 50,
+                            ),
+                            Image(
+                              width: 50,
+                              height: 50,
+                              image: AssetImage(nextIcon),
+                            )
                           ],
                         ),
                         onPressed: () {
@@ -833,20 +985,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                             euroBondTop = 0;
                           });
                         },
-                        color: paydayGreen,
                       )),
                 ),
               ],
-            ))
-    );
+            )));
 
-    Widget currencySetUp = AnimatedPositioned (
-        top: MediaQuery.of(context).size.height * 0.1,
+    Widget currencySetUp = AnimatedPositioned(
+        top: size.height * 0.1,
         duration: Duration(seconds: 1),
         child: Container(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+            padding: EdgeInsets.all(size.width * 0.05),
             alignment: Alignment.topLeft,
-            width: MediaQuery.of(context).size.width,
+            width: size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -861,7 +1011,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: size.height * 0.02,
                 ),
                 Container(
                   alignment: Alignment.center,
@@ -872,10 +1022,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: size.height * 0.02,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.35,
+                  height: size.height * 0.35,
                   alignment: Alignment.center,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -883,18 +1033,20 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Column(
-                        mainAxisAlignment:
-                        MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           AnimatedCrossFade(
                             duration: const Duration(milliseconds: 200),
-                            firstChild:Container(
-                              child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                            secondChild:Container(
-                              width: MediaQuery.of(context).size.width * 0.08,
-                              height: MediaQuery.of(context).size.height * 0.08,
+                            firstChild: Container(
+                                child: Image(
+                              image: AssetImage(check2),
+                              width: size.width * 0.2,
+                            )),
+                            secondChild: Container(
+                              width: size.width * 0.08,
+                              height: size.height * 0.08,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -906,43 +1058,103 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                 : CrossFadeState.showSecond,
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width *
-                                0.33,
+                            width: size.width * 0.33,
                             alignment: Alignment.center,
                             child: ButtonTheme(
-                                minWidth:
-                                MediaQuery.of(context).size.width * 0.3,
-                                height: MediaQuery.of(context).size.height * 0.25,
+                                minWidth: size.width * 0.3,
+                                height: size.height * 0.25,
                                 buttonColor: accent,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                      side: BorderSide(color: setUpNairaColor)
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15)),
+                                      side: BorderSide(
+                                          color:
+                                              setUpNairaColor), // Moved inside shape
+                                    ),
+                                    elevation: 0.8,
                                   ),
-                                  color: accent,
                                   child: Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('Naira Denominated',style: gray16Style,textAlign: TextAlign.center,),
+                                        Text(
+                                          'Naira Denominated',
+                                          style: gray16Style,
+                                          textAlign: TextAlign.center,
+                                        ),
                                         AnimatedCrossFade(
                                           duration: const Duration(seconds: 1),
                                           firstChild: WidgetAnimator(
                                             component: Container(
-                                              height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                              child: imgAnimation2(url: nairaCheckIcon,time: Duration(seconds: 2),
-                                                width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                              ),),
-                                            transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.17,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.transparent,
+                                              alignment: Alignment.center,
+                                              child: imgAnimation2(
+                                                url: nairaCheckIcon,
+                                                time: Duration(seconds: 2),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.9,
+                                                beginx: 0.03,
+                                                endx: -0,
+                                                beginy: 0,
+                                                endy: -0.0,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.1,
+                                                transition:
+                                                    PositionedTransition,
+                                              ),
+                                            ),
+                                            transition: Transform,
+                                            animPattern: Curves.easeIn,
+                                            pixle: Colors.transparent,
+                                            time: Duration(seconds: 1),
+                                            animType: "nothing",
+                                            xAxis: 0,
+                                            yAxis: 0,
                                           ),
                                           secondChild: Container(
-                                            height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                            child: imgAnimation2(url: nairauncheckIcon,time: Duration(seconds: 2),
-                                              width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                              height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                            ),),
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.17,
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width,
+                                            color: Colors.transparent,
+                                            alignment: Alignment.center,
+                                            child: imgAnimation2(
+                                              url: nairauncheckIcon,
+                                              time: Duration(seconds: 2),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.9,
+                                              beginx: 0.03,
+                                              endx: -0,
+                                              beginy: 0,
+                                              endy: -0.0,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.1,
+                                              transition: PositionedTransition,
+                                            ),
+                                          ),
                                           crossFadeState: showNairaCheck
                                               ? CrossFadeState.showFirst
                                               : CrossFadeState.showSecond,
@@ -957,24 +1169,25 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       setUpDollarColor = accent;
                                     })
                                   },
-                                  highlightElevation: 20,
                                 )),
                           ),
                         ],
                       ),
                       Column(
-                        mainAxisAlignment:
-                        MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         mainAxisSize: MainAxisSize.max,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           AnimatedCrossFade(
                             duration: const Duration(milliseconds: 200),
                             firstChild: Container(
-                                child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
+                                child: Image(
+                              image: AssetImage(check2),
+                              width: size.width * 0.2,
+                            )),
                             secondChild: Container(
-                              width: MediaQuery.of(context).size.width * 0.08,
-                              height: MediaQuery.of(context).size.height * 0.08,
+                              width: size.width * 0.08,
+                              height: size.height * 0.08,
                               alignment: Alignment.center,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
@@ -986,44 +1199,112 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                 : CrossFadeState.showSecond,
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.33,
+                            width: size.width * 0.33,
                             alignment: Alignment.center,
                             child: ButtonTheme(
-                                minWidth:
-                                MediaQuery.of(context).size.width * 0.3,
-                                height: MediaQuery.of(context).size.height * 0.25,
+                                minWidth: size.width * 0.3,
+                                height: size.height * 0.25,
                                 buttonColor: accent,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                      side: BorderSide(color: setUpDollarColor)
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(15)),
+                                      side: BorderSide(
+                                          color:
+                                              setUpDollarColor), // Moved inside shape
+                                    ),
+                                    elevation: 0.8,
                                   ),
-                                  color: accent,
                                   child: Column(
                                       mainAxisSize: MainAxisSize.max,
-                                      mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceAround,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
                                       children: <Widget>[
-                                        Text('Dollar Denominated',style: gray16Style,textAlign: TextAlign.center,),
+                                        Text(
+                                          'Dollar Denominated',
+                                          style: gray16Style,
+                                          textAlign: TextAlign.center,
+                                        ),
                                         AnimatedCrossFade(
                                           duration: const Duration(seconds: 1),
-                                          firstChild:WidgetAnimator(
+                                          firstChild: WidgetAnimator(
                                             component: Container(
-                                              height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                              child: imgAnimation2(url: dollarCheckIcon,time: Duration(seconds: 2),
-                                                width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                              ),),
-                                            transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.17,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.transparent,
+                                              alignment: Alignment.center,
+                                              child: imgAnimation2(
+                                                url: dollarCheckIcon,
+                                                time: Duration(seconds: 2),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.9,
+                                                beginx: 0.03,
+                                                endx: -0,
+                                                beginy: 0,
+                                                endy: -0.0,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.1,
+                                                transition:
+                                                    PositionedTransition,
+                                              ),
+                                            ),
+                                            transition: Transform,
+                                            animPattern: Curves.easeIn,
+                                            pixle: Colors.transparent,
+                                            time: Duration(seconds: 1),
+                                            animType: "nothing",
+                                            xAxis: 0,
+                                            yAxis: 0,
                                           ),
-                                          secondChild:  WidgetAnimator(
+                                          secondChild: WidgetAnimator(
                                             component: Container(
-                                              height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                              child: imgAnimation2(url: dollarUnCheckIcon,time: Duration(seconds: 2),
-                                                width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                              ),),
-                                            transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.17,
+                                              width: MediaQuery.of(context)
+                                                  .size
+                                                  .width,
+                                              color: Colors.transparent,
+                                              alignment: Alignment.center,
+                                              child: imgAnimation2(
+                                                url: dollarUnCheckIcon,
+                                                time: Duration(seconds: 2),
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.9,
+                                                beginx: 0.03,
+                                                endx: -0,
+                                                beginy: 0,
+                                                endy: -0.0,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.1,
+                                                transition:
+                                                    PositionedTransition,
+                                              ),
+                                            ),
+                                            transition: Transform,
+                                            animPattern: Curves.easeIn,
+                                            pixle: Colors.transparent,
+                                            time: Duration(seconds: 1),
+                                            animType: "nothing",
+                                            xAxis: 0,
+                                            yAxis: 0,
                                           ),
                                           crossFadeState: showDollarCheck
                                               ? CrossFadeState.showFirst
@@ -1038,7 +1319,6 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       setUpDollarColor = paydayGreen;
                                     })
                                   },
-                                  highlightElevation: 10,
                                 )),
                           ),
                         ],
@@ -1047,60 +1327,71 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: size.height * 0.1,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: size.height * 0.2,
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: size.width,
                     alignment: Alignment.center,
                     child: ButtonTheme(
-                      //minWidth: MediaQuery.of(context).size.width * 0.85,
+                        //minWidth: size.width * 0.85,
                         height: 50.0,
-                        child: RaisedButton(
-                          shape: buttonShape,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: buttonShape,
+                            elevation: 0.8,
+                          ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
+                              Container(
+                                width: size.width * 0.25,
+                                height: 50,
+                              ),
                               Text(
                                 'Proceed',
                                 style: lightBodyStyle,
                               ),
-                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                              Image(width: 50, height: 50, image: AssetImage(nextIcon),)
+                              Container(
+                                width: size.width * 0.25,
+                                height: 50,
+                              ),
+                              Image(
+                                width: 50,
+                                height: 50,
+                                image: AssetImage(nextIcon),
+                              )
                             ],
                           ),
                           onPressed: () {
                             setState(() {
                               setupTypeAndCurrencyType = 1.2;
                               dollarAndNairaInvTypes = 0.1;
-                            if(showNairaCheck){
-                              showNairaInv = true;
-                            }
-                            if(showDollarCheck){
-                              showNairaInv = false;
-                            }
+                              if (showNairaCheck) {
+                                showNairaInv = true;
+                              }
+                              if (showDollarCheck) {
+                                showNairaInv = false;
+                              }
                             });
                           },
-                          color: paydayGreen,
                         )),
-                    height: MediaQuery.of(context).size.height * 0.1,
+                    height: size.height * 0.1,
                   ),
                 ),
               ],
-            ))
-    );
+            )));
 
-    Widget frequencyOption = AnimatedPositioned (
-        top: MediaQuery.of(context).size.height * 0.1,
+    Widget frequencyOption = AnimatedPositioned(
+        top: size.height * 0.1,
         duration: Duration(seconds: 1),
         child: Container(
-            padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+            padding: EdgeInsets.all(size.width * 0.05),
             alignment: Alignment.topLeft,
-            width: MediaQuery.of(context).size.width,
+            width: size.width,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -1115,10 +1406,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.02,
+                  height: size.height * 0.02,
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.6,
+                  height: size.height * 0.6,
                   alignment: Alignment.center,
                   child: Column(
                     children: <Widget>[
@@ -1128,18 +1419,20 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
-                                firstChild:Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
-                                secondChild:Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                firstChild: Container(
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
+                                secondChild: Container(
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -1151,71 +1444,119 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth:
-                                    MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.25,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.25,
                                     buttonColor: accent,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showRecurrentOptions ? paydayGreen:accent,)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showRecurrentOptions
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
-                                            Text('Recurrent Funding',style: gray16Style,textAlign: TextAlign.center,),
+                                            Text(
+                                              'Recurrent Funding',
+                                              style: gray16Style,
+                                              textAlign: TextAlign.center,
+                                            ),
                                             AnimatedCrossFade(
-                                              duration: const Duration(seconds: 1),
+                                              duration:
+                                                  const Duration(seconds: 1),
                                               firstChild: WidgetAnimator(
                                                 component: Container(
-                                                  height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                                  child: imgAnimation2(url: calendarIcon,time: Duration(seconds: 2),
-                                                    width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                    height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                                  ),),
-                                                transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
+                                                  height: size.height * 0.17,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  color: Colors.transparent,
+                                                  alignment: Alignment.center,
+                                                  child: imgAnimation2(
+                                                    url: calendarIcon,
+                                                    time: Duration(seconds: 2),
+                                                    width: size.width * 0.9,
+                                                    beginx: 0.03,
+                                                    endx: -0,
+                                                    beginy: 0,
+                                                    endy: -0.0,
+                                                    height: size.height * 0.1,
+                                                    transition:
+                                                        PositionedTransition,
+                                                  ),
+                                                ),
+                                                transition: Transform,
+                                                animPattern: Curves.easeIn,
+                                                pixle: Colors.transparent,
+                                                time: Duration(seconds: 1),
+                                                animType: "nothing",
+                                                xAxis: 0,
+                                                yAxis: 0,
                                               ),
                                               secondChild: Container(
-                                                height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                                child: imgAnimation2(url: calendarIcon,time: Duration(seconds: 2),
-                                                  width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                  height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                                ),),
-                                              crossFadeState: showRecurrentOptions
-                                                  ? CrossFadeState.showFirst
-                                                  : CrossFadeState.showSecond,
+                                                height: size.height * 0.17,
+                                                width: size.width,
+                                                color: Colors.transparent,
+                                                alignment: Alignment.center,
+                                                child: imgAnimation2(
+                                                  url: calendarIcon,
+                                                  time: Duration(seconds: 2),
+                                                  width: size.width * 0.9,
+                                                  beginx: 0.03,
+                                                  endx: -0,
+                                                  beginy: 0,
+                                                  endy: -0.0,
+                                                  height: size.height * 0.1,
+                                                  transition:
+                                                      PositionedTransition,
+                                                ),
+                                              ),
+                                              crossFadeState:
+                                                  showRecurrentOptions
+                                                      ? CrossFadeState.showFirst
+                                                      : CrossFadeState
+                                                          .showSecond,
                                             ),
                                           ]),
                                       onPressed: () => {
                                         setState(() {
-                                          showRecurrentOptions = !showRecurrentOptions;
+                                          showRecurrentOptions =
+                                              !showRecurrentOptions;
                                           showManualOptions = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
                           ),
                           Column(
-                            mainAxisAlignment:
-                            MainAxisAlignment.center,
+                            mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
                               AnimatedCrossFade(
                                 duration: const Duration(milliseconds: 200),
                                 firstChild: Container(
-                                    child: Image(image:AssetImage(check2),width: MediaQuery.of(context).size.width * 0.2,)),
+                                    child: Image(
+                                  image: AssetImage(check2),
+                                  width: size.width * 0.2,
+                                )),
                                 secondChild: Container(
-                                  width: MediaQuery.of(context).size.width * 0.08,
-                                  height: MediaQuery.of(context).size.height * 0.08,
+                                  width: size.width * 0.08,
+                                  height: size.height * 0.08,
                                   alignment: Alignment.center,
                                   decoration: BoxDecoration(
                                     shape: BoxShape.circle,
@@ -1227,44 +1568,96 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                     : CrossFadeState.showSecond,
                               ),
                               Container(
-                                width: MediaQuery.of(context).size.width * 0.33,
+                                width: size.width * 0.33,
                                 alignment: Alignment.center,
                                 child: ButtonTheme(
-                                    minWidth:
-                                    MediaQuery.of(context).size.width * 0.3,
-                                    height: MediaQuery.of(context).size.height * 0.25,
+                                    minWidth: size.width * 0.3,
+                                    height: size.height * 0.25,
                                     buttonColor: accent,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius: BorderRadius.all(Radius.circular(15)),
-                                          side: BorderSide(color: showManualOptions? paydayGreen:accent,)
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(15)),
+                                          side: BorderSide(
+                                              color: showManualOptions
+                                                  ? paydayGreen
+                                                  : accent), // Moved inside shape
+                                        ),
+                                        elevation: 0.8,
                                       ),
-                                      color: accent,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceAround,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: <Widget>[
-                                            Text('Manual Funding',style: gray16Style,textAlign: TextAlign.center,),
+                                            Text(
+                                              'Manual Funding',
+                                              style: gray16Style,
+                                              textAlign: TextAlign.center,
+                                            ),
                                             AnimatedCrossFade(
-                                              duration: const Duration(seconds: 1),
-                                              firstChild:WidgetAnimator(
+                                              duration:
+                                                  const Duration(seconds: 1),
+                                              firstChild: WidgetAnimator(
                                                 component: Container(
-                                                  height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                                  child: imgAnimation2(url: manualIcon,time: Duration(seconds: 2),
-                                                    width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                    height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                                  ),),
-                                                transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
+                                                  height: size.height * 0.17,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  color: Colors.transparent,
+                                                  alignment: Alignment.center,
+                                                  child: imgAnimation2(
+                                                    url: manualIcon,
+                                                    time: Duration(seconds: 2),
+                                                    width: size.width * 0.9,
+                                                    beginx: 0.03,
+                                                    endx: -0,
+                                                    beginy: 0,
+                                                    endy: -0.0,
+                                                    height: size.height * 0.1,
+                                                    transition:
+                                                        PositionedTransition,
+                                                  ),
+                                                ),
+                                                transition: Transform,
+                                                animPattern: Curves.easeIn,
+                                                pixle: Colors.transparent,
+                                                time: Duration(seconds: 1),
+                                                animType: "nothing",
+                                                xAxis: 0,
+                                                yAxis: 0,
                                               ),
-                                              secondChild:  WidgetAnimator(
+                                              secondChild: WidgetAnimator(
                                                 component: Container(
-                                                  height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
-                                                  child: imgAnimation2(url: manualIcon,time: Duration(seconds: 2),
-                                                    width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-                                                    height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
-                                                  ),),
-                                                transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
+                                                  height: size.height * 0.17,
+                                                  width: MediaQuery.of(context)
+                                                      .size
+                                                      .width,
+                                                  color: Colors.transparent,
+                                                  alignment: Alignment.center,
+                                                  child: imgAnimation2(
+                                                    url: manualIcon,
+                                                    time: Duration(seconds: 2),
+                                                    width: size.width * 0.9,
+                                                    beginx: 0.03,
+                                                    endx: -0,
+                                                    beginy: 0,
+                                                    endy: -0.0,
+                                                    height: size.height * 0.1,
+                                                    transition:
+                                                        PositionedTransition,
+                                                  ),
+                                                ),
+                                                transition: Transform,
+                                                animPattern: Curves.easeIn,
+                                                pixle: Colors.transparent,
+                                                time: Duration(seconds: 1),
+                                                animType: "nothing",
+                                                xAxis: 0,
+                                                yAxis: 0,
                                               ),
                                               crossFadeState: showManualOptions
                                                   ? CrossFadeState.showFirst
@@ -1273,95 +1666,110 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           ]),
                                       onPressed: () => {
                                         setState(() {
-                                          showManualOptions = !showManualOptions;
+                                          showManualOptions =
+                                              !showManualOptions;
                                           showRecurrentOptions = false;
                                         })
                                       },
-                                      highlightElevation: 0.8,
                                     )),
                               ),
                             ],
                           ),
                         ],
                       ),
-                    ],),
+                    ],
+                  ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.height * 0.2,
+                  height: size.height * 0.2,
                   child: Container(
-                    width: MediaQuery.of(context).size.width,
+                    width: size.width,
                     alignment: Alignment.center,
                     child: ButtonTheme(
-                      //minWidth: MediaQuery.of(context).size.width * 0.85,
+                        //minWidth: size.width * 0.85,
                         height: 50.0,
-                        child: RaisedButton(
-                          shape: buttonShape,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: buttonShape,
+                            elevation: 0.8,
+                          ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: <Widget>[
-                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                              Text('Proceed',style: lightBodyStyle,),
-                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                              Image(width: 50, height: 50, image: AssetImage(nextIcon),)
+                              Container(
+                                width: size.width * 0.25,
+                                height: 50,
+                              ),
+                              Text(
+                                'Proceed',
+                                style: lightBodyStyle,
+                              ),
+                              Container(
+                                width: size.width * 0.25,
+                                height: 50,
+                              ),
+                              Image(
+                                width: 50,
+                                height: 50,
+                                image: AssetImage(nextIcon),
+                              )
                             ],
                           ),
                           onPressed: () {
                             setState(() {
-                              if(showRecurrentOptions){
+                              if (showRecurrentOptions) {
                                 recurrerntFrequencyTop = 0;
-                              }
-                              else if(showManualOptions){
+                              } else if (showManualOptions) {
                                 manualTop = 0;
                               }
                             });
                           },
-                          color: paydayGreen,
                         )),
-                    height: MediaQuery.of(context).size.height * 0.1,
+                    height: size.height * 0.1,
                   ),
                 ),
 //                Container(
-//                  width: MediaQuery.of(context).size.width,
+//                  width: size.width,
 //                  color: Colors.red,
 //                  alignment: Alignment.center,
 //                  child: ButtonTheme(
-//                      minWidth: MediaQuery.of(context).size.width * 0.85,
+//                      minWidth: size.width * 0.85,
 //                      height: 50.0,
-//                      child: RaisedButton(
+//                      child: ElevatedButton(
 //                        child: Row(
 //                          mainAxisSize: MainAxisSize.min,
 //                          crossAxisAlignment: CrossAxisAlignment.center,
 //                          mainAxisAlignment: MainAxisAlignment.spaceAround,
 //                          children: <Widget>[
-//                            Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+//                            Container( width: size.width *0.3,height: 50,),
 //                            Text('Proceed',style: lightBodyStyle,),
-//                            Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+//                            Container( width: size.width *0.3,height: 50,),
 //                            Image(width: 50, height: 50, image: AssetImage(nextIcon),)
 //                          ],
 //                        ),
 //                        onPressed: () {
 //                          setState(() {
 //                            if(showMMFCheck){
-//                              initialHeight = MediaQuery.of(context).size.height * 0.5;
-//                              maximumHeight =MediaQuery.of(context).size.height * 0.5;
-//                              goalNameSetupTop = -MediaQuery.of(context).size.height * 1.2;
+//                              initialHeight = size.height * 0.5;
+//                              maximumHeight =size.height * 0.5;
+//                              goalNameSetupTop = -size.height * 1.2;
 //                              mmfTop = 0;
 //                              panelController.open();
 //                              panelController.show();
 //                            }
 //                            if(showFixedIncomeCheck){
-//                              initialHeight = MediaQuery.of(context).size.height * 0.4;
-//                              maximumHeight =MediaQuery.of(context).size.height * 0.4;
-//                              goalNameSetupTop = -MediaQuery.of(context).size.height * 1.2;
+//                              initialHeight = size.height * 0.4;
+//                              maximumHeight =size.height * 0.4;
+//                              goalNameSetupTop = -size.height * 1.2;
 //                              fixedIncomeTop = 0;
 //                              panelController.open();
 //                              panelController.show();
 //                            }
 //                            if(showDiscoveryFundCheck){
-//                              initialHeight = MediaQuery.of(context).size.height * 0.8;
-//                              maximumHeight =MediaQuery.of(context).size.height * 0.8;
+//                              initialHeight = size.height * 0.8;
+//                              maximumHeight =size.height * 0.8;
 //                              discoveryFundTop = 0;
 //                              panelController.open();
 //                              panelController.show();
@@ -1374,43 +1782,41 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                        },
 //                        color: paydayGreen,
 //                      )),
-//                  height: MediaQuery.of(context).size.height * 0.1,
+//                  height: size.height * 0.1,
 //                ),
               ],
-            ))
-    );
+            )));
 
+    // Map<DateTime, double> line1 = createLine2();
+    // Map<DateTime, double> line2 = createLine2_2();
 
-    Map<DateTime, double> line1 = createLine2();
-    Map<DateTime, double> line2 = createLine2_2();
+    // LineChart chart = AreaLineChart.fromDateTimeMaps(
+    //     [line1], [Colors.red.shade900], ['C'],
+    //     gradients: [Pair(Colors.yellow.shade400, Colors.red.shade700)]);
 
-    LineChart chart = AreaLineChart.fromDateTimeMaps(
-        [line1], [Colors.red.shade900], ['C'],
-        gradients: [Pair(Colors.yellow.shade400, Colors.red.shade700)]);
-
-    BorderRadiusGeometry radius = BorderRadius.only(
-      topLeft: Radius.circular(24.0),
-      topRight: Radius.circular(24.0),
-    );
+    // BorderRadiusGeometry radius = BorderRadius.only(
+    //   topLeft: Radius.circular(24.0),
+    //   topRight: Radius.circular(24.0),
+    // );
 
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           //bg
           AnimatedPositioned(
             top: 0,
-            //right: -MediaQuery.of(context).size.width * 0.2,
+            //right: -size.width * 0.2,
             duration: Duration(seconds: 1),
             child: WidgetAnimator(
               component: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height,
+                  width: size.width,
                   decoration: new BoxDecoration(
                       image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(bgMain),
-                      ))),
+                    fit: BoxFit.fill,
+                    image: AssetImage(bgMain),
+                  ))),
               transition: Transform,
               animPattern: Curves.easeIn,
               pixle: Colors.transparent,
@@ -1425,8 +1831,8 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
           Positioned(
               top: 0,
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width,
+                height: size.height * 0.15,
+                width: size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -1435,6 +1841,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                     Row(
                       children: <Widget>[
                         IconButton(
+                          onPressed: () {},
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
@@ -1442,16 +1849,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: size.width * 0.8,
                           child: Hero(
                             tag: "iconTag",
                             child: WidgetAnimator(
                               component: imgAnimation2(
                                 url: leafIcon,
-                                time: Duration(seconds: 3), beginx: 0,
-                                endx: -0, beginy: 0, endy: -0.0,
-                                width:
-                                MediaQuery.of(context).size.width * 0.3,
+                                time: Duration(seconds: 3),
+                                beginx: 0,
+                                endx: -0,
+                                beginy: 0,
+                                endy: -0.0,
+                                width: size.width * 0.3,
                                 transition: PositionedTransition,
                               ),
                               transition: Transform,
@@ -1459,9 +1868,8 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                               pixle: Colors.transparent,
                               time: Duration(seconds: 1),
                               animType: "nothing",
-                              xAxis: -MediaQuery.of(context).size.width * 0,
-                              yAxis:
-                              -MediaQuery.of(context).size.height * 0,
+                              xAxis: -size.width * 0,
+                              yAxis: -size.height * 0,
                             ),
                           ),
                         ),
@@ -1473,12 +1881,11 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 
           //setupGoalTypeAndCurrencyType
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * setupTypeAndCurrencyType,
+            top: size.height * setupTypeAndCurrencyType,
             duration: const Duration(milliseconds: 200),
-            child:
-            AnimatedCrossFade(
+            child: AnimatedCrossFade(
               duration: const Duration(milliseconds: 200),
-              firstChild: investmentType1 ,
+              firstChild: investmentType1,
               secondChild: currencySetUp,
               crossFadeState: showFirst
                   ? CrossFadeState.showFirst
@@ -1488,12 +1895,11 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 
           //frequencyOptionTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * frequencyOptionTop,
+            top: size.height * frequencyOptionTop,
             duration: const Duration(milliseconds: 200),
-            child:
-            AnimatedCrossFade(
+            child: AnimatedCrossFade(
               duration: const Duration(milliseconds: 200),
-              firstChild: frequencyOption ,
+              firstChild: frequencyOption,
               secondChild: frequencyOption,
               crossFadeState: showFirst
                   ? CrossFadeState.showFirst
@@ -1503,11 +1909,11 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 
           //dollarAndNairaInvTypes
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * dollarAndNairaInvTypes,
+            top: size.height * dollarAndNairaInvTypes,
             duration: const Duration(milliseconds: 200),
             child: AnimatedCrossFade(
               duration: const Duration(milliseconds: 200),
-              firstChild: nairaOptions ,
+              firstChild: nairaOptions,
               secondChild: dollarOptions,
               crossFadeState: showNairaInv
                   ? CrossFadeState.showFirst
@@ -1517,45 +1923,49 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 
           //goalNameSetupTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * goalNameSetupTop,
+            top: size.height * goalNameSetupTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.2,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.8,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -1580,40 +1990,49 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors.transparent,
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation: 0.8,
+                                            ),
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 goalNameSetupTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
-                                            ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
-                                    Image(image: AssetImage(goalicon),
-                                      height: MediaQuery.of(context).size.height * 0.08,),
+                                    Image(
+                                      image: AssetImage(goalicon),
+                                      height: size.height * 0.08,
+                                    ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Goal based investment',
@@ -1621,321 +2040,497 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                             color: paydayGreen,
                                           ),
-                                          Image(image: AssetImage(infoIcon),width: 25),
+                                          Image(
+                                              image: AssetImage(infoIcon),
+                                              width: 25),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                                      child:Text('What is your financial goal targeted towards?',style: purple18Style,textAlign: TextAlign.center,),
+                                      child: Text(
+                                        'What is your financial goal targeted towards?',
+                                        style: purple18Style,
+                                        textAlign: TextAlign.center,
+                                      ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
-                                      width: MediaQuery.of(context).size.width,
+                                      width: size.width,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.min,
-                                          crossAxisAlignment: CrossAxisAlignment.start,
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceEvenly,
                                           children: [
                                             SizedBox(
                                               height: 30.0,
                                               child: Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: <Widget>[
-                                                    ButtonTheme(
-                                                        height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('vacation',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
-                                                          ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
-                                                        )),
-                                                    ButtonTheme(
-                                                        height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Home Purchase',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
-                                                          ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
-                                                        )),
-                                                    ButtonTheme(
-                                                        height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Rent',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
-                                                          ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
-                                                        )),
-                                                  ]),
-                                            ),
-                                            SizedBox(
-                                              height: 30.0,
-                                              child: Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                  children: <Widget>[
-                                                    ButtonTheme(
-                                                        height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Education',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
-                                                          ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
-                                                        )),
-                                                    ButtonTheme(
-                                                        height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Business capital',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
-                                                          ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
-                                                        )),
-                                                    ButtonTheme(
-                                                        height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Event',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
-                                                          ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
-                                                        )),
-                                                  ]),
-                                            ),
-                                            SizedBox(
-                                              height: 30.0,
-                                              child: Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
                                                   children: <Widget>[
-
                                                     ButtonTheme(
                                                         height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Retirement Planning',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
+                                                        child: OutlinedButton(
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
+                                                          onPressed: () {
+                                                            setState(() {});
                                                           },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
+                                                          child: Text(
+                                                            'vacation',
+                                                            style: dark14Style,
                                                           ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
-                                                          ),
-                                                          highlightElevation: 0.8,
                                                         )),
                                                     ButtonTheme(
                                                         height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Emergency Fund',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
+                                                        child: OutlinedButton(
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
                                                           ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
+                                                          child: Text(
+                                                            'Home Purchase',
+                                                            style: dark14Style,
                                                           ),
-                                                          highlightElevation: 0.8,
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                        )),
+                                                    ButtonTheme(
+                                                        height: 20.0,
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Rent',
+                                                            style: dark14Style,
+                                                          ),
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
                                                         )),
                                                   ]),
                                             ),
                                             SizedBox(
                                               height: 30.0,
                                               child: Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   mainAxisAlignment:
-                                                  MainAxisAlignment.spaceEvenly,
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
                                                   children: <Widget>[
-
                                                     ButtonTheme(
                                                         height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Car',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Education',
+                                                            style: dark14Style,
                                                           ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
                                                           ),
-                                                          highlightElevation: 0.8,
                                                         )),
                                                     ButtonTheme(
                                                         height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Expensive purchase',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Business capital',
+                                                            style: dark14Style,
                                                           ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
                                                           ),
-                                                          highlightElevation: 0.8,
                                                         )),
                                                     ButtonTheme(
                                                         height: 20.0,
-                                                        child: OutlineButton(
-                                                          child: Text('Others',style: dark14Style,),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                            })
-                                                          },
-                                                          shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.circular(10.0),
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Event',
+                                                            style: dark14Style,
                                                           ),
-                                                          borderSide: BorderSide(
-                                                            color: paydayGreen,
-                                                            style: BorderStyle.solid,
-                                                            //width: 0.8,
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
                                                           ),
-                                                          highlightElevation: 0.8,
+                                                        )),
+                                                  ]),
+                                            ),
+                                            SizedBox(
+                                              height: 30.0,
+                                              child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: <Widget>[
+                                                    ButtonTheme(
+                                                        height: 20.0,
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Retirement Planning',
+                                                            style: dark14Style,
+                                                          ),
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
+                                                        )),
+                                                    ButtonTheme(
+                                                        height: 20.0,
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Emergency Fund',
+                                                            style: dark14Style,
+                                                          ),
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
+                                                        )),
+                                                  ]),
+                                            ),
+                                            SizedBox(
+                                              height: 30.0,
+                                              child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceEvenly,
+                                                  children: <Widget>[
+                                                    ButtonTheme(
+                                                        height: 20.0,
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Car',
+                                                            style: dark14Style,
+                                                          ),
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
+                                                        )),
+                                                    ButtonTheme(
+                                                        height: 20.0,
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Expensive purchase',
+                                                            style: dark14Style,
+                                                          ),
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
+                                                        )),
+                                                    ButtonTheme(
+                                                        height: 20.0,
+                                                        child: OutlinedButton(
+                                                          child: Text(
+                                                            'Others',
+                                                            style: dark14Style,
+                                                          ),
+                                                          onPressed: () =>
+                                                              {setState(() {})},
+                                                          style: OutlinedButton
+                                                              .styleFrom(
+                                                            side: BorderSide(
+                                                              color:
+                                                                  paydayGreen, // Border color
+                                                              style: BorderStyle
+                                                                  .solid,
+                                                            ),
+                                                            shape:
+                                                                RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          10.0), // Rounded corners
+                                                            ),
+                                                            elevation:
+                                                                0.8, // Removed highlightElevation (not used in OutlinedButton)
+                                                          ),
                                                         )),
                                                   ]),
                                             ),
                                           ]),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.04,
+                                      height: size.height * 0.04,
                                     ),
                                     Container(
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('What is the Goal title?',style: purple18Style,textAlign: TextAlign.center,),
+                                            Text(
+                                              'What is the Goal title?',
+                                              style: purple18Style,
+                                              textAlign: TextAlign.center,
+                                            ),
                                             Container(
                                               color: paydayLightGray2,
                                               padding: EdgeInsets.all(5),
                                               margin: EdgeInsets.all(5),
-                                              width: MediaQuery.of(context).size.width * 0.75,
-                                              height: MediaQuery.of(context).size.height * 0.05,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.75,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
                                               child: TextField(
-                                                  decoration: textFieldDecoration
-                                              ),
+                                                  decoration:
+                                                      textFieldDecoration),
                                             ),
                                             Container(
-                                              height: MediaQuery.of(context).size.height * 0.05,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
                                             ),
                                             ButtonTheme(
-                                                minWidth: MediaQuery.of(context).size.width * 0.8,
+                                                minWidth: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.8,
                                                 height: 50.0,
-                                                child: RaisedButton(
-                                                  shape: buttonShape,
+                                                child: ElevatedButton(
+                                                  style:
+                                                      ElevatedButton.styleFrom(
+                                                          shape: buttonShape,
+                                                          elevation: 0.8,
+                                                          backgroundColor:
+                                                              paydayGreen),
                                                   child: Row(
-                                                    mainAxisSize: MainAxisSize.min,
-                                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
                                                     children: <Widget>[
-                                                      Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
+                                                      Container(
+                                                        width:
+                                                            size.width * 0.25,
+                                                        height: 50,
+                                                      ),
                                                       Text(
                                                         'Proceed',
                                                         style: lightBodyStyle,
                                                       ),
-                                                      Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                                      Image(width: 40, height: 40, image: AssetImage(nextIcon),)
+                                                      Container(
+                                                        width:
+                                                            size.width * 0.25,
+                                                        height: 50,
+                                                      ),
+                                                      Image(
+                                                        width: 40,
+                                                        height: 40,
+                                                        image: AssetImage(
+                                                            nextIcon),
+                                                      )
                                                     ],
                                                   ),
                                                   onPressed: () {
@@ -1944,7 +2539,6 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                       goalAmountSetupTop = 0;
                                                     });
                                                   },
-                                                  color: paydayGreen,
                                                 )),
                                           ]),
                                     ),
@@ -1957,51 +2551,54 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //goalAmountSetupTop
           AnimatedPositioned(
-            top:MediaQuery.of(context).size.height * goalAmountSetupTop,
+            top: size.height * goalAmountSetupTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.2,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.8,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -2015,7 +2612,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                               ),
                             ),
                             AnimatedPositioned(
-                              top:MediaQuery.of(context).size.height * goalAmountSetupTop,
+                              top: size.height * goalAmountSetupTop,
                               right: 0,
                               left: 0,
                               duration: Duration(milliseconds: 600),
@@ -2025,35 +2622,45 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 goalAmountSetupTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                        height: MediaQuery.of(context).size.height * 0.15,
-                                        width: MediaQuery.of(context).size.width * 0.5,
+                                        height: size.height * 0.15,
+                                        width: size.width * 0.5,
                                         color: Colors.transparent,
                                         alignment: Alignment.center,
                                         child: Image(
-                                          image:AssetImage(vacationIcon),
-                                          height: MediaQuery.of(context).size.height * 0.1,)
-                                    ),
+                                          image: AssetImage(vacationIcon),
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.1,
+                                        )),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Text(
@@ -2063,86 +2670,133 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.04,
+                                      height: size.height * 0.04,
                                     ),
                                     Container(
-                                      //height: MediaQuery.of(context).size.height * 0.27,
+                                      //height: size.height * 0.27,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('What is the Target Amount?',style: purple18Style,textAlign: TextAlign.center,),
+                                            Text(
+                                              'What is the Target Amount?',
+                                              style: purple18Style,
+                                              textAlign: TextAlign.center,
+                                            ),
                                             Container(
                                               color: paydayLightGray2,
                                               padding: EdgeInsets.all(5),
                                               margin: EdgeInsets.all(5),
-                                              width: MediaQuery.of(context).size.width * 0.75,
-                                              height: MediaQuery.of(context).size.height * 0.05,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.75,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
                                               child: TextField(
                                                   decoration: InputDecoration(
-                                                    enabledBorder: UnderlineInputBorder(
-                                                      borderSide: BorderSide(color: paydayGreen),
-                                                    ),
-                                                    focusedBorder: UnderlineInputBorder(
-                                                      borderSide: BorderSide(color: paydayGreen),
-                                                    ),
-                                                    border: UnderlineInputBorder(
-                                                      borderSide: BorderSide(color: paydayGreen),
-                                                    ),
-                                                  )
-
-                                              ),
+                                                enabledBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: paydayGreen),
+                                                ),
+                                                focusedBorder:
+                                                    UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: paydayGreen),
+                                                ),
+                                                border: UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: paydayGreen),
+                                                ),
+                                              )),
                                             ),
                                           ]),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.05,
+                                      height: size.height * 0.05,
                                     ),
                                     Container(
-                                      //height: MediaQuery.of(context).size.height * 0.27,
+                                      //height: size.height * 0.27,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('When do you intend to achieve this goal?',style: purple18Style,textAlign: TextAlign.center,),
-
+                                            Text(
+                                              'When do you intend to achieve this goal?',
+                                              style: purple18Style,
+                                              textAlign: TextAlign.center,
+                                            ),
                                             Container(
-                                              height: MediaQuery.of(context).size.height * 0.05,
-                                              width: MediaQuery.of(context).size.width * 0.8,
-                                              child:RaisedButton(
-                                                shape: RoundedRectangleBorder(
-                                                    borderRadius: BorderRadius.circular(5.0)),
-                                                elevation: 4.0,
-                                                onPressed: () {
-                                                  DatePicker.showDatePicker(context,
-                                                      theme: DatePickerTheme(
-                                                        containerHeight: 210.0,
-                                                      ),
-                                                      showTitleActions: true,
-                                                      minTime: DateTime(2000, 1, 1),
-                                                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
-                                                        print('confirm $date');
-                                                        _date = '${date.year} - ${date.month} - ${date.day}';
-                                                        setState(() {});
-                                                      }, currentTime: DateTime.now(), locale: LocaleType.en);
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
+                                              child: ElevatedButton(
+                                                style: OutlinedButton.styleFrom(
+                                                  side: BorderSide(
+                                                    color: Colors
+                                                        .transparent, // Border color
+                                                    style: BorderStyle.solid,
+                                                  ),
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0)),
+                                                  elevation:
+                                                      0.4, // Removed highlightElevation (not used in OutlinedButton)
+                                                ),
+                                                onPressed: () async {
+                                                  DateTime? pickedDate =
+                                                      await showDatePicker(
+                                                    context: context,
+                                                    initialDate: DateTime.now(),
+                                                    firstDate:
+                                                        DateTime(2000, 1, 1),
+                                                    lastDate:
+                                                        DateTime(2022, 12, 31),
+                                                  );
+
+                                                  if (pickedDate != null) {
+                                                    print(
+                                                        'confirm $pickedDate');
+                                                    setState(() {
+                                                      _date =
+                                                          '${pickedDate.year} - ${pickedDate.month} - ${pickedDate.day}';
+                                                    });
+                                                  }
                                                 },
+
                                                 child: Container(
                                                   alignment: Alignment.center,
                                                   height: 50.0,
                                                   child: Row(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceBetween,
                                                     children: <Widget>[
                                                       Row(
                                                         children: <Widget>[
@@ -2150,135 +2804,229 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                             child: Row(
                                                               children: <Widget>[
                                                                 Icon(
-                                                                  Icons.date_range,
+                                                                  Icons
+                                                                      .date_range,
                                                                   size: 18.0,
-                                                                  color: paydayPurple,
+                                                                  color:
+                                                                      paydayPurple,
                                                                 ),
                                                                 Text(
                                                                   " $_date",
-                                                                  style: purpleThickStyle,
+                                                                  style:
+                                                                      purpleThickStyle,
                                                                 ),
                                                               ],
                                                             ),
                                                           )
                                                         ],
                                                       ),
-                                                      Text(
-                                                          "",
-                                                          style: purpleThickStyle
-                                                      ),
+                                                      Text("",
+                                                          style:
+                                                              purpleThickStyle),
                                                     ],
                                                   ),
                                                 ),
-                                                color: Colors.white,
+                                                //color: Colors.white,
                                               ),
                                             ),
                                           ]),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.05,
+                                      height: size.height * 0.05,
                                     ),
                                     Container(
-                                      //height: MediaQuery.of(context).size.height * 0.27,
+                                      //height: size.height * 0.27,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('Are you funding this goal with people?',style: purple18Style,textAlign: TextAlign.center,),
-
+                                            Text(
+                                              'Are you funding this goal with people?',
+                                              style: purple18Style,
+                                              textAlign: TextAlign.center,
+                                            ),
                                             Container(
-                                                height: MediaQuery.of(context).size.height * 0.1,
-                                                width: MediaQuery.of(context).size.width * 0.8,
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    0.1,
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.8,
                                                 alignment: Alignment.center,
-                                                child:Row(
-                                                  mainAxisSize: MainAxisSize.max,
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
                                                   children: <Widget>[
                                                     Container(
-                                                      alignment: Alignment.center,//color: accent,
+                                                      alignment: Alignment
+                                                          .center, //color: accent,
                                                       child: ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width *0.3,
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.3,
                                                           height: 40.0,
-                                                          child:OutlineButton(
-                                                            shape: buttonShape,
-                                                            color: accent,
-                                                            child: Text('No, it’s just me',style: goalStyle,textAlign: TextAlign.center,),
-                                                            onPressed: () => {
-                                                              setState((){
-                                                                goalStyle = green14Style;
-                                                                goalBtnColor = paydayGreen;
-                                                                groupGoalStyle = gray14Style;
-                                                                groupGoalBtnColor = paydayGray;
-                                                              })
-                                                            }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: goalBtnColor,
-                                                              style: BorderStyle.solid,
-                                                              width: 0.8,
+                                                          child: OutlinedButton(
+                                                            style:
+                                                                OutlinedButton
+                                                                    .styleFrom(
+                                                              shape:
+                                                                  buttonShape,
+                                                              backgroundColor:
+                                                                  accent,
+                                                              side: BorderSide(
+                                                                color:
+                                                                    goalBtnColor,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
                                                             ),
-                                                            highlightElevation: 0.8,
-                                                          )
-                                                      ),
-                                                      width: MediaQuery.of(context).size.width * 0.3,
+                                                            child: Text(
+                                                              'No, it’s just me',
+                                                              style: goalStyle,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
+                                                            onPressed: () => {
+                                                              setState(() {
+                                                                goalStyle =
+                                                                    green14Style;
+                                                                goalBtnColor =
+                                                                    paydayGreen;
+                                                                groupGoalStyle =
+                                                                    gray14Style;
+                                                                groupGoalBtnColor =
+                                                                    paydayGray;
+                                                              })
+                                                            },
+                                                          )),
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.3,
                                                       height: 50,
                                                     ),
                                                     Container(
-                                                      alignment: Alignment.center,color: accent,
+                                                      alignment:
+                                                          Alignment.center,
+                                                      color: accent,
                                                       child: ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width *0.4,
-                                                          height: 40.0,buttonColor: accent,
-                                                          child:OutlineButton(
-                                                            shape: buttonShape,
-                                                            color: accent,
-                                                            child: Text('Yes, I’m setting up a Group Goal',style: groupGoalStyle,textAlign: TextAlign.center,),
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.4,
+                                                          height: 40.0,
+                                                          buttonColor: accent,
+                                                          child: OutlinedButton(
+                                                            style:
+                                                                OutlinedButton
+                                                                    .styleFrom(
+                                                              shape:
+                                                                  buttonShape,
+                                                              backgroundColor:
+                                                                  accent,
+                                                              side: BorderSide(
+                                                                color:
+                                                                    goalBtnColor,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
+                                                            ),
+                                                            child: Text(
+                                                              'Yes, I’m setting up a Group Goal',
+                                                              style:
+                                                                  groupGoalStyle,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                            ),
                                                             onPressed: () => {
-                                                              setState((){
-                                                                groupGoalStyle = green14Style;
-                                                                groupGoalBtnColor = paydayGreen;
-                                                                goalStyle = gray14Style;
-                                                                goalBtnColor = paydayGray;
+                                                              setState(() {
+                                                                groupGoalStyle =
+                                                                    green14Style;
+                                                                groupGoalBtnColor =
+                                                                    paydayGreen;
+                                                                goalStyle =
+                                                                    gray14Style;
+                                                                goalBtnColor =
+                                                                    paydayGray;
                                                               })
                                                             }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: groupGoalBtnColor,
-                                                              style: BorderStyle.solid,
-                                                              width: 0.8,
-                                                            ),
-                                                            highlightElevation: 0.8,
-                                                          )
-
-                                                      ),
-                                                      width: MediaQuery.of(context).size.width * 0.4,
+                                                          )),
+                                                      width:
+                                                          MediaQuery.of(context)
+                                                                  .size
+                                                                  .width *
+                                                              0.4,
                                                       height: 40,
                                                     ),
                                                   ],
-                                                )
-                                            ),
+                                                )),
                                           ]),
                                     ),
-
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            backgroundColor: paydayGreen,
+                                            elevation:
+                                                0.8, // Replaced highlightElevation
+                                          ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
                                               Text(
                                                 'Proceed',
                                                 style: lightBodyStyle,
                                               ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              )
                                             ],
                                           ),
                                           onPressed: () {
@@ -2287,7 +3035,6 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               groupGoalInviteSetupTop = 0;
                                             });
                                           },
-                                          color: paydayGreen,
                                         )),
                                   ],
                                 ),
@@ -2295,55 +3042,57 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                             ),
                           ],
                         ),
-                        //padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.width * 0.08, MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.width * 0.1),
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //groupGoalInviteSetupTop
           AnimatedPositioned(
-            top:MediaQuery.of(context).size.height * groupGoalInviteSetupTop,
+            top: size.height * groupGoalInviteSetupTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.2,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.8,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.8,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -2366,37 +3115,47 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 groupGoalInviteSetupTop = 1.2;
                                               })
-                                            }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            },
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.15,
-                                      width: MediaQuery.of(context).size.width * 0.5,
+                                      height: size.height * 0.15,
+                                      width: size.width * 0.5,
                                       color: Colors.transparent,
                                       alignment: Alignment.center,
                                       child: imgAnimation2(
                                         url: groupGoalIcon,
                                         time: Duration(seconds: 2),
-                                        width: MediaQuery.of(context).size.width * 0.2,
-                                        beginx:0.04,endx: -0, beginy: 0,endy: -0.0,
-                                        height: MediaQuery.of(context).size.height * 0.1,
+                                        width: size.width * 0.2,
+                                        beginx: 0.04,
+                                        endx: -0,
+                                        beginy: 0,
+                                        endy: -0.0,
+                                        height: size.height * 0.1,
                                         transition: PositionedTransition,
                                       ),
                                     ),
@@ -2404,8 +3163,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Group Goal',
@@ -2413,46 +3174,68 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                           ),
-                                          Image(image: AssetImage(infoIcon),),
+                                          Image(
+                                            image: AssetImage(infoIcon),
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.04,
+                                      height: size.height * 0.04,
                                     ),
                                     Container(
-                                      //height: MediaQuery.of(context).size.height * 0.27,
+                                      //height: size.height * 0.27,
                                       child: Column(
                                           mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
-                                              padding: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                                              child:Text('Enter the email address of the people you’d like to invite to join in investing towards this goal.',
-                                                style: purple18Style,textAlign: TextAlign.center,),
+                                              padding: EdgeInsets.fromLTRB(
+                                                  18, 0, 18, 0),
+                                              child: Text(
+                                                'Enter the email address of the people you’d like to invite to join in investing towards this goal.',
+                                                style: purple18Style,
+                                                textAlign: TextAlign.center,
+                                              ),
                                             ),
                                             Container(
-                                              height: MediaQuery.of(context).size.height * 0.04,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.04,
                                             ),
                                             Container(
-                                              color: paydayLightGray2,alignment: Alignment.bottomCenter,
+                                              color: paydayLightGray2,
+                                              alignment: Alignment.bottomCenter,
                                               padding: EdgeInsets.all(5),
                                               margin: EdgeInsets.all(5),
-                                              width: MediaQuery.of(context).size.width * 0.75,
-                                              height: MediaQuery.of(context).size.height * 0.05,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.75,
+                                              height: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  0.05,
                                               child: TextField(
                                                 decoration: textFieldDecoration,
                                                 textAlign: TextAlign.center,
@@ -2461,47 +3244,77 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           ]),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       child: Chip(
                                         elevation: 24,
                                         avatar: CircleAvatar(
                                           backgroundColor: paydayGreen,
-                                          child: Icon(Icons.add,),
+                                          child: Icon(
+                                            Icons.add,
+                                          ),
                                         ),
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(color: paydayGreen),
-                                          borderRadius: BorderRadius.circular(15.0),
+                                          borderRadius:
+                                              BorderRadius.circular(15.0),
                                         ),
-                                        label: Text('Add more people'),backgroundColor: accent,
+                                        label: Text('Add more people'),
+                                        backgroundColor: accent,
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.04,
+                                      height: size.height * 0.04,
                                     ),
                                     Container(
-                                      width: MediaQuery.of(context).size.width,
+                                      width: size.width,
                                       alignment: Alignment.center,
-                                      child: Text('skip, continue later',style: footerGreenBiggerStyle,),
-                                      height: MediaQuery.of(context).size.height * 0.05,),
+                                      child: Text(
+                                        'skip, continue later',
+                                        style: footerGreenBiggerStyle,
+                                      ),
+                                      height: size.height * 0.05,
+                                    ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            backgroundColor: paydayGreen,
+                                            elevation: 0.8,
+                                          ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
                                               Text(
                                                 'Proceed',
                                                 style: lightBodyStyle,
                                               ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              )
                                             ],
                                           ),
                                           onPressed: () {
@@ -2510,7 +3323,6 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               showFirst = !showFirst;
                                             });
                                           },
-                                          color: paydayGreen,
                                         )),
                                   ],
                                 ),
@@ -2518,55 +3330,58 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                             ),
                           ],
                         ),
-                        //padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.width * 0.08, MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.width * 0.1),
+                        //padding: EdgeInsets.fromLTRB(size.width * 0.1, size.width * 0.08, size.width * 0.1, size.width * 0.1),
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //fixedIncomeTop
           AnimatedPositioned(
-            top:MediaQuery.of(context).size.height * fixedIncomeTop,
+            top: size.height * fixedIncomeTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.5,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.5,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.5,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.5,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -2592,40 +3407,55 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 fixedIncomeTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.fromLTRB(25,20,25,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 20, 25, 10),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Image(image: AssetImage(fixedIncomeIcon),),
+                                          Image(
+                                            image: AssetImage(fixedIncomeIcon),
+                                          ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.7,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.7,
                                             child: Text(
                                               'The ARM Fixed Income Fund is an open-ended, low risk mutual fund which invests in high quality fixed income securities such as Treasury Bills, Bank Placements, Commercial Paper, etc.',
                                               style: dark14Style,
@@ -2636,64 +3466,96 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 0.5,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.fromLTRB(25,20,25,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 20, 25, 10),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Your capital is guaranteed',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Your capital is guaranteed',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Suitable for medium - long term investments',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Suitable for medium - long term investments',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Competitive returns. ',style: dark14Style,)
-                                            ],)
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Competitive returns. ',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.85,
+                                        minWidth: size.width * 0.85,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          child:
-                                          Text('Invest now',style: lightBodyStyle,),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: paydayGreen),
+                                          child: Text(
+                                            'Invest now',
+                                            style: lightBodyStyle,
+                                          ),
                                           onPressed: () {
                                             setState(() {
                                               fixedIncomeTop = 1.2;
                                               frequencyOptionTop = 0.1;
-                                              dollarAndNairaInvTypes  = 1.2;
+                                              dollarAndNairaInvTypes = 1.2;
                                             });
                                           },
-                                          color: paydayGreen,
                                         )),
                                   ],
                                 ),
@@ -2704,51 +3566,54 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //mmftop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * mmfTop,
+            top: size.height * mmfTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.4,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.4,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.6,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.6,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height * 0.8,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height * 0.8,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height * 0.8,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height * 0.8,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -2774,40 +3639,57 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 mmfTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       padding: EdgeInsets.all(15),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Image(image: AssetImage(mmfChartIcon),width: MediaQuery.of(context).size.width * 0.15),
+                                          Image(
+                                              image: AssetImage(mmfChartIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.15),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.75,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.75,
                                             child: Text(
                                               'The ARM Money Market Fund is suitable for Investors who have cash in their bank accounts and wish to earn higher rates than the traditional savings or current account and offset the effects of inflation.',
                                               style: dark14Style,
@@ -2818,83 +3700,140 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 50, height: 50, image: AssetImage(check2),),
-                                              Text('Your capital is guaranteed',style: dark14Style,)
-                                            ],),
-                                          Row(
-                                            children: <Widget>[
-                                              Image(width: 50, height: 50, image: AssetImage(check2),),
-                                              Text('Interests are paid daily',style: dark14Style,)
-                                            ],),
-                                          Row(
-                                            children: <Widget>[
-                                              Image(width: 50, height: 50, image: AssetImage(check2),),
-                                              Container(
-                                                  width: MediaQuery.of(context).size.width - 50,
-                                                  child: Text('Dividends can be cashed out or reinvested quarterly',style: dark14Style,textAlign: TextAlign.left,)
+                                              Image(
+                                                width: 50,
+                                                height: 50,
+                                                image: AssetImage(check2),
                                               ),
-                                            ],)
+                                              Text(
+                                                'Your capital is guaranteed',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Image(
+                                                width: 50,
+                                                height: 50,
+                                                image: AssetImage(check2),
+                                              ),
+                                              Text(
+                                                'Interests are paid daily',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
+                                          Row(
+                                            children: <Widget>[
+                                              Image(
+                                                width: 50,
+                                                height: 50,
+                                                image: AssetImage(check2),
+                                              ),
+                                              Container(
+                                                  width: size.width - 50,
+                                                  child: Text(
+                                                    'Dividends can be cashed out or reinvested quarterly',
+                                                    style: dark14Style,
+                                                    textAlign: TextAlign.left,
+                                                  )),
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      alignment:Alignment.center,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          Image(width: 50, height: 50, image: AssetImage(chartArrowIcon),),
-                                          Text('Yield at 12/06/2020: 5.1234% p/a',style: purple16Style,)
-                                        ],),
+                                          Image(
+                                            width: 50,
+                                            height: 50,
+                                            image: AssetImage(chartArrowIcon),
+                                          ),
+                                          Text(
+                                            'Yield at 12/06/2020: 5.1234% p/a',
+                                            style: purple16Style,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            elevation: 0.8,
+                                          ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
                                               Text(
                                                 'Invest now',
                                                 style: lightBodyStyle,
                                               ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              )
                                             ],
                                           ),
                                           onPressed: () {
                                             setState(() {
                                               mmfTop = 1.2;
                                               frequencyOptionTop = 0.1;
-                                              dollarAndNairaInvTypes  = 1.2;
+                                              dollarAndNairaInvTypes = 1.2;
                                             });
                                           },
-                                          color: paydayGreen,
                                         )),
                                   ],
                                 ),
@@ -2905,51 +3844,54 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //recurrerntFrequencyTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * recurrerntFrequencyTop,
+            top: size.height * recurrerntFrequencyTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height * 0.8,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height * 0.8,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height * 0.8,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height * 0.8,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -2973,55 +3915,61 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   children: <Widget>[
-
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 recurrerntFrequencyTop = 1.2;
                                                 recurrerntAmountTop = 0;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     imgAnimation2(
                                       url: calendarIcon,
                                       time: Duration(seconds: 5),
-                                      width:
-                                      MediaQuery.of(context).size.width * 0.3,
+                                      width: size.width * 0.3,
                                       beginx: 0.03,
                                       endx: -0,
                                       beginy: 0,
                                       endy: -0.0,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.07,
+                                      height: size.height * 0.07,
                                       transition: PositionedTransition,
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Recurrernt funding',
@@ -3029,169 +3977,250 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                           ),
-                                          Image(image: AssetImage(infoIcon),),
+                                          Image(
+                                            image: AssetImage(infoIcon),
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
                                               alignment: Alignment.center,
-                                              child:Text('How often do you want to fund your investment?',style: purple22Style, textAlign: TextAlign.center,)
-                                          ),
+                                              child: Text(
+                                                'How often do you want to fund your investment?',
+                                                style: purple22Style,
+                                                textAlign: TextAlign.center,
+                                              )),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
                                               alignment: Alignment.center,
-                                              child:Row(
+                                              child: Row(
                                                 mainAxisSize: MainAxisSize.max,
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                crossAxisAlignment: CrossAxisAlignment.center,
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
                                                 children: <Widget>[
                                                   Container(
-                                                    alignment: Alignment.center,color: accent,
+                                                    alignment: Alignment.center,
+                                                    color: accent,
                                                     child: ButtonTheme(
-                                                        minWidth: MediaQuery.of(context).size.width *0.4,
+                                                        minWidth:
+                                                            size.width * 0.4,
                                                         height: 50.0,
-                                                        child:RaisedButton(
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                              side: BorderSide(color: paydayGreen,)
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            shape: buttonShape,
+                                                            backgroundColor:
+                                                                weeklyChecked
+                                                                    ? paydayGreen
+                                                                    : accent,
+                                                            elevation: 0.8,
                                                           ),
-                                                          color:  weeklyChecked ? paydayGreen: accent,
-                                                          child: Text('Weekly',style: weeklyChecked ? white14Style: green14Style,textAlign: TextAlign.center,),
+                                                          child: Text(
+                                                            'Weekly',
+                                                            style: weeklyChecked
+                                                                ? white14Style
+                                                                : green14Style,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
                                                           onPressed: () => {
-                                                            setState((){
-                                                              weeklyChecked = !weeklyChecked;
+                                                            setState(() {
+                                                              weeklyChecked =
+                                                                  !weeklyChecked;
                                                             }),
                                                           },
-                                                          highlightElevation: 10,
-                                                        )
-                                                    ),
-                                                    width: MediaQuery.of(context).size.width * 0.4,
+                                                        )),
+                                                    width: size.width * 0.4,
                                                     height: 50,
                                                   ),
                                                   Container(
                                                     alignment: Alignment.center,
                                                     child: ButtonTheme(
-                                                        minWidth: MediaQuery.of(context).size.width *0.4,
+                                                        minWidth:
+                                                            size.width * 0.4,
                                                         height: 50.0,
-                                                        child:RaisedButton(
-                                                          shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                              side: BorderSide(color: paydayGreen,)
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            shape: buttonShape,
+                                                            elevation: 0.8,
+                                                            backgroundColor:
+                                                                weeklyChecked
+                                                                    ? accent
+                                                                    : paydayGreen,
                                                           ),
-                                                          color:  weeklyChecked ? accent: paydayGreen,
-                                                          child: Text('Monthly',style:  weeklyChecked ? green14Style: white14Style,textAlign: TextAlign.center,),
+                                                          child: Text(
+                                                            'Monthly',
+                                                            style: weeklyChecked
+                                                                ? green14Style
+                                                                : white14Style,
+                                                            textAlign: TextAlign
+                                                                .center,
+                                                          ),
                                                           onPressed: () => {
-                                                            setState((){
-                                                              weeklyChecked = !weeklyChecked;
+                                                            setState(() {
+                                                              weeklyChecked =
+                                                                  !weeklyChecked;
                                                             }),
                                                           },
-                                                          highlightElevation: 10,
-                                                        )
-                                                    ),
-                                                    width: MediaQuery.of(context).size.width * 0.4,
+                                                        )),
+                                                    width: size.width * 0.4,
                                                     height: 50,
                                                   ),
                                                 ],
-                                              )
+                                              )),
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
-                                          ),
-                                          Container(
-                                              width: MediaQuery.of(context).size.width * 0.8,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
                                               alignment: Alignment.center,
-                                              child:Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
                                                 children: <Widget>[
                                                   Container(
-                                                    width: MediaQuery.of(context).size.width * 0.55,
+                                                    width: size.width * 0.55,
                                                     alignment: Alignment.center,
                                                     child: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: <Widget>[
                                                         Text(
                                                           'Proceed to debit amount',
                                                           style: dark14Style,
-                                                          textAlign: TextAlign.left,
+                                                          textAlign:
+                                                              TextAlign.left,
                                                         ),
                                                         Container(
-                                                          //height: MediaQuery.of(context).size.height * 0.06,
-                                                          child: LinearPercentIndicator(
-                                                            width: MediaQuery.of(context).size.width * 0.55,
+                                                          //height: size.height * 0.06,
+                                                          child:
+                                                              LinearPercentIndicator(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.55,
                                                             animation: true,
                                                             lineHeight: 10.0,
-                                                            animationDuration: 2500,
+                                                            animationDuration:
+                                                                2500,
                                                             percent: 0.8,
-                                                            linearStrokeCap: LinearStrokeCap.roundAll,
-                                                            progressColor: paydayOrange,
+                                                            linearStrokeCap:
+                                                                LinearStrokeCap
+                                                                    .roundAll,
+                                                            progressColor:
+                                                                paydayOrange,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                   Container(
-                                                    child:
-                                                    ButtonTheme(
-                                                        minWidth: MediaQuery.of(context).size.width * 0.06,
+                                                    child: ButtonTheme(
+                                                        minWidth:
+                                                            size.width * 0.06,
                                                         height: 50.0,
-                                                        child: RaisedButton(
-                                                          child: Image(width: MediaQuery.of(context).size.width * 0.05, height: 40, image: AssetImage(nextIcon),),
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            backgroundColor:
+                                                                paydayGreen,
+                                                          ),
+                                                          child: Image(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.05,
+                                                            height: 40,
+                                                            image: AssetImage(
+                                                                nextIcon),
+                                                          ),
                                                           onPressed: () {
                                                             setState(() {
-                                                              recurrerntAmountTop = 0;
-                                                              recurrerntFrequencyTop = 1.2;
+                                                              recurrerntAmountTop =
+                                                                  0;
+                                                              recurrerntFrequencyTop =
+                                                                  1.2;
                                                             });
                                                           },
-                                                          color: paydayGreen,
                                                         )),
                                                   )
-                                                ],)
-                                          ),
+                                                ],
+                                              )),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                         alignment: Alignment.center,
-                                        child: Text('You can suspend the direct debit on your investment whenever you wish to',
-                                          style: orange14Style,textAlign: TextAlign.center,)
-                                    ),
+                                        child: Text(
+                                          'You can suspend the direct debit on your investment whenever you wish to',
+                                          style: orange14Style,
+                                          textAlign: TextAlign.center,
+                                        )),
                                   ],
                                 ),
                               ),
@@ -3201,50 +4230,53 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //recurrerntAmountTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * recurrerntAmountTop,
+            top: size.height * recurrerntAmountTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height * 0.8,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height * 0.8,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height * 0.8,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height * 0.8,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -3270,51 +4302,58 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 recurrerntAmountTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     imgAnimation2(
                                       url: calendarIcon,
                                       time: Duration(seconds: 5),
-                                      width:
-                                      MediaQuery.of(context).size.width * 0.3,
+                                      width: size.width * 0.3,
                                       beginx: 0.03,
                                       endx: -0,
                                       beginy: 0,
                                       endy: -0.0,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.07,
+                                      height: size.height * 0.07,
                                       transition: PositionedTransition,
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Recurrernt funding',
@@ -3322,122 +4361,183 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                           ),
-                                          Image(image: AssetImage(infoIcon),),
+                                          Image(
+                                            image: AssetImage(infoIcon),
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
                                               alignment: Alignment.center,
-                                              child:Text('How much do you want to be debited monthly?',style: purple22Style, textAlign: TextAlign.center,)
+                                              child: Text(
+                                                'How much do you want to be debited monthly?',
+                                                style: purple22Style,
+                                                textAlign: TextAlign.center,
+                                              )),
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
-                                          ),
-                                          Container(
-                                              width: MediaQuery.of(context).size.width * 0.7,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.7,
                                               alignment: Alignment.center,
                                               color: paydayLightPurple,
-                                              child: TextField()
+                                              child: TextField()),
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
-                                          ),
-                                          Container(
-                                              width: MediaQuery.of(context).size.width * 0.8,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
                                               alignment: Alignment.center,
-                                              child:Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
                                                 children: <Widget>[
                                                   Container(
-                                                    width: MediaQuery.of(context).size.width * 0.55,
+                                                    width: size.width * 0.55,
                                                     alignment: Alignment.center,
                                                     child: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: <Widget>[
                                                         Text(
                                                           'Proceed to debit amount',
                                                           style: dark14Style,
-                                                          textAlign: TextAlign.left,
+                                                          textAlign:
+                                                              TextAlign.left,
                                                         ),
                                                         Container(
-                                                          //height: MediaQuery.of(context).size.height * 0.06,
-                                                          child: LinearPercentIndicator(
-                                                            width: MediaQuery.of(context).size.width * 0.55,
+                                                          //height: size.height * 0.06,
+                                                          child:
+                                                              LinearPercentIndicator(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.55,
                                                             animation: true,
                                                             lineHeight: 10.0,
-                                                            animationDuration: 2500,
+                                                            animationDuration:
+                                                                2500,
                                                             percent: 0.8,
-                                                            linearStrokeCap: LinearStrokeCap.roundAll,
-                                                            progressColor: paydayOrange,
+                                                            linearStrokeCap:
+                                                                LinearStrokeCap
+                                                                    .roundAll,
+                                                            progressColor:
+                                                                paydayOrange,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                   Container(
-                                                    child:
-                                                    ButtonTheme(
-                                                        minWidth: MediaQuery.of(context).size.width * 0.06,
+                                                    child: ButtonTheme(
+                                                        minWidth:
+                                                            size.width * 0.06,
                                                         height: 50.0,
-                                                        child: RaisedButton(
-                                                          child: Image(width: MediaQuery.of(context).size.width * 0.05, height: 40, image: AssetImage(nextIcon),),
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            backgroundColor:
+                                                                paydayGreen,
+                                                          ),
+                                                          child: Image(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.05,
+                                                            height: 40,
+                                                            image: AssetImage(
+                                                                nextIcon),
+                                                          ),
                                                           onPressed: () {
                                                             setState(() {
-                                                              recurrerntTimeTop = 0;
-                                                              recurrerntAmountTop =  1.2;
+                                                              recurrerntTimeTop =
+                                                                  0;
+                                                              recurrerntAmountTop =
+                                                                  1.2;
                                                             });
                                                           },
-                                                          color: paydayGreen,
                                                         )),
                                                   )
-                                                ],)
-                                          ),
+                                                ],
+                                              )),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                         alignment: Alignment.center,
-                                        child: Text('You can suspend the direct debit on your investment whenever you wish to',
-                                          style: orange14Style,textAlign: TextAlign.center,)
-                                    ),
+                                        child: Text(
+                                          'You can suspend the direct debit on your investment whenever you wish to',
+                                          style: orange14Style,
+                                          textAlign: TextAlign.center,
+                                        )),
                                   ],
                                 ),
                               ),
@@ -3447,50 +4547,53 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //recurrerntTimeTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * recurrerntTimeTop,
+            top: size.height * recurrerntTimeTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height * 0.8,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height * 0.8,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height * 0.8,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height * 0.8,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -3516,51 +4619,58 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 recurrerntTimeTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     imgAnimation2(
                                       url: calendarIcon,
                                       time: Duration(seconds: 5),
-                                      width:
-                                      MediaQuery.of(context).size.width * 0.3,
+                                      width: size.width * 0.3,
                                       beginx: 0.03,
                                       endx: -0,
                                       beginy: 0,
                                       endy: -0.0,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.07,
+                                      height: size.height * 0.07,
                                       transition: PositionedTransition,
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Recurrernt funding',
@@ -3568,64 +4678,99 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                           ),
-                                          Image(image: AssetImage(infoIcon),),
+                                          Image(
+                                            image: AssetImage(infoIcon),
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
                                               alignment: Alignment.center,
                                               padding: EdgeInsets.all(10.0),
-                                              child:Text('When do you want to start investing?',style: purple22Style, textAlign: TextAlign.center,)
+                                              child: Text(
+                                                'When do you want to start investing?',
+                                                style: purple22Style,
+                                                textAlign: TextAlign.center,
+                                              )),
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
-                                          ),
-                                          Container(
-                                            height: MediaQuery.of(context).size.height * 0.05,
-                                            width: MediaQuery.of(context).size.width * 0.8,
-                                            child:RaisedButton(
-                                              shape: RoundedRectangleBorder(
-                                                  borderRadius: BorderRadius.circular(5.0)),
-                                              elevation: 4.0,
-                                              onPressed: () {
-                                                DatePicker.showDatePicker(context,
-                                                    theme: DatePickerTheme(
-                                                      containerHeight: 210.0,
-                                                    ),
-                                                    showTitleActions: true,
-                                                    minTime: DateTime(2000, 1, 1),
-                                                    maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
-                                                      print('confirm $date');
-                                                      _date = '${date.year} - ${date.month} - ${date.day}';
-                                                      setState(() {});
-                                                    }, currentTime: DateTime.now(), locale: LocaleType.en);
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.05,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.8,
+                                            child: ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                  backgroundColor: accent,
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              5.0)),
+                                                  elevation: 4.0),
+                                              onPressed: () async {
+                                                DateTime? pickedDate =
+                                                    await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate:
+                                                      DateTime(2000, 1, 1),
+                                                  lastDate:
+                                                      DateTime(2022, 12, 31),
+                                                );
+
+                                                if (pickedDate != null) {
+                                                  print('confirm $pickedDate');
+                                                  setState(() {
+                                                    _date =
+                                                        '${pickedDate.year} - ${pickedDate.month} - ${pickedDate.day}';
+                                                  });
+                                                }
                                               },
                                               child: Container(
                                                 alignment: Alignment.center,
                                                 height: 50.0,
                                                 child: Row(
-                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
                                                   children: <Widget>[
                                                     Row(
                                                       children: <Widget>[
@@ -3633,103 +4778,147 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                           child: Row(
                                                             children: <Widget>[
                                                               Icon(
-                                                                Icons.date_range,
+                                                                Icons
+                                                                    .date_range,
                                                                 size: 18.0,
-                                                                color: paydayPurple,
+                                                                color:
+                                                                    paydayPurple,
                                                               ),
                                                               Text(
                                                                 " $_date",
-                                                                style: purpleThickStyle,
+                                                                style:
+                                                                    purpleThickStyle,
                                                               ),
                                                             ],
                                                           ),
                                                         )
                                                       ],
                                                     ),
-
                                                   ],
                                                 ),
                                               ),
-                                              color: Colors.white,
                                             ),
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
                                           Container(
-                                              width: MediaQuery.of(context).size.width * 0.8,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.8,
                                               alignment: Alignment.center,
-                                              child:Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceAround,
                                                 mainAxisSize: MainAxisSize.max,
-                                                crossAxisAlignment: CrossAxisAlignment.end,
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.end,
                                                 children: <Widget>[
                                                   Container(
-                                                    width: MediaQuery.of(context).size.width * 0.55,
+                                                    width: size.width * 0.55,
                                                     alignment: Alignment.center,
                                                     child: Column(
-                                                      mainAxisSize: MainAxisSize.min,
-                                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      mainAxisSize:
+                                                          MainAxisSize.min,
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceAround,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
                                                       children: <Widget>[
                                                         Text(
                                                           'Proceed to debit amount',
                                                           style: dark14Style,
-                                                          textAlign: TextAlign.left,
+                                                          textAlign:
+                                                              TextAlign.left,
                                                         ),
                                                         Container(
-                                                          //height: MediaQuery.of(context).size.height * 0.06,
-                                                          child: LinearPercentIndicator(
-                                                            width: MediaQuery.of(context).size.width * 0.55,
+                                                          //height: size.height * 0.06,
+                                                          child:
+                                                              LinearPercentIndicator(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.55,
                                                             animation: true,
                                                             lineHeight: 10.0,
-                                                            animationDuration: 2500,
+                                                            animationDuration:
+                                                                2500,
                                                             percent: 0.8,
-                                                            linearStrokeCap: LinearStrokeCap.roundAll,
-                                                            progressColor: paydayOrange,
+                                                            linearStrokeCap:
+                                                                LinearStrokeCap
+                                                                    .roundAll,
+                                                            progressColor:
+                                                                paydayOrange,
                                                           ),
                                                         ),
                                                       ],
                                                     ),
                                                   ),
                                                   Container(
-                                                    child:ButtonTheme(
-                                                        minWidth: MediaQuery.of(context).size.width * 0.06,
+                                                    child: ButtonTheme(
+                                                        minWidth:
+                                                            size.width * 0.06,
                                                         height: 50.0,
-                                                        child: RaisedButton(
-                                                          child: Image(width: MediaQuery.of(context).size.width * 0.05, height: 40, image: AssetImage(nextIcon),),
+                                                        child: ElevatedButton(
+                                                          style: ElevatedButton
+                                                              .styleFrom(
+                                                            backgroundColor:
+                                                                paydayGreen,
+                                                          ),
+                                                          child: Image(
+                                                            width: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.05,
+                                                            height: 40,
+                                                            image: AssetImage(
+                                                                nextIcon),
+                                                          ),
                                                           onPressed: () {
                                                             setState(() {
-                                                              recurrerntTimeTop = 1.2;
-                                                              recurrerntPaymentOptionTop = 0;
+                                                              recurrerntTimeTop =
+                                                                  1.2;
+                                                              recurrerntPaymentOptionTop =
+                                                                  0;
                                                             });
                                                           },
-                                                          color: paydayGreen,
                                                         )),
                                                   )
-                                                ],)
-                                          ),
+                                                ],
+                                              )),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Container(
                                         alignment: Alignment.center,
-                                        child: Text('You can suspend the direct debit on your investment whenever you wish to',
-                                          style: orange14Style,textAlign: TextAlign.center,)
-                                    ),
+                                        child: Text(
+                                          'You can suspend the direct debit on your investment whenever you wish to',
+                                          style: orange14Style,
+                                          textAlign: TextAlign.center,
+                                        )),
                                   ],
                                 ),
                               ),
@@ -3739,50 +4928,49 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //recurrerntPaymentOptionTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * recurrerntPaymentOptionTop,
+            top: size.height * recurrerntPaymentOptionTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
 //                                AnimatedPositioned(
-//                                  top: MediaQuery.of(context).size.height * 0.01,
-//                                  bottom: MediaQuery.of(context).size.height * 0.03,
+//                                  top: size.height * 0.01,
+//                                  bottom: size.height * 0.03,
 //                                  duration: Duration(seconds: 1),
 //                                  child: WidgetAnimator(
 //                                    component: Container(
-//                                      height: MediaQuery.of(context).size.height * 0.8,
-//                                      width: MediaQuery.of(context).size.width,
+//                                      height: size.height * 0.8,
+//                                      width: size.width,
 //                                      child: imgAnimation2(
 //                                        url: bgMain2,
 //                                        time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-//                                        width: MediaQuery.of(context).size.width,
-//                                        height: MediaQuery.of(context).size.height * 0.8,
+//                                        width: size.width,
+//                                        height: size.height * 0.8,
 //                                        transition: PositionedTransition,
 //                                      ),
 //                                    ),
@@ -3808,51 +4996,59 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
-                                                recurrerntPaymentOptionTop = 1.2;
+                                                recurrerntPaymentOptionTop =
+                                                    1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     imgAnimation2(
                                       url: calendarIcon,
                                       time: Duration(seconds: 5),
-                                      width:
-                                      MediaQuery.of(context).size.width * 0.3,
+                                      width: size.width * 0.3,
                                       beginx: 0.03,
                                       endx: -0,
                                       beginy: 0,
                                       endy: -0.0,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.07,
+                                      height: size.height * 0.07,
                                       transition: PositionedTransition,
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Recurrernt funding',
@@ -3860,233 +5056,474 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                           ),
-                                          Image(image: AssetImage(infoIcon),),
+                                          Image(
+                                            image: AssetImage(infoIcon),
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
                                               alignment: Alignment.center,
-                                              child:Text('Select payment processor',style: purple22Style, textAlign: TextAlign.center,)
-                                          ),
+                                              child: Text(
+                                                'Select payment processor',
+                                                style: purple22Style,
+                                                textAlign: TextAlign.center,
+                                              )),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
-                                          (showCardForms)?
-                                          Container(
-                                              color:accent, padding: EdgeInsets.all(10),
-                                              alignment: Alignment.center,
-                                              child:Column(
-                                                children: <Widget>[
-                                                  Text('Please enter your card details below',style:purple14Style,textAlign: TextAlign.center,),
-                                                  Container(
-                                                    height: MediaQuery.of(context).size.height * 0.02,
-                                                  ),
-                                                  Container(
-                                                    color: paydayLightGray2,
-                                                    padding: EdgeInsets.all(5),
-                                                    margin: EdgeInsets.all(5),
-                                                    width: MediaQuery.of(context).size.width * 0.75,
-                                                    height: MediaQuery.of(context).size.height * 0.05,
-                                                    child:TextField(
-                                                      decoration: InputDecoration(labelText: 'Card number',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                                        borderSide: BorderSide(color: paydayGreen),),
-                                                          focusedBorder: UnderlineInputBorder(
-                                                            borderSide: BorderSide(color: paydayGreen),
-                                                          ),
-                                                          border: UnderlineInputBorder(
-                                                            borderSide: BorderSide(color: paydayGreen),
-                                                          )),),
-                                                  ),
-                                                  Container(
-                                                    height: MediaQuery.of(context).size.height * 0.02,
-                                                  ),
-                                                  Container(
-                                                      width: MediaQuery.of(context).size.width * 0.75,
-                                                      child:Row(
-                                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                        children: <Widget>[
-                                                          Container(
-                                                            color: paydayLightGray2,
-                                                            padding: EdgeInsets.all(5),
-                                                            height: MediaQuery.of(context).size.height * 0.05,
-                                                            width: MediaQuery.of(context).size.width * 0.33,
-                                                            child:TextField(
-                                                              decoration: InputDecoration(labelText: 'Card expiry date',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: paydayGreen),),
-                                                                  focusedBorder: UnderlineInputBorder(
-                                                                    borderSide: BorderSide(color: paydayGreen),
+                                          (showCardForms)
+                                              ? Container(
+                                                  color: accent,
+                                                  padding: EdgeInsets.all(10),
+                                                  alignment: Alignment.center,
+                                                  child: Column(
+                                                    children: <Widget>[
+                                                      Text(
+                                                        'Please enter your card details below',
+                                                        style: purple14Style,
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                      ),
+                                                      Container(
+                                                        height:
+                                                            size.height * 0.02,
+                                                      ),
+                                                      Container(
+                                                        color: paydayLightGray2,
+                                                        padding:
+                                                            EdgeInsets.all(5),
+                                                        margin:
+                                                            EdgeInsets.all(5),
+                                                        width:
+                                                            size.width * 0.75,
+                                                        height:
+                                                            size.height * 0.05,
+                                                        child: TextField(
+                                                          decoration:
+                                                              InputDecoration(
+                                                                  labelText:
+                                                                      'Card number',
+                                                                  labelStyle:
+                                                                      gray12Style,
+                                                                  enabledBorder:
+                                                                      UnderlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                            color:
+                                                                                paydayGreen),
                                                                   ),
-                                                                  border: UnderlineInputBorder(
-                                                                    borderSide: BorderSide(color: paydayGreen),
-                                                                  )),),
-                                                          ),
-                                                          Container(
-                                                            color: paydayLightGray2,
-                                                            padding: EdgeInsets.all(5),
-                                                            height: MediaQuery.of(context).size.height * 0.05,
-                                                            width: MediaQuery.of(context).size.width * 0.33,
-                                                            child:TextField(
-                                                              decoration: InputDecoration(labelText: 'CVV / CVC',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                                                borderSide: BorderSide(color: paydayGreen),),
-                                                                  focusedBorder: UnderlineInputBorder(
-                                                                    borderSide: BorderSide(color: paydayGreen),
+                                                                  focusedBorder:
+                                                                      UnderlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                            color:
+                                                                                paydayGreen),
                                                                   ),
-                                                                  border: UnderlineInputBorder(
-                                                                    borderSide: BorderSide(color: paydayGreen),
-                                                                  )),),
-                                                          ),
-                                                        ],
-                                                      )
-                                                  ),
-                                                  Container(
-                                                    height: MediaQuery.of(context).size.height * 0.02,
-                                                  ),
-                                                  Container(
-                                                    width: MediaQuery.of(context).size.width,
-                                                    alignment: Alignment.center,
-                                                    child: ButtonTheme(
-                                                        minWidth: MediaQuery.of(context).size.width * 0.85,
-                                                        height: 50.0,
-                                                        child: RaisedButton(
-                                                          shape: buttonShape,
+                                                                  border:
+                                                                      UnderlineInputBorder(
+                                                                    borderSide:
+                                                                        BorderSide(
+                                                                            color:
+                                                                                paydayGreen),
+                                                                  )),
+                                                        ),
+                                                      ),
+                                                      Container(
+                                                        height:
+                                                            size.height * 0.02,
+                                                      ),
+                                                      Container(
+                                                          width: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.75,
                                                           child: Row(
-                                                            mainAxisSize: MainAxisSize.min,
-                                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                            mainAxisAlignment:
+                                                                MainAxisAlignment
+                                                                    .spaceBetween,
                                                             children: <Widget>[
-                                                              Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
-                                                              Text('Proceed',style: lightBodyStyle,),
-                                                              Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
-                                                              Image(width: 50, height: 50, image: AssetImage(nextIcon),)
+                                                              Container(
+                                                                color:
+                                                                    paydayLightGray2,
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(5),
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.05,
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.33,
+                                                                child:
+                                                                    TextField(
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                          labelText:
+                                                                              'Card expiry date',
+                                                                          labelStyle:
+                                                                              gray12Style,
+                                                                          enabledBorder:
+                                                                              UnderlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(color: paydayGreen),
+                                                                          ),
+                                                                          focusedBorder:
+                                                                              UnderlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(color: paydayGreen),
+                                                                          ),
+                                                                          border:
+                                                                              UnderlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(color: paydayGreen),
+                                                                          )),
+                                                                ),
+                                                              ),
+                                                              Container(
+                                                                color:
+                                                                    paydayLightGray2,
+                                                                padding:
+                                                                    EdgeInsets
+                                                                        .all(5),
+                                                                height: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .height *
+                                                                    0.05,
+                                                                width: MediaQuery.of(
+                                                                            context)
+                                                                        .size
+                                                                        .width *
+                                                                    0.33,
+                                                                child:
+                                                                    TextField(
+                                                                  decoration:
+                                                                      InputDecoration(
+                                                                          labelText:
+                                                                              'CVV / CVC',
+                                                                          labelStyle:
+                                                                              gray12Style,
+                                                                          enabledBorder:
+                                                                              UnderlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(color: paydayGreen),
+                                                                          ),
+                                                                          focusedBorder:
+                                                                              UnderlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(color: paydayGreen),
+                                                                          ),
+                                                                          border:
+                                                                              UnderlineInputBorder(
+                                                                            borderSide:
+                                                                                BorderSide(color: paydayGreen),
+                                                                          )),
+                                                                ),
+                                                              ),
                                                             ],
-                                                          ),
-                                                          onPressed: () => {
-                                                            setState(() {
-                                                              recurrerntPaymentOptionTop = 1.2;
-                                                            })
-                                                          },
-                                                          color: paydayGreen,
-                                                        )),
-                                                    height: MediaQuery.of(context).size.height * 0.1,
-                                                  ),
-                                                ],
-                                              )
-                                          ):
-                                          Container(
-                                              color: accent,
-                                              alignment: Alignment.center,
-                                              height: MediaQuery.of(context).size.height * 0.15,
-                                              child:Row(
-                                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                mainAxisSize: MainAxisSize.max,
-                                                children: <Widget>[
-                                                  ButtonTheme(
-                                                      minWidth:
-                                                      MediaQuery.of(context).size.width *0.3,
-                                                      height: MediaQuery.of(context).size.height * 0.1,
-                                                      buttonColor: accent,
-                                                      child: RaisedButton(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                            side: BorderSide(color: paydayGreen)
-                                                        ),
-                                                        child: Column(
-                                                          mainAxisSize: MainAxisSize.min,
-                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          children: <Widget>[
-                                                            Text('Pay with \nPaystack',style: purple12Style,textAlign: TextAlign.center,),
-                                                            imgAnimation2(
-                                                              url: paystackIcon,
-                                                              time: Duration(seconds: 5),
-                                                              width:MediaQuery.of(context).size.width * 0.2,
-                                                              beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:MediaQuery.of(context).size.height * 0.04,
-                                                              transition: PositionedTransition,
+                                                          )),
+                                                      Container(
+                                                        height:
+                                                            size.height * 0.02,
+                                                      ),
+                                                      Container(
+                                                        width: MediaQuery.of(
+                                                                context)
+                                                            .size
+                                                            .width,
+                                                        alignment:
+                                                            Alignment.center,
+                                                        child: ButtonTheme(
+                                                            minWidth: MediaQuery.of(
+                                                                        context)
+                                                                    .size
+                                                                    .width *
+                                                                0.85,
+                                                            height: 50.0,
+                                                            child:
+                                                                ElevatedButton(
+                                                              style: ElevatedButton.styleFrom(
+                                                                  backgroundColor:
+                                                                      paydayGreen,
+                                                                  shape:
+                                                                      buttonShape),
+                                                              child: Row(
+                                                                mainAxisSize:
+                                                                    MainAxisSize
+                                                                        .min,
+                                                                crossAxisAlignment:
+                                                                    CrossAxisAlignment
+                                                                        .center,
+                                                                mainAxisAlignment:
+                                                                    MainAxisAlignment
+                                                                        .spaceAround,
+                                                                children: <Widget>[
+                                                                  Container(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.3,
+                                                                    height: 50,
+                                                                  ),
+                                                                  Text(
+                                                                    'Proceed',
+                                                                    style:
+                                                                        lightBodyStyle,
+                                                                  ),
+                                                                  Container(
+                                                                    width: MediaQuery.of(context)
+                                                                            .size
+                                                                            .width *
+                                                                        0.3,
+                                                                    height: 50,
+                                                                  ),
+                                                                  Image(
+                                                                    width: 50,
+                                                                    height: 50,
+                                                                    image: AssetImage(
+                                                                        nextIcon),
+                                                                  )
+                                                                ],
+                                                              ),
+                                                              onPressed: () => {
+                                                                setState(() {
+                                                                  recurrerntPaymentOptionTop =
+                                                                      1.2;
+                                                                })
+                                                              },
+                                                            )),
+                                                        height:
+                                                            size.height * 0.1,
+                                                      ),
+                                                    ],
+                                                  ))
+                                              : Container(
+                                                  color: accent,
+                                                  alignment: Alignment.center,
+                                                  height: size.height * 0.15,
+                                                  child: Row(
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceEvenly,
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    children: <Widget>[
+                                                      ButtonTheme(
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.3,
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.1,
+                                                          buttonColor: accent,
+                                                          child: ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                                backgroundColor:
+                                                                    accent,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.all(Radius.circular(
+                                                                            15)),
+                                                                    side: BorderSide(
+                                                                        color:
+                                                                            paydayGreen)),
+                                                                elevation: 4.0),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceAround,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: <Widget>[
+                                                                Text(
+                                                                  'Pay with \nPaystack',
+                                                                  style:
+                                                                      purple12Style,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
+                                                                imgAnimation2(
+                                                                  url:
+                                                                      paystackIcon,
+                                                                  time: Duration(
+                                                                      seconds:
+                                                                          5),
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.2,
+                                                                  beginx: 0.03,
+                                                                  endx: -0,
+                                                                  beginy: 0,
+                                                                  endy: -0.0,
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.04,
+                                                                  transition:
+                                                                      PositionedTransition,
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],),
-                                                        onPressed: () => {
-                                                          setState((){
-                                                            showCardForms = !showCardForms;
-                                                          })
-                                                        },
-                                                        highlightElevation:20,
-                                                      )),
-                                                  ButtonTheme(
-                                                      minWidth:
-                                                      MediaQuery.of(context).size.width *0.3,
-                                                      height: MediaQuery.of(context).size.height * 0.1,
-                                                      buttonColor: accent,
-                                                      child: RaisedButton(
-                                                        shape: RoundedRectangleBorder(
-                                                            borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                            side: BorderSide(color: paydayGreen)
-                                                        ),
-                                                        child: Column(
-                                                          mainAxisSize: MainAxisSize.min,
-                                                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                          children: <Widget>[
-                                                            Text('Pay with \nFlutterwave',style: purple12Style,textAlign: TextAlign.center,),
-                                                            imgAnimation2(
-                                                              url: flutterwaveIcon,
-                                                              time: Duration(seconds: 5),
-                                                              width:MediaQuery.of(context).size.width * 0.2,
-                                                              beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:MediaQuery.of(context).size.height * 0.04,
-                                                              transition: PositionedTransition,
+                                                            onPressed: () => {
+                                                              setState(() {
+                                                                showCardForms =
+                                                                    !showCardForms;
+                                                              })
+                                                            },
+                                                          )),
+                                                      ButtonTheme(
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.3,
+                                                          height: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height *
+                                                              0.1,
+                                                          buttonColor: accent,
+                                                          child: ElevatedButton(
+                                                            style: ElevatedButton.styleFrom(
+                                                                backgroundColor:
+                                                                    accent,
+                                                                shape: RoundedRectangleBorder(
+                                                                    borderRadius:
+                                                                        BorderRadius.all(Radius.circular(
+                                                                            15)),
+                                                                    side: BorderSide(
+                                                                        color:
+                                                                            paydayGreen)),
+                                                                elevation: 0.8),
+                                                            child: Column(
+                                                              mainAxisSize:
+                                                                  MainAxisSize
+                                                                      .min,
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceAround,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: <Widget>[
+                                                                Text(
+                                                                  'Pay with \nFlutterwave',
+                                                                  style:
+                                                                      purple12Style,
+                                                                  textAlign:
+                                                                      TextAlign
+                                                                          .center,
+                                                                ),
+                                                                imgAnimation2(
+                                                                  url:
+                                                                      flutterwaveIcon,
+                                                                  time: Duration(
+                                                                      seconds:
+                                                                          5),
+                                                                  width: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .width *
+                                                                      0.2,
+                                                                  beginx: 0.03,
+                                                                  endx: -0,
+                                                                  beginy: 0,
+                                                                  endy: -0.0,
+                                                                  height: MediaQuery.of(
+                                                                              context)
+                                                                          .size
+                                                                          .height *
+                                                                      0.04,
+                                                                  transition:
+                                                                      PositionedTransition,
+                                                                ),
+                                                              ],
                                                             ),
-                                                          ],),
-                                                        onPressed: () => {
-                                                        },
-                                                        highlightElevation: 0.8,
-                                                      )),
-                                                ],
-                                              )
-                                          ),
+                                                            onPressed: () => {},
+                                                          )),
+                                                    ],
+                                                  )),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Container(
                                         alignment: Alignment.center,
-                                        child: Text('You can suspend the direct debit on your investment whenever you wish to',
-                                          style: orange14Style,textAlign: TextAlign.center,)
-                                    ),
+                                        child: Text(
+                                          'You can suspend the direct debit on your investment whenever you wish to',
+                                          style: orange14Style,
+                                          textAlign: TextAlign.center,
+                                        )),
                                   ],
                                 ),
                               ),
@@ -4096,51 +5533,54 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //manualTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * manualTop,
+            top: size.height * manualTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
                             AnimatedPositioned(
-                              top: MediaQuery.of(context).size.height * 0.01,
-                              bottom: MediaQuery.of(context).size.height * 0.03,
-                              //right: -MediaQuery.of(context).size.width * 0.05,
+                              top: size.height * 0.01,
+                              bottom: size.height * 0.03,
+                              //right: -size.width * 0.05,
                               duration: Duration(seconds: 1),
                               child: WidgetAnimator(
                                 component: Container(
-                                  height: MediaQuery.of(context).size.height * 0.8,
-                                  width: MediaQuery.of(context).size.width,
+                                  height: size.height * 0.8,
+                                  width: size.width,
                                   child: imgAnimation2(
                                     url: bgMain2,
-                                    time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
-                                    width: MediaQuery.of(context).size.width,
-                                    height: MediaQuery.of(context).size.height * 0.8,
+                                    time: Duration(seconds: 4),
+                                    beginx: 0.3,
+                                    endx: 0.2,
+                                    beginy: -0.04,
+                                    endy: 0,
+                                    width: size.width,
+                                    height: size.height * 0.8,
                                     transition: PositionedTransition,
                                   ),
                                 ),
@@ -4167,51 +5607,58 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 manualTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     imgAnimation2(
                                       url: manualicon2,
                                       time: Duration(seconds: 5),
-                                      width:
-                                      MediaQuery.of(context).size.width * 0.3,
+                                      width: size.width * 0.3,
                                       beginx: 0.03,
                                       endx: -0,
                                       beginy: 0,
                                       endy: -0.0,
-                                      height:
-                                      MediaQuery.of(context).size.height * 0.07,
+                                      height: size.height * 0.07,
                                       transition: PositionedTransition,
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: <Widget>[
                                           Text(
                                             'Manual funding',
@@ -4219,67 +5666,111 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             textAlign: TextAlign.center,
                                           ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.02,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.02,
                                           ),
-                                          Image(image: AssetImage(infoIcon),),
+                                          Image(
+                                            image: AssetImage(infoIcon),
+                                          ),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.center,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
                                               alignment: Alignment.center,
-                                              child:Text('How much do you want to invest upfront?',style: purple22Style, textAlign: TextAlign.center,)
+                                              child: Text(
+                                                'How much do you want to invest upfront?',
+                                                style: purple22Style,
+                                                textAlign: TextAlign.center,
+                                              )),
+                                          Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.04,
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.04,
-                                          ),
-                                          Container(
-                                              width: MediaQuery.of(context).size.width * 0.7,
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.7,
                                               alignment: Alignment.center,
                                               color: paydayLightPurple,
-                                              child: TextField(decoration: textFieldDecoration,)
-                                          ),
+                                              child: TextField(
+                                                decoration: textFieldDecoration,
+                                              )),
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.04,
+                                      height: size.height * 0.04,
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            backgroundColor: paydayGreen,
+                                            elevation:
+                                                0.8, // Replaced highlightElevation
+                                          ),
                                           child: Row(
                                             mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
                                             children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
                                               Text(
                                                 'Invest now',
                                                 style: lightBodyStyle,
                                               ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              )
                                             ],
                                           ),
                                           onPressed: () {
@@ -4289,7 +5780,6 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               showmanualFundingBtn = true;
                                             });
                                           },
-                                          color: paydayGreen,
                                         )),
                                   ],
                                 ),
@@ -4300,34 +5790,33 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //manualFundingTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * manualFundingTop,
+            top: size.height * manualFundingTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.15,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.15,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.85,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.85,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
@@ -4336,63 +5825,94 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                               left: 0,
                               duration: Duration(seconds: 1),
                               child: Container(
-                                height: MediaQuery.of(context).size.height * 0.85,
+                                height: size.height * 0.85,
                                 alignment: Alignment.center,
-                                child:
-                                ExpandableTheme(
+                                child: ExpandableTheme(
                                   data: ExpandableThemeData(
                                     iconColor: paydayGray,
                                     useInkWell: true,
                                   ),
                                   child: ListView(
-                                    physics: const BouncingScrollPhysics(),padding: EdgeInsets.all(0),
+                                    physics: const BouncingScrollPhysics(),
+                                    padding: EdgeInsets.all(0),
                                     children: <Widget>[
                                       Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.start,
-                                        mainAxisAlignment: MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
                                             alignment: Alignment.topCenter,
-                                            height: MediaQuery.of(context).size.height * 0.02,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                             child: ButtonTheme(
                                                 height: 10.0,
-                                                child: OutlineButton(
+                                                child: OutlinedButton(
+                                                  style: OutlinedButton.styleFrom(
+                                                      shape: RoundedRectangleBorder(
+                                                          side: BorderSide(
+                                                        color:
+                                                            Colors.transparent,
+                                                        style:
+                                                            BorderStyle.solid,
+                                                        //width: 0.8,
+                                                      )),
+                                                      elevation: 0.8),
                                                   child: Image(
-                                                    image:AssetImage(darkbarIcon),
-                                                    width: MediaQuery.of(context).size.width * 0.2,),
+                                                    image:
+                                                        AssetImage(darkbarIcon),
+                                                    width: size.width * 0.2,
+                                                  ),
                                                   onPressed: () => {
                                                     setState(() {
                                                       manualFundingTop = 1.2;
-                                                      showmanualFundingBtn = false;
+                                                      showmanualFundingBtn =
+                                                          false;
                                                     })
-                                                  }, //callback when button is clicked
-                                                  borderSide: BorderSide(
-                                                    color: Colors.transparent,
-                                                    style: BorderStyle.solid,
-                                                    //width: 0.8,
-                                                  ),
-                                                  highlightElevation: 0.8,
+                                                  },
                                                 )),
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           imgAnimation2(
-                                            url: manualIcon,time: Duration(seconds: 5),
-                                            width:MediaQuery.of(context).size.width * 0.3,
-                                            beginx: 0.03,endx: -0,beginy: 0,
-                                            endy: -0.0,height:MediaQuery.of(context).size.height * 0.07,transition: PositionedTransition,
+                                            url: manualIcon,
+                                            time: Duration(seconds: 5),
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.3,
+                                            beginx: 0.03,
+                                            endx: -0,
+                                            beginy: 0,
+                                            endy: -0.0,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.07,
+                                            transition: PositionedTransition,
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.01,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.01,
                                           ),
                                           Container(
                                             alignment: Alignment.center,
                                             child: Row(
                                               mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
                                               children: <Widget>[
                                                 Text(
                                                   'Manual funding',
@@ -4400,415 +5920,609 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                   textAlign: TextAlign.center,
                                                 ),
                                                 Container(
-                                                  width: MediaQuery.of(context).size.width * 0.02,
+                                                  width: size.width * 0.02,
                                                 ),
-                                                Image(image: AssetImage(infoIcon),),
+                                                Image(
+                                                  image: AssetImage(infoIcon),
+                                                ),
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.02,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.02,
                                           ),
                                           Padding(
-                                            padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 10.0),
                                             child: Container(
-                                                height: 1.0,width: MediaQuery.of(context).size.width,
+                                                height: 1.0,
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width,
                                                 color: paydayGray),
                                           ),
                                           Container(
                                             child: Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
                                               children: <Widget>[
                                                 Container(
-                                                  height: MediaQuery.of(context).size.height * 0.02,
+                                                  height: size.height * 0.02,
                                                 ),
                                                 Container(
                                                     alignment: Alignment.center,
-                                                    child:Text('Select payment method',style: purple22Style, textAlign: TextAlign.center,)
+                                                    child: Text(
+                                                      'Select payment method',
+                                                      style: purple22Style,
+                                                      textAlign:
+                                                          TextAlign.center,
+                                                    )),
+                                                Container(
+                                                  height: size.height * 0.04,
                                                 ),
                                                 Container(
-                                                  height: MediaQuery.of(context).size.height * 0.04,
-                                                ),
-
-                                                Container(
-                                                    width: MediaQuery.of(context).size.width * 0.85,
-                                                    child:  ExpandableNotifier(
+                                                    width: size.width * 0.85,
+                                                    child: ExpandableNotifier(
                                                         child: Padding(
-                                                          padding: const EdgeInsets.all(10),
-                                                          child: Card(
-                                                            clipBehavior: Clip.antiAlias,color: paydayPurple2,
-                                                            child: Column(
-                                                              children: <Widget>[
-                                                                ScrollOnExpand(
-                                                                  scrollOnExpand: true,
-                                                                  scrollOnCollapse: false,
-                                                                  child: ExpandablePanel(
-                                                                    theme: const ExpandableThemeData(
-                                                                      headerAlignment: ExpandablePanelHeaderAlignment.center,
-                                                                      tapBodyToCollapse: true,
-                                                                    ),
-                                                                    header: Container(
-                                                                      color: paydayPurple2,
-                                                                      child:Row(
-                                                                        mainAxisSize: MainAxisSize.max,
-                                                                        mainAxisAlignment: MainAxisAlignment.start,
-                                                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                                                        children: <Widget>[
-                                                                          imgAnimation2(
-                                                                            url: debitCardIcon,
-                                                                            time: Duration(seconds: 5),
-                                                                            width:MediaQuery.of(context).size.width * 0.1,
-                                                                            beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:
-                                                                          MediaQuery.of(context).size.height * 0.07,
-                                                                            transition: PositionedTransition,
-                                                                          ),
-                                                                          Text('Debit card'),
-                                                                        ],),
-                                                                    ),
-                                                                    expanded:(showCardForms)?
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      child: Card(
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        color: paydayPurple2,
+                                                        child: Column(
+                                                          children: <Widget>[
+                                                            ScrollOnExpand(
+                                                              scrollOnExpand:
+                                                                  true,
+                                                              scrollOnCollapse:
+                                                                  false,
+                                                              child:
+                                                                  ExpandablePanel(
+                                                                collapsed:
+                                                                    Container(),
+                                                                theme:
+                                                                    const ExpandableThemeData(
+                                                                  headerAlignment:
+                                                                      ExpandablePanelHeaderAlignment
+                                                                          .center,
+                                                                  tapBodyToCollapse:
+                                                                      true,
+                                                                ),
+                                                                header:
                                                                     Container(
-                                                                        color:accent, padding: EdgeInsets.all(10),
+                                                                  color:
+                                                                      paydayPurple2,
+                                                                  child: Row(
+                                                                    mainAxisSize:
+                                                                        MainAxisSize
+                                                                            .max,
+                                                                    mainAxisAlignment:
+                                                                        MainAxisAlignment
+                                                                            .start,
+                                                                    crossAxisAlignment:
+                                                                        CrossAxisAlignment
+                                                                            .center,
+                                                                    children: <Widget>[
+                                                                      imgAnimation2(
+                                                                        url:
+                                                                            debitCardIcon,
+                                                                        time: Duration(
+                                                                            seconds:
+                                                                                5),
+                                                                        width: size.width *
+                                                                            0.1,
+                                                                        beginx:
+                                                                            0.03,
+                                                                        endx:
+                                                                            -0,
+                                                                        beginy:
+                                                                            0,
+                                                                        endy:
+                                                                            -0.0,
+                                                                        height: size.height *
+                                                                            0.07,
+                                                                        transition:
+                                                                            PositionedTransition,
+                                                                      ),
+                                                                      Text(
+                                                                          'Debit card'),
+                                                                    ],
+                                                                  ),
+                                                                ),
+                                                                expanded: (showCardForms)
+                                                                    ? Container(
+                                                                        color: accent,
+                                                                        padding: EdgeInsets.all(10),
                                                                         alignment: Alignment.center,
-                                                                        child:Column(
+                                                                        child: Column(
                                                                           children: <Widget>[
-                                                                            Text('Please enter your card details below',style:purple14Style,textAlign: TextAlign.center,),
+                                                                            Text(
+                                                                              'Please enter your card details below',
+                                                                              style: purple14Style,
+                                                                              textAlign: TextAlign.center,
+                                                                            ),
                                                                             Container(
-                                                                              height: MediaQuery.of(context).size.height * 0.02,
+                                                                              height: size.height * 0.02,
                                                                             ),
                                                                             Container(
                                                                               color: paydayLightGray2,
                                                                               padding: EdgeInsets.all(5),
                                                                               margin: EdgeInsets.all(5),
-                                                                              width: MediaQuery.of(context).size.width * 0.75,
-                                                                              height: MediaQuery.of(context).size.height * 0.05,
-                                                                              child:TextField(
-                                                                                decoration: InputDecoration(labelText: 'Card number',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                                                                  borderSide: BorderSide(color: paydayGreen),),
+                                                                              width: size.width * 0.75,
+                                                                              height: size.height * 0.05,
+                                                                              child: TextField(
+                                                                                decoration: InputDecoration(
+                                                                                    labelText: 'Card number',
+                                                                                    labelStyle: gray12Style,
+                                                                                    enabledBorder: UnderlineInputBorder(
+                                                                                      borderSide: BorderSide(color: paydayGreen),
+                                                                                    ),
                                                                                     focusedBorder: UnderlineInputBorder(
                                                                                       borderSide: BorderSide(color: paydayGreen),
                                                                                     ),
                                                                                     border: UnderlineInputBorder(
                                                                                       borderSide: BorderSide(color: paydayGreen),
-                                                                                    )),),
+                                                                                    )),
+                                                                              ),
                                                                             ),
                                                                             Container(
-                                                                              height: MediaQuery.of(context).size.height * 0.02,
+                                                                              height: size.height * 0.02,
                                                                             ),
                                                                             Container(
-                                                                                width: MediaQuery.of(context).size.width * 0.75,
-                                                                                child:Row(
+                                                                                width: size.width * 0.75,
+                                                                                child: Row(
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                   children: <Widget>[
                                                                                     Container(
                                                                                       color: paydayLightGray2,
                                                                                       padding: EdgeInsets.all(5),
-                                                                                      height: MediaQuery.of(context).size.height * 0.05,
-                                                                                      width: MediaQuery.of(context).size.width * 0.33,
-                                                                                      child:TextField(
-                                                                                        decoration: InputDecoration(labelText: 'Card expiry date',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                                                                          borderSide: BorderSide(color: paydayGreen),),
+                                                                                      height: size.height * 0.05,
+                                                                                      width: size.width * 0.33,
+                                                                                      child: TextField(
+                                                                                        decoration: InputDecoration(
+                                                                                            labelText: 'Card expiry date',
+                                                                                            labelStyle: gray12Style,
+                                                                                            enabledBorder: UnderlineInputBorder(
+                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                            ),
                                                                                             focusedBorder: UnderlineInputBorder(
                                                                                               borderSide: BorderSide(color: paydayGreen),
                                                                                             ),
                                                                                             border: UnderlineInputBorder(
                                                                                               borderSide: BorderSide(color: paydayGreen),
-                                                                                            )),),
+                                                                                            )),
+                                                                                      ),
                                                                                     ),
                                                                                     Container(
                                                                                       color: paydayLightGray2,
                                                                                       padding: EdgeInsets.all(5),
-                                                                                      height: MediaQuery.of(context).size.height * 0.05,
-                                                                                      width: MediaQuery.of(context).size.width * 0.33,
-                                                                                      child:TextField(
-                                                                                        decoration: InputDecoration(labelText: 'CVV / CVC',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                                                                          borderSide: BorderSide(color: paydayGreen),),
+                                                                                      height: size.height * 0.05,
+                                                                                      width: size.width * 0.33,
+                                                                                      child: TextField(
+                                                                                        decoration: InputDecoration(
+                                                                                            labelText: 'CVV / CVC',
+                                                                                            labelStyle: gray12Style,
+                                                                                            enabledBorder: UnderlineInputBorder(
+                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                            ),
                                                                                             focusedBorder: UnderlineInputBorder(
                                                                                               borderSide: BorderSide(color: paydayGreen),
                                                                                             ),
                                                                                             border: UnderlineInputBorder(
                                                                                               borderSide: BorderSide(color: paydayGreen),
-                                                                                            )),),
+                                                                                            )),
+                                                                                      ),
                                                                                     ),
                                                                                   ],
-                                                                                )
-                                                                            ),
+                                                                                )),
                                                                             Container(
-                                                                              height: MediaQuery.of(context).size.height * 0.02,
+                                                                              height: size.height * 0.02,
                                                                             ),
                                                                           ],
-                                                                        )
-                                                                    ):
-                                                                    Container(
+                                                                        ))
+                                                                    : Container(
                                                                         color: accent,
                                                                         alignment: Alignment.center,
-                                                                        height: MediaQuery.of(context).size.height * 0.15,
-                                                                        child:Row(
-                                                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                                                          mainAxisSize: MainAxisSize.max,
+                                                                        height: size.height * 0.15,
+                                                                        child: Row(
+                                                                          mainAxisAlignment:
+                                                                              MainAxisAlignment.spaceEvenly,
+                                                                          mainAxisSize:
+                                                                              MainAxisSize.max,
                                                                           children: <Widget>[
                                                                             ButtonTheme(
-                                                                                minWidth:
-                                                                                MediaQuery.of(context).size.width *0.3,
-                                                                                height: MediaQuery.of(context).size.height * 0.1,
+                                                                                minWidth: size.width * 0.3,
+                                                                                height: size.height * 0.1,
                                                                                 buttonColor: accent,
-                                                                                child: RaisedButton(
-                                                                                  shape: RoundedRectangleBorder(
+                                                                                child: ElevatedButton(
+                                                                                  style: ElevatedButton.styleFrom(
+                                                                                    shape: RoundedRectangleBorder(
                                                                                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                                                      side: BorderSide(color: paydayGreen)
+                                                                                      side: BorderSide(color: paydayGreen), // Moved inside shape
+                                                                                    ),
+                                                                                    elevation: 0.8, // Replaced highlightElevation
                                                                                   ),
                                                                                   child: Column(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                                     children: <Widget>[
-                                                                                      Text('Pay with \nPaystack',style: purple12Style,textAlign: TextAlign.center,),
+                                                                                      Text(
+                                                                                        'Pay with \nPaystack',
+                                                                                        style: purple12Style,
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
                                                                                       imgAnimation2(
                                                                                         url: paystackIcon,
                                                                                         time: Duration(seconds: 5),
-                                                                                        width:MediaQuery.of(context).size.width * 0.2,
-                                                                                        beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:MediaQuery.of(context).size.height * 0.04,
+                                                                                        width: size.width * 0.2,
+                                                                                        beginx: 0.03,
+                                                                                        endx: -0,
+                                                                                        beginy: 0,
+                                                                                        endy: -0.0,
+                                                                                        height: size.height * 0.04,
                                                                                         transition: PositionedTransition,
                                                                                       ),
-                                                                                    ],),
+                                                                                    ],
+                                                                                  ),
                                                                                   onPressed: () => {
-                                                                                    setState((){
+                                                                                    setState(() {
                                                                                       showCardForms = !showCardForms;
                                                                                     })
                                                                                   },
-                                                                                  highlightElevation:20,
                                                                                 )),
                                                                             ButtonTheme(
-                                                                                minWidth:
-                                                                                MediaQuery.of(context).size.width *0.3,
-                                                                                height: MediaQuery.of(context).size.height * 0.1,
+                                                                                minWidth: size.width * 0.3,
+                                                                                height: size.height * 0.1,
                                                                                 buttonColor: accent,
-                                                                                child: RaisedButton(
-                                                                                  shape: RoundedRectangleBorder(
+                                                                                child: ElevatedButton(
+                                                                                  style: ElevatedButton.styleFrom(
+                                                                                    shape: RoundedRectangleBorder(
                                                                                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                                                      side: BorderSide(color: paydayGreen)
+                                                                                      side: BorderSide(color: paydayGreen), // Moved inside shape
+                                                                                    ),
+                                                                                    elevation: 0.8, // Replaced highlightElevation
                                                                                   ),
+                                                                                  onPressed: () {},
                                                                                   child: Column(
                                                                                     mainAxisSize: MainAxisSize.min,
                                                                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                                                                                     crossAxisAlignment: CrossAxisAlignment.center,
                                                                                     children: <Widget>[
-                                                                                      Text('Pay with \nFlutterwave',style: purple12Style,textAlign: TextAlign.center,),
+                                                                                      Text(
+                                                                                        'Pay with \nFlutterwave',
+                                                                                        style: purple12Style,
+                                                                                        textAlign: TextAlign.center,
+                                                                                      ),
                                                                                       imgAnimation2(
                                                                                         url: flutterwaveIcon,
                                                                                         time: Duration(seconds: 5),
-                                                                                        width:MediaQuery.of(context).size.width * 0.2,
-                                                                                        beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:MediaQuery.of(context).size.height * 0.04,
+                                                                                        width: size.width * 0.2,
+                                                                                        beginx: 0.03,
+                                                                                        endx: -0,
+                                                                                        beginy: 0,
+                                                                                        endy: -0.0,
+                                                                                        height: size.height * 0.04,
                                                                                         transition: PositionedTransition,
                                                                                       ),
-                                                                                    ],),
-                                                                                  onPressed: () => {
-                                                                                  },
-                                                                                  highlightElevation: 0.8,
+                                                                                    ],
+                                                                                  ),
                                                                                 )),
                                                                           ],
-                                                                        )
+                                                                        )),
+                                                                builder: (_,
+                                                                    collapsed,
+                                                                    expanded) {
+                                                                  return Padding(
+                                                                    padding: EdgeInsets.only(
+                                                                        left:
+                                                                            10,
+                                                                        right:
+                                                                            10,
+                                                                        bottom:
+                                                                            10),
+                                                                    child:
+                                                                        Expandable(
+                                                                      collapsed:
+                                                                          collapsed,
+                                                                      expanded:
+                                                                          expanded,
+                                                                      theme: const ExpandableThemeData(
+                                                                          crossFadePoint:
+                                                                              0),
                                                                     ),
-                                                                    builder: (_, collapsed, expanded) {
-                                                                      return Padding(
-                                                                        padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                                                                        child: Expandable(
-                                                                          collapsed: collapsed,
-                                                                          expanded: expanded,
-                                                                          theme: const ExpandableThemeData(crossFadePoint: 0),
+                                                                  );
+                                                                },
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ))),
+                                                Container(
+                                                    width: size.width * 0.85,
+                                                    child: ExpandableNotifier(
+                                                        child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      child: Card(
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        color: paydayPurple2,
+                                                        child: Column(
+                                                          children: <Widget>[
+                                                            ScrollOnExpand(
+                                                                scrollOnExpand:
+                                                                    true,
+                                                                scrollOnCollapse:
+                                                                    false,
+                                                                child:
+                                                                    ExpandablePanel(
+                                                                  collapsed:
+                                                                      Container(),
+                                                                  header:
+                                                                      Container(
+                                                                    color:
+                                                                        paydayPurple2,
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: <Widget>[
+                                                                        imgAnimation2(
+                                                                          url:
+                                                                              transferIcon,
+                                                                          time:
+                                                                              Duration(seconds: 5),
+                                                                          width:
+                                                                              size.width * 0.1,
+                                                                          beginx:
+                                                                              0.03,
+                                                                          endx:
+                                                                              -0,
+                                                                          beginy:
+                                                                              0,
+                                                                          endy:
+                                                                              -0.0,
+                                                                          height:
+                                                                              size.height * 0.07,
+                                                                          transition:
+                                                                              PositionedTransition,
                                                                         ),
-                                                                      );
-                                                                    },
+                                                                        Text(
+                                                                            'Transfer'),
+                                                                      ],
+                                                                    ),
                                                                   ),
-                                                                ),
-
-                                                              ],
-                                                            ),
-                                                          ),
-
-                                                        ))
-                                                ),
-                                                Container(
-                                                    width: MediaQuery.of(context).size.width * 0.85,
-                                                    child:  ExpandableNotifier(
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.all(10),
-                                                          child: Card(
-                                                            clipBehavior: Clip.antiAlias,color: paydayPurple2,
-                                                            child: Column(
-                                                              children: <Widget>[
-                                                                ScrollOnExpand(
-                                                                    scrollOnExpand: true,
-                                                                    scrollOnCollapse: false,
-                                                                    child: ExpandablePanel(
-                                                                      header: Container(
-                                                                        color: paydayPurple2,
-                                                                        child: Row(
-                                                                          mainAxisSize: MainAxisSize.max,
-                                                                          mainAxisAlignment: MainAxisAlignment.start,
-                                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                                          children: <Widget>[
-                                                                            imgAnimation2(
-                                                                              url: transferIcon,
-                                                                              time: Duration(seconds: 5),
-                                                                              width:MediaQuery.of(context).size.width * 0.1,
-                                                                              beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:
-                                                                            MediaQuery.of(context).size.height * 0.07,
-                                                                              transition: PositionedTransition,
+                                                                  expanded: Container(
+                                                                      color: accent,
+                                                                      padding: EdgeInsets.all(10),
+                                                                      alignment: Alignment.center,
+                                                                      child: Column(
+                                                                        children: <Widget>[
+                                                                          Container(
+                                                                            child:
+                                                                                Text(
+                                                                              'Make a transfer to your dedicated account number to fund your PayDay Investor wallet',
+                                                                              style: purple12Style,
+                                                                              textAlign: TextAlign.center,
                                                                             ),
-                                                                            Text('Transfer'),
-
-                                                                          ],),
-                                                                      ),
-                                                                      expanded: Container(
-                                                                          color:accent, padding: EdgeInsets.all(10),
-                                                                          alignment: Alignment.center,
-                                                                          child:Column(
-                                                                            children: <Widget>[
-                                                                              Container(
-                                                                                child:Text('Make a transfer to your dedicated account number to fund your PayDay Investor wallet',style:purple12Style,textAlign: TextAlign.center,),
-                                                                              ),
-                                                                              Container(
-                                                                                height: MediaQuery.of(context).size.height * 0.02,
-                                                                              ),
-                                                                              Padding(
-                                                                                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                                                                                child: Container(
-                                                                                    height: 1.0,width: MediaQuery.of(context).size.width,
-                                                                                    color: paydayGray),
-                                                                              ),
-                                                                              Container(
-                                                                                height: MediaQuery.of(context).size.height * 0.02,
-                                                                              ),
-                                                                              Container(
-                                                                                alignment: Alignment.center,
-                                                                                child: Row(
-                                                                                  mainAxisSize: MainAxisSize.max,
-                                                                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                                                                  children: <Widget>[
-                                                                                    RichText(
-                                                                                      textAlign: TextAlign.left,
-                                                                                      text: TextSpan(
-                                                                                        text: 'Bank name:',
+                                                                          ),
+                                                                          Container(
+                                                                            height:
+                                                                                size.height * 0.02,
+                                                                          ),
+                                                                          Padding(
+                                                                            padding:
+                                                                                EdgeInsets.symmetric(horizontal: 10.0),
+                                                                            child: Container(
+                                                                                height: 1.0,
+                                                                                width: size.width,
+                                                                                color: paydayGray),
+                                                                          ),
+                                                                          Container(
+                                                                            height:
+                                                                                size.height * 0.02,
+                                                                          ),
+                                                                          Container(
+                                                                            alignment:
+                                                                                Alignment.center,
+                                                                            child:
+                                                                                Row(
+                                                                              mainAxisSize: MainAxisSize.max,
+                                                                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                                                              children: <Widget>[
+                                                                                RichText(
+                                                                                  textAlign: TextAlign.left,
+                                                                                  text: TextSpan(
+                                                                                    text: 'Bank name:',
+                                                                                    style: purple14Style,
+                                                                                    children: <TextSpan>[
+                                                                                      TextSpan(
+                                                                                        text: ' Wema Bank',
+                                                                                        style: TextStyle(color: paydayPurple, fontWeight: FontWeight.bold),
+                                                                                      ),
+                                                                                      TextSpan(
+                                                                                        text: '\nAccount number: ',
                                                                                         style: purple14Style,
-                                                                                        children: <TextSpan>[
-                                                                                          TextSpan(
-                                                                                            text: ' Wema Bank',
-                                                                                            style: TextStyle(color: paydayPurple,fontWeight: FontWeight.bold),
-                                                                                          ),
-                                                                                          TextSpan(
-                                                                                            text: '\nAccount number: ',
-                                                                                            style: purple14Style,
-                                                                                          ),
-                                                                                          TextSpan(
-                                                                                            text: ' 1234567890',
-                                                                                            style: TextStyle(color: paydayPurple,fontWeight: FontWeight.bold),
-                                                                                          ),
-                                                                                        ],
                                                                                       ),
-                                                                                    ),
-                                                                                    Container(
-                                                                                      width: MediaQuery.of(context).size.width * 0.15,
-                                                                                      height: MediaQuery.of(context).size.height * 0.06,
-                                                                                      alignment: Alignment.centerRight,
-                                                                                      child:RawMaterialButton(
-                                                                                        onPressed: () {},
-                                                                                        elevation: 0,
-                                                                                        child: Image(image:AssetImage(copyIcon),),
-                                                                                        padding: EdgeInsets.all(0),
-                                                                                        shape: CircleBorder(),
+                                                                                      TextSpan(
+                                                                                        text: ' 1234567890',
+                                                                                        style: TextStyle(color: paydayPurple, fontWeight: FontWeight.bold),
                                                                                       ),
+                                                                                    ],
+                                                                                  ),
+                                                                                ),
+                                                                                Container(
+                                                                                  width: size.width * 0.15,
+                                                                                  height: size.height * 0.06,
+                                                                                  alignment: Alignment.centerRight,
+                                                                                  child: RawMaterialButton(
+                                                                                    onPressed: () {},
+                                                                                    elevation: 0,
+                                                                                    child: Image(
+                                                                                      image: AssetImage(copyIcon),
                                                                                     ),
-
-                                                                                  ],
-                                                                                ),),
-
-                                                                            ],
-                                                                          )
-                                                                      ),
-                                                                      builder: (_, collapsed, expanded) {
-                                                                        return Padding(
-                                                                          padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                                                                          child: Expandable(
-                                                                            collapsed: collapsed,
-                                                                            expanded: expanded,
-                                                                            theme: const ExpandableThemeData(crossFadePoint: 0),
-                                                                          ),
-                                                                        );
-                                                                      },
-                                                                    )
-                                                                ),
-
-                                                              ],
-                                                            ),
-                                                          ),
-
-                                                        ))
-                                                ),
-                                                Container(
-                                                    width: MediaQuery.of(context).size.width * 0.85,
-                                                    child:  ExpandableNotifier(
-                                                        child: Padding(
-                                                          padding: const EdgeInsets.all(10),
-                                                          child: Card(
-                                                            clipBehavior: Clip.antiAlias,color: paydayPurple2,
-                                                            child: Column(
-                                                              children: <Widget>[
-                                                                ScrollOnExpand(
-                                                                    scrollOnExpand: true,
-                                                                    scrollOnCollapse: false,
-                                                                    child: ExpandablePanel(
-                                                                      header: Container(
-                                                                        color: paydayPurple2,
-                                                                        child: Row(
-                                                                          mainAxisSize: MainAxisSize.max,
-                                                                          mainAxisAlignment: MainAxisAlignment.start,
-                                                                          crossAxisAlignment: CrossAxisAlignment.center,
-                                                                          children: <Widget>[
-                                                                            imgAnimation2(
-                                                                              url: bankIcon,
-                                                                              time: Duration(seconds: 5),
-                                                                              width:MediaQuery.of(context).size.width * 0.1,
-                                                                              beginx: 0.03,endx: -0,beginy: 0,endy: -0.0,height:
-                                                                            MediaQuery.of(context).size.height * 0.07,
-                                                                              transition: PositionedTransition,
+                                                                                    padding: EdgeInsets.all(0),
+                                                                                    shape: CircleBorder(),
+                                                                                  ),
+                                                                                ),
+                                                                              ],
                                                                             ),
-                                                                            Text('Bank'),
-
-                                                                          ],),
-                                                                      ),
-                                                                      expanded: Text('Tobi\'s un-completed', softWrap: true, ),
-                                                                      builder: (_, collapsed, expanded) {
-                                                                        return Padding(
-                                                                          padding: EdgeInsets.only(left: 10, right: 10, bottom: 10),
-                                                                          child: Expandable(
-                                                                            collapsed: collapsed,
-                                                                            expanded: expanded,
-                                                                            theme: const ExpandableThemeData(crossFadePoint: 0),
                                                                           ),
-                                                                        );
-                                                                      },
-                                                                    )
-                                                                ),
-
-                                                              ],
-                                                            ),
-                                                          ),
-
-                                                        ))
-                                                ),
+                                                                        ],
+                                                                      )),
+                                                                  builder: (_,
+                                                                      collapsed,
+                                                                      expanded) {
+                                                                    return Padding(
+                                                                      padding: EdgeInsets.only(
+                                                                          left:
+                                                                              10,
+                                                                          right:
+                                                                              10,
+                                                                          bottom:
+                                                                              10),
+                                                                      child:
+                                                                          Expandable(
+                                                                        collapsed:
+                                                                            collapsed,
+                                                                        expanded:
+                                                                            expanded,
+                                                                        theme: const ExpandableThemeData(
+                                                                            crossFadePoint:
+                                                                                0),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                )),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ))),
+                                                Container(
+                                                    width: size.width * 0.85,
+                                                    child: ExpandableNotifier(
+                                                        child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.all(
+                                                              10),
+                                                      child: Card(
+                                                        clipBehavior:
+                                                            Clip.antiAlias,
+                                                        color: paydayPurple2,
+                                                        child: Column(
+                                                          children: <Widget>[
+                                                            ScrollOnExpand(
+                                                                scrollOnExpand:
+                                                                    true,
+                                                                scrollOnCollapse:
+                                                                    false,
+                                                                child:
+                                                                    ExpandablePanel(
+                                                                  collapsed:
+                                                                      Container(),
+                                                                  header:
+                                                                      Container(
+                                                                    color:
+                                                                        paydayPurple2,
+                                                                    child: Row(
+                                                                      mainAxisSize:
+                                                                          MainAxisSize
+                                                                              .max,
+                                                                      mainAxisAlignment:
+                                                                          MainAxisAlignment
+                                                                              .start,
+                                                                      crossAxisAlignment:
+                                                                          CrossAxisAlignment
+                                                                              .center,
+                                                                      children: <Widget>[
+                                                                        imgAnimation2(
+                                                                          url:
+                                                                              bankIcon,
+                                                                          time:
+                                                                              Duration(seconds: 5),
+                                                                          width:
+                                                                              size.width * 0.1,
+                                                                          beginx:
+                                                                              0.03,
+                                                                          endx:
+                                                                              -0,
+                                                                          beginy:
+                                                                              0,
+                                                                          endy:
+                                                                              -0.0,
+                                                                          height:
+                                                                              size.height * 0.07,
+                                                                          transition:
+                                                                              PositionedTransition,
+                                                                        ),
+                                                                        Text(
+                                                                            'Bank'),
+                                                                      ],
+                                                                    ),
+                                                                  ),
+                                                                  expanded:
+                                                                      Text(
+                                                                    'Tobi\'s un-completed',
+                                                                    softWrap:
+                                                                        true,
+                                                                  ),
+                                                                  builder: (_,
+                                                                      collapsed,
+                                                                      expanded) {
+                                                                    return Padding(
+                                                                      padding: EdgeInsets.only(
+                                                                          left:
+                                                                              10,
+                                                                          right:
+                                                                              10,
+                                                                          bottom:
+                                                                              10),
+                                                                      child:
+                                                                          Expandable(
+                                                                        collapsed:
+                                                                            collapsed,
+                                                                        expanded:
+                                                                            expanded,
+                                                                        theme: const ExpandableThemeData(
+                                                                            crossFadePoint:
+                                                                                0),
+                                                                      ),
+                                                                    );
+                                                                  },
+                                                                )),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    ))),
                                               ],
                                             ),
                                           ),
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.08,
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.08,
                                           ),
-
                                         ],
                                       ),
-
                                     ],
                                   ),
                                 ),
@@ -4819,68 +6533,83 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
-          if(showmanualFundingBtn)AnimatedPositioned (
-            top: MediaQuery.of(context).size.height * 0.9,
-            width: MediaQuery.of(context).size.width,
-            duration: Duration(seconds: 1),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              alignment: Alignment.center,
-              child: ButtonTheme(
-                  minWidth: MediaQuery.of(context).size.width * 0.85,
-                  height: 50.0,
-                  child: RaisedButton(
-                    shape: buttonShape,
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
-                        Text('Proceed',style: lightBodyStyle,),
-                        Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
-                        Image(width: 50, height: 50, image: AssetImage(nextIcon),)
-                      ],
-                    ),
-                    onPressed: () => {
-                      setState(() {
-                        manualFundingTop = 1.2;
-                        showmanualFundingBtn = false;
-                      })
-                    },
-                    color: paydayGreen,
-                  )),
-              height: MediaQuery.of(context).size.height * 0.1,
+          if (showmanualFundingBtn)
+            AnimatedPositioned(
+              top: size.height * 0.9,
+              width: size.width,
+              duration: Duration(seconds: 1),
+              child: Container(
+                width: size.width,
+                alignment: Alignment.center,
+                child: ButtonTheme(
+                    minWidth: size.width * 0.85,
+                    height: 50.0,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        shape: buttonShape,
+                        backgroundColor: paydayGreen, // Correct property
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          manualFundingTop = 1.2;
+                          showmanualFundingBtn = false;
+                        });
+                      },
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: <Widget>[
+                          Container(
+                            width: size.width * 0.25,
+                            height: 50,
+                          ),
+                          Text(
+                            'Invest now',
+                            style: lightBodyStyle,
+                          ),
+                          Container(
+                            width: size.width * 0.25,
+                            height: 50,
+                          ),
+                          Image(
+                            width: 40,
+                            height: 40,
+                            image: AssetImage(nextIcon),
+                          ),
+                        ],
+                      ),
+                    )),
+                height: size.height * 0.1,
+              ),
             ),
-          ),
 
           //EuroBond
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * euroBondTop,
+            top: size.height * euroBondTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
@@ -4897,40 +6626,55 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 euroBondTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.fromLTRB(20,20,20,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 20, 20, 10),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Image(image: AssetImage(dollarchartIcon),),
+                                          Image(
+                                            image: AssetImage(dollarchartIcon),
+                                          ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.7,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.7,
                                             child: Text(
                                               'The ARM Eurobond Fund is an open-ended, low-risk mutual fund that is invested in Dollar denominated Eurobond floated by the Federal Government of Nigeria and top tier Nigerian corporates.',
                                               style: dark14Style,
@@ -4941,87 +6685,146 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 0.5,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.fromLTRB(25,20,25,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 20, 25, 10),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Hedges against the depreciation of the Naira',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Hedges against the depreciation of the Naira',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Suitable for medium-long term capital growth',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Suitable for medium-long term capital growth',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Competitive returns. ',style: dark14Style,)
-                                            ],)
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Competitive returns. ',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     Container(
-                                      alignment:Alignment.center,
-                                      child:  Row(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                      alignment: Alignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         mainAxisSize: MainAxisSize.min,
                                         children: <Widget>[
-                                          Image(width: 50, height: 50, image: AssetImage(chartArrowIcon),),
-                                          Text('Yield at 12/06/2020: 5.1234% p/a',style: purple16Style,)
-                                        ],),
+                                          Image(
+                                            width: 50,
+                                            height: 50,
+                                            image: AssetImage(chartArrowIcon),
+                                          ),
+                                          Text(
+                                            'Yield at 12/06/2020: 5.1234% p/a',
+                                            style: purple16Style,
+                                          )
+                                        ],
+                                      ),
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Text(
-                                                'Invest now',
-                                                style: lightBodyStyle,
-                                              ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
-                                            ],
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            backgroundColor:
+                                                paydayGreen, // Correct property
                                           ),
                                           onPressed: () {
                                             setState(() {
                                               euroBondTop = 1.2;
                                               frequencyOptionTop = 0.1;
-                                              dollarAndNairaInvTypes  = 1.2;
+                                              dollarAndNairaInvTypes = 1.2;
                                             });
                                           },
-                                          color: paydayGreen,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: <Widget>[
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Text(
+                                                'Invest now',
+                                                style: lightBodyStyle,
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              ),
+                                            ],
+                                          ),
                                         )),
                                   ],
                                 ),
@@ -5032,34 +6835,33 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //discoveryFundTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * discoveryFundTop,
+            top: size.height * discoveryFundTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
@@ -5076,40 +6878,56 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 discoveryFundTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.fromLTRB(20,20,20,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 20, 20, 10),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Image(image: AssetImage(discoveryFundIcon),),
+                                          Image(
+                                            image:
+                                                AssetImage(discoveryFundIcon),
+                                          ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.7,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.7,
                                             child: Text(
                                               'The ARM Discovery Fund is suitable for investors who want high capital growth over the long term to meet various objectives such as college fund, or leaving a legacy for loved ones.',
                                               style: dark14Style,
@@ -5120,77 +6938,127 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 0.5,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.fromLTRB(25,20,25,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 20, 25, 10),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Moderate risk',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Moderate risk',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Suitable for medium - long term investments',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Suitable for medium - long term investments',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Competitive returns. ',style: dark14Style,)
-                                            ],)
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Competitive returns. ',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Text(
-                                                'Invest now',
-                                                style: lightBodyStyle,
-                                              ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
-                                            ],
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            backgroundColor:
+                                                paydayGreen, // Correct property
                                           ),
                                           onPressed: () {
                                             setState(() {
                                               discoveryFundTop = 1.2;
                                               frequencyOptionTop = 0.1;
-                                              dollarAndNairaInvTypes  = 1.2;
+                                              dollarAndNairaInvTypes = 1.2;
                                             });
                                           },
-                                          color: paydayGreen,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: <Widget>[
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Text(
+                                                'Invest now',
+                                                style: lightBodyStyle,
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              ),
+                                            ],
+                                          ),
                                         )),
                                   ],
                                 ),
@@ -5201,34 +7069,33 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 
           //ethicalFundTop
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * ethicalFundTop,
+            top: size.height * ethicalFundTop,
             duration: Duration(milliseconds: 400),
             child: Container(
-                height: MediaQuery.of(context).size.height,
-                width: MediaQuery.of(context).size.width,
+                height: size.height,
+                width: size.width,
                 decoration: BoxDecoration(
                   color: paydayOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      height: MediaQuery.of(context).size.height * 0.45,
-                      width: MediaQuery.of(context).size.width,
+                      height: size.height * 0.45,
+                      width: size.width,
                       color: Colors.transparent,
                     ),
                     ClipRRect(
-                      borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(18)),
                       clipBehavior: Clip.hardEdge,
-                      child:
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.55,
-                        width: MediaQuery.of(context).size.width,
+                      child: Container(
+                        height: size.height * 0.55,
+                        width: size.width,
                         color: accent,
                         child: Stack(
                           children: <Widget>[
@@ -5245,40 +7112,55 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   children: <Widget>[
                                     Container(
                                       alignment: Alignment.topCenter,
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                       child: ButtonTheme(
                                           height: 10.0,
-                                          child: OutlineButton(
+                                          child: OutlinedButton(
                                             child: Image(
-                                              image:AssetImage(darkbarIcon),
-                                              width: MediaQuery.of(context).size.width * 0.2,),
+                                              image: AssetImage(darkbarIcon),
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
+                                                  0.2,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 ethicalFundTop = 1.2;
                                               })
                                             }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: Colors.transparent,
-                                              style: BorderStyle.solid,
-                                              //width: 0.8,
+                                            style: OutlinedButton.styleFrom(
+                                              side: BorderSide(
+                                                color: Colors
+                                                    .transparent, // Border color
+                                                style: BorderStyle.solid,
+                                              ),
+                                              elevation:
+                                                  0.8, // Removed highlightElevation (not used in OutlinedButton)
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Container(
                                       alignment: Alignment.center,
-                                      padding: EdgeInsets.fromLTRB(20,20,20,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(20, 20, 20, 10),
                                       child: Row(
                                         mainAxisSize: MainAxisSize.max,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
-                                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
                                         children: <Widget>[
-                                          Image(image: AssetImage(ethicalFundIcon),),
+                                          Image(
+                                            image: AssetImage(ethicalFundIcon),
+                                          ),
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.7,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.7,
                                             child: Text(
                                               'The ARM Ethical Fund is suitable for Islamic investors who want long-term capital growth by investing strictly according to the principles of Islamic finance and ethical values.',
                                               style: dark14Style,
@@ -5289,77 +7171,127 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       ),
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 0.5,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      padding: EdgeInsets.fromLTRB(25,20,25,10),
+                                      padding:
+                                          EdgeInsets.fromLTRB(25, 20, 25, 10),
                                       child: Column(
                                         mainAxisSize: MainAxisSize.max,
-                                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                        crossAxisAlignment: CrossAxisAlignment.center,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceAround,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         children: <Widget>[
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Moderate risk',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Moderate risk',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Suitable for medium - long term investments',style: dark14Style,)
-                                            ],),
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Suitable for medium - long term investments',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          ),
                                           Row(
                                             children: <Widget>[
-                                              Image(width: 30, height: 30, image: AssetImage(check),),
-                                              Text('Competitive returns. ',style: dark14Style,)
-                                            ],)
+                                              Image(
+                                                width: 30,
+                                                height: 30,
+                                                image: AssetImage(check),
+                                              ),
+                                              Text(
+                                                'Competitive returns. ',
+                                                style: dark14Style,
+                                              )
+                                            ],
+                                          )
                                         ],
                                       ),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.01,
+                                      height: size.height * 0.01,
                                     ),
                                     Padding(
-                                      padding: EdgeInsets.symmetric(horizontal: 10.0),
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 10.0),
                                       child: Container(
                                           height: 1.0,
-                                          width: MediaQuery.of(context).size.width,
+                                          width: size.width,
                                           color: paydayGray),
                                     ),
                                     Container(
-                                      height: MediaQuery.of(context).size.height * 0.02,
+                                      height: size.height * 0.02,
                                     ),
                                     ButtonTheme(
-                                        minWidth: MediaQuery.of(context).size.width * 0.8,
+                                        minWidth: size.width * 0.8,
                                         height: 50.0,
-                                        child: RaisedButton(
-                                          shape: buttonShape,
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            crossAxisAlignment: CrossAxisAlignment.center,
-                                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                            children: <Widget>[
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Text(
-                                                'Invest now',
-                                                style: lightBodyStyle,
-                                              ),
-                                              Container( width: MediaQuery.of(context).size.width *0.25,height: 50,),
-                                              Image(width: 40, height: 40, image: AssetImage(nextIcon),)
-                                            ],
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            shape: buttonShape,
+                                            backgroundColor:
+                                                paydayGreen, // Replaces `color`
                                           ),
                                           onPressed: () {
                                             setState(() {
                                               discoveryFundTop = 1.2;
                                               frequencyOptionTop = 0.1;
-                                              dollarAndNairaInvTypes  = 1.2;
+                                              dollarAndNairaInvTypes = 1.2;
                                             });
                                           },
-                                          color: paydayGreen,
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceAround,
+                                            children: <Widget>[
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Text(
+                                                'Invest now',
+                                                style: lightBodyStyle,
+                                              ),
+                                              Container(
+                                                width: MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25,
+                                                height: 50,
+                                              ),
+                                              Image(
+                                                width: 40,
+                                                height: 40,
+                                                image: AssetImage(nextIcon),
+                                              ),
+                                            ],
+                                          ),
                                         )),
                                   ],
                                 ),
@@ -5370,31 +7302,30 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                       ),
                     ),
                   ],
-                )
-            ),
+                )),
           ),
 //              if(showInvestmenttypes)AnimatedPositioned (
-//                top: MediaQuery.of(context).size.height * 0.9,
-//                width: MediaQuery.of(context).size.width,
+//                top: size.height * 0.9,
+//                width: size.width,
 //                duration: Duration(seconds: 1),
 //                child: Container(
-//                  width: MediaQuery.of(context).size.width,
+//                  width: size.width,
 //                  alignment: Alignment.center,
 //                  child: ButtonTheme(
-//                      minWidth: MediaQuery.of(context).size.width * 0.85,
+//                      minWidth: size.width * 0.85,
 //                      height: 50.0,
-//                      child: RaisedButton(
+//                      child: ElevatedButton(
 //                        child: Row(
 //                          mainAxisSize: MainAxisSize.min,
 //                          crossAxisAlignment: CrossAxisAlignment.center,
 //                          mainAxisAlignment: MainAxisAlignment.spaceAround,
 //                          children: <Widget>[
-//                            Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+//                            Container( width: size.width *0.3,height: 50,),
 //                            Text(
 //                              'Proceed',
 //                              style: lightBodyStyle,
 //                            ),
-//                            Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+//                            Container( width: size.width *0.3,height: 50,),
 //                            Image(width: 50, height: 50, image: AssetImage(nextIcon),)
 //                          ],
 //                        ),
@@ -5414,19 +7345,17 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                        },
 //                        color: paydayGreen,
 //                      )),
-//                  height: MediaQuery.of(context).size.height * 0.1,
+//                  height: size.height * 0.1,
 //                ),
 //              ),//investment type proceed button
 
-
-
 //              if(showNairaInvestmentOptions)AnimatedPositioned (
-//                  top: MediaQuery.of(context).size.height * 0.1,
+//                  top: size.height * 0.1,
 //                  duration: Duration(seconds: 1),
 //                  child: Container(
-//                      padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+//                      padding: EdgeInsets.all(size.width * 0.05),
 //                      alignment: Alignment.topLeft,
-//                      width: MediaQuery.of(context).size.width,
+//                      width: size.width,
 //                      child: Column(
 //                        mainAxisAlignment: MainAxisAlignment.start,
 //                        crossAxisAlignment: CrossAxisAlignment.start,
@@ -5441,10 +7370,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                            ),
 //                          ),
 //                          Container(
-//                            height: MediaQuery.of(context).size.height * 0.02,
+//                            height: size.height * 0.02,
 //                          ),
 //                          Container(
-//                            height: MediaQuery.of(context).size.height * 0.8,
+//                            height: size.height * 0.8,
 //                            alignment: Alignment.center,
 //                            child: Column(
 //                              children: <Widget>[
@@ -5462,10 +7391,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild:Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: MediaQuery.of(context).size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
 //                                        secondChild:Container(
-//                                          width: MediaQuery.of(context).size.width * 0.08,
-//                                          height: MediaQuery.of(context).size.height * 0.08,
+//                                          width: size.width * 0.08,
+//                                          height: size.height * 0.08,
 //                                          alignment: Alignment.center,
 //                                          decoration: BoxDecoration(
 //                                            shape: BoxShape.circle,
@@ -5477,15 +7406,15 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                            : CrossFadeState.showSecond,
 //                                      ),
 //                                      Container(
-//                                        width: MediaQuery.of(context).size.width * 0.33,
+//                                        width: size.width * 0.33,
 //                                        alignment: Alignment.center,
 //                                        color: accent,
 //                                        child: ButtonTheme(
 //                                            minWidth:
-//                                            MediaQuery.of(context).size.width * 0.3,
-//                                            height: MediaQuery.of(context).size.height * 0.25,
+//                                            size.width * 0.3,
+//                                            height: size.height * 0.25,
 //                                            buttonColor: accent,
-//                                            child: OutlineButton(
+//                                            child: OutlinedButton(
 //                                              color: accent,
 //                                              child: Column(
 //                                                  mainAxisSize: MainAxisSize.max,
@@ -5497,18 +7426,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild: WidgetAnimator(
 //                                                        component: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: mmfChartIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                      ),
 //                                                      secondChild: Container(
-//                                                        height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                        height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                        child: imgAnimation2(url: mmfChartIcon,time: Duration(seconds: 2),
-//                                                          width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                          height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                          width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                          height: size.height * 0.1,transition: PositionedTransition,
 //                                                        ),),
 //                                                      crossFadeState: showMMFCheck
 //                                                          ? CrossFadeState.showFirst
@@ -5542,10 +7471,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild: Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: MediaQuery.of(context).size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
 //                                        secondChild: Container(
-//                                          width: MediaQuery.of(context).size.width * 0.08,
-//                                          height: MediaQuery.of(context).size.height * 0.08,
+//                                          width: size.width * 0.08,
+//                                          height: size.height * 0.08,
 //                                          alignment: Alignment.center,
 //                                          decoration: BoxDecoration(
 //                                            shape: BoxShape.circle,
@@ -5557,15 +7486,15 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                            : CrossFadeState.showSecond,
 //                                      ),
 //                                      Container(
-//                                        width: MediaQuery.of(context).size.width * 0.33,
+//                                        width: size.width * 0.33,
 //                                        alignment: Alignment.center,
 //                                        color: accent,
 //                                        child: ButtonTheme(
 //                                            minWidth:
-//                                            MediaQuery.of(context).size.width * 0.3,
-//                                            height: MediaQuery.of(context).size.height * 0.25,
+//                                            size.width * 0.3,
+//                                            height: size.height * 0.25,
 //                                            buttonColor: accent,
-//                                            child: OutlineButton(
+//                                            child: OutlinedButton(
 //                                              color: accent,
 //                                              child: Column(
 //                                                  mainAxisSize: MainAxisSize.max,
@@ -5577,19 +7506,19 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild:WidgetAnimator(
 //                                                        component: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: fixedIncomeIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                      ),
 //                                                      secondChild:  WidgetAnimator(
 //                                                        component: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: fixedIncomeIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                      ),
@@ -5632,10 +7561,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild:Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: MediaQuery.of(context).size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
 //                                        secondChild:Container(
-//                                          width: MediaQuery.of(context).size.width * 0.08,
-//                                          height: MediaQuery.of(context).size.height * 0.08,
+//                                          width: size.width * 0.08,
+//                                          height: size.height * 0.08,
 //                                          alignment: Alignment.center,
 //                                          decoration: BoxDecoration(
 //                                            shape: BoxShape.circle,
@@ -5647,16 +7576,16 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                            : CrossFadeState.showSecond,
 //                                      ),
 //                                      Container(
-//                                        width: MediaQuery.of(context).size.width *
+//                                        width: size.width *
 //                                            0.33,
 //                                        alignment: Alignment.center,
 //                                        color: accent,
 //                                        child: ButtonTheme(
 //                                            minWidth:
-//                                            MediaQuery.of(context).size.width * 0.3,
-//                                            height: MediaQuery.of(context).size.height * 0.25,
+//                                            size.width * 0.3,
+//                                            height: size.height * 0.25,
 //                                            buttonColor: accent,
-//                                            child: OutlineButton(
+//                                            child: OutlinedButton(
 //                                              color: accent,
 //                                              child: Column(
 //                                                  mainAxisSize: MainAxisSize.max,
@@ -5668,18 +7597,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild: WidgetAnimator(
 //                                                        component: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: discoveryFundIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                      ),
 //                                                      secondChild: Container(
-//                                                        height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                        height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                        child: imgAnimation2(url: discoveryFundIcon,time: Duration(seconds: 2),
-//                                                          width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                          height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                          width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                          height: size.height * 0.1,transition: PositionedTransition,
 //                                                        ),),
 //                                                      crossFadeState: showDiscoveryFundCheck
 //                                                          ? CrossFadeState.showFirst
@@ -5713,10 +7642,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild: Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: MediaQuery.of(context).size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
 //                                        secondChild: Container(
-//                                          width: MediaQuery.of(context).size.width * 0.08,
-//                                          height: MediaQuery.of(context).size.height * 0.08,
+//                                          width: size.width * 0.08,
+//                                          height: size.height * 0.08,
 //                                          alignment: Alignment.center,
 //                                          decoration: BoxDecoration(
 //                                            shape: BoxShape.circle,
@@ -5728,14 +7657,14 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                            : CrossFadeState.showSecond,
 //                                      ),
 //                                      Container(
-//                                        width: MediaQuery.of(context).size.width * 0.33,
+//                                        width: size.width * 0.33,
 //                                        alignment: Alignment.center,
 //                                        color: accent,
 //                                        child: ButtonTheme(
-//                                            minWidth:MediaQuery.of(context).size.width * 0.3,
-//                                            height: MediaQuery.of(context).size.height * 0.25,
+//                                            minWidth:size.width * 0.3,
+//                                            height: size.height * 0.25,
 //                                            buttonColor: accent,
-//                                            child: OutlineButton(
+//                                            child: OutlinedButton(
 //                                              color: accent,
 //                                              child: Column(
 //                                                  mainAxisSize: MainAxisSize.max,
@@ -5747,19 +7676,19 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild:WidgetAnimator(
 //                                                        component: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: ethicalFundIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                      ),
 //                                                      secondChild:  WidgetAnimator(
 //                                                        component: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: ethicalFundIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                      ),
@@ -5796,48 +7725,48 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //              ),
 //
 //              if(showNairaInvestmentOptions)AnimatedPositioned (
-//                top: MediaQuery.of(context).size.height * 0.9,
-//                width: MediaQuery.of(context).size.width,
+//                top: size.height * 0.9,
+//                width: size.width,
 //                duration: Duration(seconds: 1),
 //                child: Container(
-//                  width: MediaQuery.of(context).size.width,
+//                  width: size.width,
 //                  alignment: Alignment.center,
 //                  child: ButtonTheme(
-//                      minWidth: MediaQuery.of(context).size.width * 0.85,
+//                      minWidth: size.width * 0.85,
 //                      height: 50.0,
-//                      child: RaisedButton(
+//                      child: ElevatedButton(
 //                        child: Row(
 //                          mainAxisSize: MainAxisSize.min,
 //                          crossAxisAlignment: CrossAxisAlignment.center,
 //                          mainAxisAlignment: MainAxisAlignment.spaceAround,
 //                          children: <Widget>[
-//                            Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+//                            Container( width: size.width *0.3,height: 50,),
 //                            Text('Proceed',style: lightBodyStyle,),
-//                            Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+//                            Container( width: size.width *0.3,height: 50,),
 //                            Image(width: 50, height: 50, image: AssetImage(nextIcon),)
 //                          ],
 //                        ),
 //                        onPressed: () {
 //                          setState(() {
 //                            if(showMMFCheck){
-//                              initialHeight = MediaQuery.of(context).size.height * 0.5;
-//                              maximumHeight =MediaQuery.of(context).size.height * 0.5;
-//                              goalNameSetupTop = -MediaQuery.of(context).size.height * 1.2;
+//                              initialHeight = size.height * 0.5;
+//                              maximumHeight =size.height * 0.5;
+//                              goalNameSetupTop = -size.height * 1.2;
 //                              mmfTop = 0;
 //                              panelController.open();
 //                              panelController.show();
 //                            }
 //                            if(showFixedIncomeCheck){
-//                              initialHeight = MediaQuery.of(context).size.height * 0.4;
-//                              maximumHeight =MediaQuery.of(context).size.height * 0.4;
-//                              goalNameSetupTop = -MediaQuery.of(context).size.height * 1.2;
+//                              initialHeight = size.height * 0.4;
+//                              maximumHeight =size.height * 0.4;
+//                              goalNameSetupTop = -size.height * 1.2;
 //                              fixedIncomeTop = 0;
 //                              panelController.open();
 //                              panelController.show();
 //                            }
 //                            if(showDiscoveryFundCheck){
-//                              initialHeight = MediaQuery.of(context).size.height * 0.8;
-//                              maximumHeight =MediaQuery.of(context).size.height * 0.8;
+//                              initialHeight = size.height * 0.8;
+//                              maximumHeight =size.height * 0.8;
 //                              discoveryFundTop = 0;
 //                              panelController.open();
 //                              panelController.show();
@@ -5850,17 +7779,17 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                        },
 //                        color: paydayGreen,
 //                      )),
-//                  height: MediaQuery.of(context).size.height * 0.1,
+//                  height: size.height * 0.1,
 //                ),
 //              ),
 //
 //              if(showFrequencyOptions)AnimatedPositioned (
-//                  top: MediaQuery.of(context).size.height * 0.1,
+//                  top: size.height * 0.1,
 //                  duration: Duration(seconds: 1),
 //                  child: Container(
-//                      padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+//                      padding: EdgeInsets.all(size.width * 0.05),
 //                      alignment: Alignment.topLeft,
-//                      width: MediaQuery.of(context).size.width,
+//                      width: size.width,
 //                      child: Column(
 //                        mainAxisAlignment: MainAxisAlignment.start,
 //                        crossAxisAlignment: CrossAxisAlignment.start,
@@ -5875,10 +7804,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                            ),
 //                          ),
 //                          Container(
-//                            height: MediaQuery.of(context).size.height * 0.02,
+//                            height: size.height * 0.02,
 //                          ),
 //                          Container(
-//                            height: MediaQuery.of(context).size.height * 0.8,
+//                            height: size.height * 0.8,
 //                            alignment: Alignment.center,
 //                            child: Column(
 //                              children: <Widget>[
@@ -5896,10 +7825,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                        AnimatedCrossFade(
 //                                          duration: const Duration(milliseconds: 200),
 //                                          firstChild:Container(
-//                                            child: Icon(Icons.check,color: paydayGreen,size: MediaQuery.of(context).size.height * 0.08,),),
+//                                            child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
 //                                          secondChild:Container(
-//                                            width: MediaQuery.of(context).size.width * 0.08,
-//                                            height: MediaQuery.of(context).size.height * 0.08,
+//                                            width: size.width * 0.08,
+//                                            height: size.height * 0.08,
 //                                            alignment: Alignment.center,
 //                                            decoration: BoxDecoration(
 //                                              shape: BoxShape.circle,
@@ -5911,15 +7840,15 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                              : CrossFadeState.showSecond,
 //                                        ),
 //                                        Container(
-//                                          width: MediaQuery.of(context).size.width * 0.33,
+//                                          width: size.width * 0.33,
 //                                          alignment: Alignment.center,
 //                                          color: accent,
 //                                          child: ButtonTheme(
 //                                              minWidth:
-//                                              MediaQuery.of(context).size.width * 0.3,
-//                                              height: MediaQuery.of(context).size.height * 0.25,
+//                                              size.width * 0.3,
+//                                              height: size.height * 0.25,
 //                                              buttonColor: accent,
-//                                              child: OutlineButton(
+//                                              child: OutlinedButton(
 //                                                color: accent,
 //                                                child: Column(
 //                                                    mainAxisSize: MainAxisSize.max,
@@ -5931,18 +7860,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                        duration: const Duration(seconds: 1),
 //                                                        firstChild: WidgetAnimator(
 //                                                          component: Container(
-//                                                            height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                            height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                            child: imgAnimation2(url: calendarIcon,time: Duration(seconds: 2),
-//                                                              width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                              height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                              width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                              height: size.height * 0.1,transition: PositionedTransition,
 //                                                            ),),
 //                                                          transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                        ),
 //                                                        secondChild: Container(
-//                                                          height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                          height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                          child: imgAnimation2(url: calendarIcon,time: Duration(seconds: 2),
-//                                                            width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                            height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                            width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                            height: size.height * 0.1,transition: PositionedTransition,
 //                                                          ),),
 //                                                        crossFadeState: showRecurrentOptions
 //                                                            ? CrossFadeState.showFirst
@@ -5974,10 +7903,10 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                        AnimatedCrossFade(
 //                                          duration: const Duration(milliseconds: 200),
 //                                          firstChild: Container(
-//                                            child: Icon(Icons.check,color: paydayGreen,size: MediaQuery.of(context).size.height * 0.08,),),
+//                                            child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
 //                                          secondChild: Container(
-//                                            width: MediaQuery.of(context).size.width * 0.08,
-//                                            height: MediaQuery.of(context).size.height * 0.08,
+//                                            width: size.width * 0.08,
+//                                            height: size.height * 0.08,
 //                                            alignment: Alignment.center,
 //                                            decoration: BoxDecoration(
 //                                              shape: BoxShape.circle,
@@ -5989,15 +7918,15 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                              : CrossFadeState.showSecond,
 //                                        ),
 //                                        Container(
-//                                          width: MediaQuery.of(context).size.width * 0.33,
+//                                          width: size.width * 0.33,
 //                                          alignment: Alignment.center,
 //                                          color: accent,
 //                                          child: ButtonTheme(
 //                                              minWidth:
-//                                              MediaQuery.of(context).size.width * 0.3,
-//                                              height: MediaQuery.of(context).size.height * 0.25,
+//                                              size.width * 0.3,
+//                                              height: size.height * 0.25,
 //                                              buttonColor: accent,
-//                                              child: OutlineButton(
+//                                              child: OutlinedButton(
 //                                                color: accent,
 //                                                child: Column(
 //                                                    mainAxisSize: MainAxisSize.max,
@@ -6009,19 +7938,19 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                        duration: const Duration(seconds: 1),
 //                                                        firstChild:WidgetAnimator(
 //                                                          component: Container(
-//                                                            height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                            height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                            child: imgAnimation2(url: manualIcon,time: Duration(seconds: 2),
-//                                                              width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                              height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                              width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                              height: size.height * 0.1,transition: PositionedTransition,
 //                                                            ),),
 //                                                          transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                        ),
 //                                                        secondChild:  WidgetAnimator(
 //                                                          component: Container(
-//                                                            height: MediaQuery.of(context).size.height * 0.17,width: MediaQuery.of(context).size.width,color: Colors.transparent,alignment: Alignment.center,
+//                                                            height: size.height * 0.17,width: size.width,color: Colors.transparent,alignment: Alignment.center,
 //                                                            child: imgAnimation2(url: manualIcon,time: Duration(seconds: 2),
-//                                                              width: MediaQuery.of(context).size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
-//                                                              height: MediaQuery.of(context).size.height * 0.1,transition: PositionedTransition,
+//                                                              width: size.width * 0.9,beginx:0.03,endx: -0, beginy: 0,endy: -0.0,
+//                                                              height: size.height * 0.1,transition: PositionedTransition,
 //                                                            ),),
 //                                                          transition: Transform,animPattern: Curves.easeIn,pixle: Colors.transparent,time: Duration(seconds: 1),animType: "nothing",xAxis: 0,yAxis: 0,
 //                                                        ),
@@ -6071,8 +8000,6 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //        borderRadius: radius,
 //        panel: Stack(
 //          children: <Widget>[
-//
-//
 ////            AnimatedPositioned(
 ////              top: recurrerntFrequencyTop,
 ////              right: 0,
@@ -6086,23 +8013,23 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                  mainAxisAlignment: MainAxisAlignment.start,
 ////                  children: <Widget>[
 ////                    Container(
-////                      height: MediaQuery.of(context).size.height * 0.01,
+////                      height: size.height * 0.01,
 ////                    ),
 ////                    imgAnimation2(
 ////                      url: calendarIcon,
 ////                      time: Duration(seconds: 5),
 ////                      width:
-////                      MediaQuery.of(context).size.width * 0.3,
+////                      size.width * 0.3,
 ////                      beginx: 0.03,
 ////                      endx: -0,
 ////                      beginy: 0,
 ////                      endy: -0.0,
 ////                      height:
-////                      MediaQuery.of(context).size.height * 0.07,
+////                      size.height * 0.07,
 ////                      transition: PositionedTransition,
 ////                    ),
 ////                    Container(
-////                      height: MediaQuery.of(context).size.height * 0.01,
+////                      height: size.height * 0.01,
 ////                    ),
 ////                    Container(
 ////                      alignment: Alignment.center,
@@ -6117,20 +8044,20 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                            textAlign: TextAlign.center,
 ////                          ),
 ////                          Container(
-////                            width: MediaQuery.of(context).size.width * 0.02,
+////                            width: size.width * 0.02,
 ////                          ),
 ////                          Image(image: AssetImage(infoIcon),),
 ////                        ],
 ////                      ),
 ////                    ),
 ////                    Container(
-////                      height: MediaQuery.of(context).size.height * 0.01,
+////                      height: size.height * 0.01,
 ////                    ),
 ////                    Padding(
 ////                      padding: EdgeInsets.symmetric(horizontal: 10.0),
 ////                      child: Container(
 ////                          height: 1.0,
-////                          width: MediaQuery.of(context).size.width,
+////                          width: size.width,
 ////                          color: paydayGray),
 ////                    ),
 ////                    Container(
@@ -6140,14 +8067,14 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                        crossAxisAlignment: CrossAxisAlignment.center,
 ////                        children: <Widget>[
 ////                          Container(
-////                            height: MediaQuery.of(context).size.height * 0.01,
+////                            height: size.height * 0.01,
 ////                          ),
 ////                          Container(
 ////                              alignment: Alignment.center,
 ////                              child:Text('How often do you want to fund your investment?',style: purple22Style, textAlign: TextAlign.center,)
 ////                          ),
 ////                          Container(
-////                            height: MediaQuery.of(context).size.height * 0.01,
+////                            height: size.height * 0.01,
 ////                          ),
 ////                          Container(
 ////                              alignment: Alignment.center,
@@ -6159,9 +8086,9 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                  Container(
 ////                                    alignment: Alignment.center,color: accent,
 ////                                    child: ButtonTheme(
-////                                        minWidth: MediaQuery.of(context).size.width *0.4,
+////                                        minWidth: size.width *0.4,
 ////                                        height: 50.0,
-////                                        child:OutlineButton(
+////                                        child:OutlinedButton(
 ////                                          color: accent,
 ////                                          child: Text('Weekly',style: green14Style,textAlign: TextAlign.center,),
 ////                                          onPressed: () => {
@@ -6175,15 +8102,15 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                          highlightElevation: 10,
 ////                                        )
 ////                                    ),
-////                                    width: MediaQuery.of(context).size.width * 0.4,
+////                                    width: size.width * 0.4,
 ////                                    height: 50,
 ////                                  ),
 ////                                  Container(
 ////                                    alignment: Alignment.center,color: accent,
 ////                                    child: ButtonTheme(
-////                                        minWidth: MediaQuery.of(context).size.width *0.4,
+////                                        minWidth: size.width *0.4,
 ////                                        height: 50.0,
-////                                        child:OutlineButton(
+////                                        child:OutlinedButton(
 ////                                          color: accent,
 ////                                          child: Text('Monthly',style: green14Style,textAlign: TextAlign.center,),
 ////                                          onPressed: () => {
@@ -6197,17 +8124,17 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                          highlightElevation: 10,
 ////                                        )
 ////                                    ),
-////                                    width: MediaQuery.of(context).size.width * 0.4,
+////                                    width: size.width * 0.4,
 ////                                    height: 50,
 ////                                  ),
 ////                                ],
 ////                              )
 ////                          ),
 ////                          Container(
-////                            height: MediaQuery.of(context).size.height * 0.02,
+////                            height: size.height * 0.02,
 ////                          ),
 ////                          Container(
-////                              width: MediaQuery.of(context).size.width * 0.8,
+////                              width: size.width * 0.8,
 ////                              alignment: Alignment.center,
 ////                              child:Row(
 ////                                mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -6215,7 +8142,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                crossAxisAlignment: CrossAxisAlignment.end,
 ////                                children: <Widget>[
 ////                                  Container(
-////                                    width: MediaQuery.of(context).size.width * 0.55,
+////                                    width: size.width * 0.55,
 ////                                    alignment: Alignment.center,
 ////                                    child: Column(
 ////                                      mainAxisSize: MainAxisSize.min,
@@ -6228,9 +8155,9 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                          textAlign: TextAlign.left,
 ////                                        ),
 ////                                        Container(
-////                                          //height: MediaQuery.of(context).size.height * 0.06,
+////                                          //height: size.height * 0.06,
 ////                                          child: LinearPercentIndicator(
-////                                            width: MediaQuery.of(context).size.width * 0.55,
+////                                            width: size.width * 0.55,
 ////                                            animation: true,
 ////                                            lineHeight: 20.0,
 ////                                            animationDuration: 2500,
@@ -6245,14 +8172,14 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                  ),
 ////                                  Container(
 ////                                    child:ButtonTheme(
-////                                        minWidth: MediaQuery.of(context).size.width * 0.1,
+////                                        minWidth: size.width * 0.1,
 ////                                        height: 50.0,
-////                                        child: RaisedButton(
-////                                          child: Image(width: MediaQuery.of(context).size.width * 0.1, height: 50, image: AssetImage(nextIcon),),
+////                                        child: ElevatedButton(
+////                                          child: Image(width: size.width * 0.1, height: 50, image: AssetImage(nextIcon),),
 ////                                          onPressed: () {
 ////                                            setState(() {
 ////                                              recurrerntAmountTop = 0;
-////                                              recurrerntFrequencyTop = MediaQuery.of(context).size.height * 1.2;
+////                                              recurrerntFrequencyTop = size.height * 1.2;
 ////                                            });
 ////                                          },
 ////                                          color: paydayGreen,
@@ -6264,17 +8191,17 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                      ),
 ////                    ),
 ////                    Container(
-////                      height: MediaQuery.of(context).size.height * 0.02,
+////                      height: size.height * 0.02,
 ////                    ),
 ////                    Padding(
 ////                      padding: EdgeInsets.symmetric(horizontal: 10.0),
 ////                      child: Container(
 ////                          height: 1.0,
-////                          width: MediaQuery.of(context).size.width,
+////                          width: size.width,
 ////                          color: paydayGray),
 ////                    ),
 ////                    Container(
-////                      height: MediaQuery.of(context).size.height * 0.01,
+////                      height: size.height * 0.01,
 ////                    ),
 ////                    Container(
 ////                        alignment: Alignment.center,
@@ -6287,27 +8214,27 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////            ),
 ////
 ////            AnimatedPositioned (
-////              top: MediaQuery.of(context).size.height * 0.7,
-////              width: MediaQuery.of(context).size.width,
+////              top: size.height * 0.7,
+////              width: size.width,
 ////              duration: Duration(seconds: 1),
 ////              child: Container(
-////                width: MediaQuery.of(context).size.width,
+////                width: size.width,
 ////                alignment: Alignment.center,
 ////                child: ButtonTheme(
-////                    minWidth: MediaQuery.of(context).size.width * 0.85,
+////                    minWidth: size.width * 0.85,
 ////                    height: 50.0,
-////                    child: RaisedButton(
+////                    child: ElevatedButton(
 ////                      child: Row(
 ////                        mainAxisSize: MainAxisSize.min,
 ////                        crossAxisAlignment: CrossAxisAlignment.center,
 ////                        mainAxisAlignment: MainAxisAlignment.spaceAround,
 ////                        children: <Widget>[
-////                          Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+////                          Container( width: size.width *0.3,height: 50,),
 ////                          Text(
 ////                            'Proceed',
 ////                            style: lightBodyStyle,
 ////                          ),
-////                          Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+////                          Container( width: size.width *0.3,height: 50,),
 ////                          Image(width: 50, height: 50, image: AssetImage(nextIcon),)
 ////                        ],
 ////                      ),
@@ -6321,18 +8248,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                              showInvestmenttypes = false;
 ////                              showCurrencyOptions = true;
 ////                              //goalNameSetupTop = 0;
-////                              goalAmountSetupTop = -MediaQuery.of(context).size.height * 1.2;
-////                              groupGoalInviteSetupTop = -MediaQuery.of(context).size.height * 1.2;
+////                              goalAmountSetupTop = -size.height * 1.2;
+////                              groupGoalInviteSetupTop = -size.height * 1.2;
 ////                              break;
 ////                            case 1:
-////                              goalNameSetupTop = MediaQuery.of(context).size.height * 1.2;
+////                              goalNameSetupTop = size.height * 1.2;
 ////                              goalAmountSetupTop = 0;
-////                              groupGoalInviteSetupTop = -MediaQuery.of(context).size.height * 1.2;
+////                              groupGoalInviteSetupTop = -size.height * 1.2;
 ////                              break;
 ////                            case 2:
 ////                              showSkip = true;
-////                              goalNameSetupTop = MediaQuery.of(context).size.height * 1.2;
-////                              goalAmountSetupTop = MediaQuery.of(context).size.height * 1.2;
+////                              goalNameSetupTop = size.height * 1.2;
+////                              goalAmountSetupTop = size.height * 1.2;
 ////                              groupGoalInviteSetupTop = 0;
 ////                              break;
 ////                          }
@@ -6340,7 +8267,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                      },
 ////                      color: paydayGreen,
 ////                    )),
-////                height: MediaQuery.of(context).size.height * 0.1,
+////                height: size.height * 0.1,
 ////              ),
 ////            ),
 //          ],

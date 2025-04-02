@@ -1,0 +1,2 @@
+C:/Users/Olufemi/IdeaProjects/flutter_investment_app/android/app/.cxx/RelWithDebInfo/6g5t6137/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Olufemi/IdeaProjects/flutter_investment_app/android/app/.cxx/RelWithDebInfo/6g5t6137/x86_64/CMakeFiles/rebuild_cache.dir

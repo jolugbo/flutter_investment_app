@@ -8,9 +8,8 @@ import 'package:payday_investor/utills/styles.dart';
 
 
 class testPage extends StatefulWidget {
-  testPage({Key key, this.title}) : super(key: key);
+  testPage();
 
-  final String title;
 
   @override
   MyHomePageState createState() => MyHomePageState();
@@ -173,7 +172,6 @@ class Card2 extends StatelessWidget {
                   ),
                   Text(
                     "3 Expandable widgets",
-                    style: Theme.of(context).textTheme.caption,
                   ),
                 ],
               ),
@@ -243,23 +241,7 @@ class Card2 extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
-                      Builder(
-                        builder: (context) {
-                          var controller = ExpandableController.of(context);
-                          return FlatButton(
-                            child: Text(
-                              controller.expanded ? "COLLAPSE" : "EXPAND",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .button
-                                  .copyWith(color: Colors.deepPurple),
-                            ),
-                            onPressed: () {
-                              controller.toggle();
-                            },
-                          );
-                        },
-                      ),
+                     
                     ],
                   ),
                 ],
@@ -290,6 +272,7 @@ class Card4 extends StatelessWidget{
                   scrollOnExpand: true,
                   scrollOnCollapse: false,
                   child: ExpandablePanel(
+                    collapsed: Container(),
                     theme: const ExpandableThemeData(
                       headerAlignment: ExpandablePanelHeaderAlignment.center,
                       tapBodyToCollapse: true,
@@ -326,11 +309,11 @@ class Card4 extends StatelessWidget{
                                 MediaQuery.of(context).size.width *0.3,
                                 height: MediaQuery.of(context).size.height * 0.1,
                                 buttonColor: accent,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                      side: BorderSide(color: paydayGreen)
-                                  ),
+                                child: ElevatedButton(
+  style: OutlinedButton.styleFrom(
+    shape: buttonShape,
+    backgroundColor: paydayGreen,  elevation: 0.8,
+  ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -348,18 +331,17 @@ class Card4 extends StatelessWidget{
                                   onPressed: () => {
 
                                   },
-                                  highlightElevation:20,
                                 )),
                             ButtonTheme(
                                 minWidth:
                                 MediaQuery.of(context).size.width *0.3,
                                 height: MediaQuery.of(context).size.height * 0.1,
                                 buttonColor: accent,
-                                child: RaisedButton(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(Radius.circular(15)),
-                                      side: BorderSide(color: paydayGreen)
-                                  ),
+                                child: ElevatedButton(
+  style: OutlinedButton.styleFrom(
+    shape: buttonShape,
+    backgroundColor: paydayGreen,  elevation: 0.8,
+  ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
                                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -376,7 +358,7 @@ class Card4 extends StatelessWidget{
                                     ],),
                                   onPressed: () => {
                                   },
-                                  highlightElevation: 0.8,
+                                 
                                 )),
                           ],
                         )
@@ -772,6 +754,7 @@ class Card3 extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   ExpandablePanel(
+                    collapsed: Container(),
                     theme: const ExpandableThemeData(
                       headerAlignment: ExpandablePanelHeaderAlignment.center,
                       tapBodyToExpand: true,

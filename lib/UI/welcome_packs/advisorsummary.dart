@@ -6,9 +6,8 @@ import 'package:payday_investor/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class advisorSummaryPage extends StatefulWidget {
-  advisorSummaryPage({Key key, this.title}) : super(key: key);
+  advisorSummaryPage();
 
-  final String title;
 
   @override
   _AdvisorSummaryPageState createState() => _AdvisorSummaryPageState();
@@ -25,10 +24,10 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
   String roboAdvisorIcon = 'assets/roboadvisor.png';
   Color femaleColor = paydayGreen;
   String camIcon = 'assets/camera.png';
-  int _radioValue;
+  int _radioValue = 0;
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
   }
 
@@ -38,7 +37,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
     tokenEntryWidth = MediaQuery.of(context).size.width * 0.12;
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+       // overflow: Overflow.visible,
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
@@ -75,6 +74,9 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                     Row(
                       children: <Widget>[
                         IconButton(
+                          onPressed: () {
+                            
+                          },
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
@@ -395,16 +397,20 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                         child: ButtonTheme(
                             minWidth: MediaQuery.of(context).size.width,
                             height: 50.0,
-                            child: RaisedButton(
-                              shape: buttonShape,
-                              child: Text(
-                                'Setup your portfolio',
-                                style: lightBodyStyle,
-                              ),
-                              onPressed: () {
-                              },
-                              color: paydayGreen,
-                            )),
+                            child: ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    shape: buttonShape, // Button shape
+    backgroundColor: paydayGreen, // Button color
+  ),
+  onPressed: () {
+    // Add your action here
+  },
+  child: Text(
+    'Setup your portfolio',
+    style: lightBodyStyle,
+  ),
+)
+),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.08,
                       ),

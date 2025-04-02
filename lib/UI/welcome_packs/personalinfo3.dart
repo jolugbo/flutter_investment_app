@@ -6,9 +6,7 @@ import 'package:payday_investor/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class personalinfo3Page extends StatefulWidget {
-  personalinfo3Page({Key key, this.title}) : super(key: key);
-
-  final String title;
+  personalinfo3Page();
 
   @override
   _Personalinfo3PageState createState() => _Personalinfo3PageState();
@@ -30,30 +28,31 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
   Color femaleColor = paydayGreen;
   String camIcon = 'assets/cameraicon.png';
   String uploadIcon = 'assets/uploadicon.png';
-  int _radioValue =0;
+  int? _radioValue = 0;
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
     //WidgetsBinding.instance.addPostFrameCallback((_) => doMotion());
   }
 
   @override
   Widget build(BuildContext context) {
-    tokenEntryHeight = MediaQuery.of(context).size.height * 0.06;
-    tokenEntryWidth = MediaQuery.of(context).size.width * 0.12;
+    var size = MediaQuery.of(context).size;
+    tokenEntryHeight = size.height * 0.06;
+    tokenEntryWidth = size.width * 0.12;
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
-            //right: -MediaQuery.of(context).size.width * 0.2,
+            //right: -size.width * 0.2,
             duration: Duration(seconds: 1),
             child: WidgetAnimator(
               component: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height,
+                  width: size.width,
                   decoration: new BoxDecoration(
                       image: new DecorationImage(
                     fit: BoxFit.fill,
@@ -71,8 +70,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
           Positioned(
               top: 0,
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width,
+                height: size.height * 0.15,
+                width: size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -81,6 +80,7 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                     Row(
                       children: <Widget>[
                         IconButton(
+                          onPressed: () {},
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
@@ -88,15 +88,16 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                           ),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: size.width * 0.8,
                           child: Hero(
                             tag: "iconTag",
                             child: WidgetAnimator(
                               component: imgAnimation2(
                                 url: leafIcon,
-                                time: Duration(seconds: 3),beginx:0.0 ,endx: -0, beginy: 0 ,endy: -0.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                //height: MediaQuery.of(context).size.height * 0.3,
+                                time: Duration(seconds: 3), beginx: 0.0,
+                                endx: -0, beginy: 0, endy: -0.0,
+                                width: size.width * 0.3,
+                                //height: size.height * 0.3,
                                 transition: PositionedTransition,
                               ),
                               transition: Transform,
@@ -104,8 +105,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                               pixle: Colors.transparent,
                               time: Duration(seconds: 1),
                               animType: "nothing",
-                              xAxis: -MediaQuery.of(context).size.width * 0,
-                              yAxis: -MediaQuery.of(context).size.height * 0,
+                              xAxis: -size.width * 0,
+                              yAxis: -size.height * 0,
                             ),
                           ),
                         ),
@@ -115,12 +116,12 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                 ),
               )),
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.1,
+              top: size.height * 0.1,
               duration: Duration(seconds: 1),
               child: Container(
-                  padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                  padding: EdgeInsets.all(size.width * 0.05),
                   alignment: Alignment.topLeft,
-                  width: MediaQuery.of(context).size.width,
+                  width: size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,9 +138,9 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                         textAlign: TextAlign.left,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: size.height * 0.03,
                         child: LinearPercentIndicator(
-                          width: MediaQuery.of(context).size.width - 50,
+                          width: size.width - 50,
                           animation: true,
                           lineHeight: 10.0,
                           animationDuration: 2500,
@@ -149,18 +150,18 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                         child: Text(
                           'Gender',
                           style: purple18Style,
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.23,
-                        width: MediaQuery.of(context).size.width * 0.5,
+                        height: size.height * 0.23,
+                        width: size.width * 0.5,
                         child: Row(
                           children: <Widget>[
                             Container(
@@ -171,15 +172,13 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                 children: <Widget>[
                                   Container(
                                     //color:Colors.red,
-                                    width: MediaQuery.of(context).size.width *
-                                        0.22,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.15,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5.0)),
-                                      elevation: 4.0,
+                                    width: size.width * 0.22,
+                                    height: size.height * 0.15,
+                                    child: ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          shape: buttonShape, // Button shape
+                                          backgroundColor: femaleColor,
+                                          elevation: 4),
                                       onPressed: () {
                                         setState(() {
                                           _radioValue = 0;
@@ -192,8 +191,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                       child: Column(
                                         children: <Widget>[
                                           Container(
-                                            height: MediaQuery.of(context).size.height * 0.06,
-                                            width: MediaQuery.of(context).size.width * 0.06,
+                                            height: size.height * 0.06,
+                                            width: size.width * 0.06,
                                             decoration: BoxDecoration(
                                                 color: accent,
                                                 shape: BoxShape.circle),
@@ -218,13 +217,11 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                           )
                                         ],
                                       ),
-                                      color: femaleColor,
                                     ),
                                   ),
                                   Container(
                                       //margin: EdgeInsets.all(1.5),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.16,
+                                      width: size.width * 0.16,
                                       child: Text(
                                         'Female',
                                         textAlign: TextAlign.center,
@@ -240,15 +237,13 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                     MainAxisAlignment.spaceAround,
                                 children: <Widget>[
                                   Container(
-                                    width: MediaQuery.of(context).size.width *
-                                        0.22,
-                                    height: MediaQuery.of(context).size.height *
-                                        0.15,
-                                    child: RaisedButton(
-                                      shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5.0)),
-                                      elevation: 4.0,
+                                    width: size.width * 0.22,
+                                    height: size.height * 0.15,
+                                    child:  ElevatedButton(
+                                      style: ElevatedButton.styleFrom(
+                                          shape: buttonShape, // Button shape
+                                          backgroundColor: maleColor,
+                                          elevation: 4),
                                       onPressed: () {
                                         setState(() {
                                           femaleColor = paydayGray;
@@ -261,8 +256,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                       child: Column(
                                         children: <Widget>[
                                           Container(
-                                            width: MediaQuery.of(context).size.width * 0.06,
-                                            height: MediaQuery.of(context).size.height * 0.06,
+                                            width: size.width * 0.06,
+                                            height: size.height * 0.06,
                                             decoration: BoxDecoration(
                                                 color: accent,
                                                 shape: BoxShape.circle),
@@ -272,14 +267,14 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                               value: 1,
                                               groupValue: _radioValue,
                                               onChanged: (val) {
-                                              setState(() {
-                                                femaleColor = paydayGray;
-                                                maleColor = paydayGreen;
-                                                femaleIcon = femaleIcon2;
-                                                maleIcon = maleIcon2;
-                                                _radioValue = val;
-                                              });
-                                            },
+                                                setState(() {
+                                                  femaleColor = paydayGray;
+                                                  maleColor = paydayGreen;
+                                                  femaleIcon = femaleIcon2;
+                                                  maleIcon = maleIcon2;
+                                                  _radioValue = val;
+                                                });
+                                              },
                                             ),
                                           ),
                                           Image(
@@ -287,13 +282,11 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                           )
                                         ],
                                       ),
-                                      color: maleColor,
                                     ),
                                   ),
                                   Container(
                                       //margin: EdgeInsets.all(1.5),
-                                      width: MediaQuery.of(context).size.width *
-                                          0.16,
+                                      width: size.width * 0.16,
                                       child: Text(
                                         'Male',
                                         textAlign: TextAlign.center,
@@ -306,17 +299,17 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                         child: Text(
                           'Passport Photograph',
                           style: purple18Style,
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: size.height * 0.05,
                         child: Text(
                           'Take a selfie with your full-face in view and both eyes open',
                           style: dark14Style,
@@ -324,32 +317,42 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                       ),
                       Container(
                         height: 80.0,
-                        width: MediaQuery.of(context).size.height,
+                        width: size.height,
                         child: FittedBox(
                           child: FloatingActionButton(
                               child: Stack(
-                                overflow: Overflow.visible,
+                                //overflow: Overflow.visible,
                                 children: <Widget>[
-                                  Image(image: AssetImage(camIcon),width: 35,alignment: Alignment.center,),
+                                  Image(
+                                    image: AssetImage(camIcon),
+                                    width: 35,
+                                    alignment: Alignment.center,
+                                  ),
                                   Positioned(
                                     top: 20,
-                                    left:27,
-                                    child:Image(image: AssetImage(uploadIcon),width: 10,alignment: Alignment.center,),
+                                    left: 27,
+                                    child: Image(
+                                      image: AssetImage(uploadIcon),
+                                      width: 10,
+                                      alignment: Alignment.center,
+                                    ),
                                   )
                                 ],
                               ),
                               backgroundColor: accent,
-                              onPressed: () {
-                              }),
+                              onPressed: () {}),
                         ),
                       ),
                       Container(
                         alignment: Alignment.center,
                         child: ButtonTheme(
-                            minWidth: MediaQuery.of(context).size.width,
+                            minWidth: size.width,
                             height: 50.0,
-                            child: RaisedButton(
-                              shape: buttonShape,
+                            child: ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    shape: buttonShape, // Button shape
+    backgroundColor: paydayGreen, // Button color
+  ),
                               child: Text(
                                 'Confirm & Proceed',
                                 style: lightBodyStyle,
@@ -357,21 +360,20 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                               onPressed: () {
                                 Navigator.pushNamed(context, '/getStarted');
                               },
-                              color: paydayGreen,
                             )),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: size.width,
+                        height: size.height * 0.1,
                       ),
                     ],
                   ))),
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.92,
+              top: size.height * 0.92,
               duration: Duration(seconds: 1),
               child: Container(
                   //color: Colors.red,
                   alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height * 0.1,
+                  width: size.width,
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(

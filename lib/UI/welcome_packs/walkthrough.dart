@@ -7,9 +7,8 @@ import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/styles.dart';
 
 class walkthroughPage extends StatefulWidget {
-  walkthroughPage({Key key, this.title}) : super(key: key);
+  walkthroughPage({super.key});
 
-  final String title;
 
   @override
   _WalkthroughPageState createState() => _WalkthroughPageState();
@@ -25,7 +24,7 @@ class _WalkthroughPageState extends State<walkthroughPage>
   double yAxis = 0;
   double iconYAxis = 0;
   double iconXAxis = 0;
-  Timer timer;
+  late Timer timer;
   double containerSize = 0;
   double mainContainerPosition = 0.5;
   double mainContainerSize = 0.55;
@@ -98,7 +97,7 @@ class _WalkthroughPageState extends State<walkthroughPage>
   }
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => doMotion());
   }
@@ -107,7 +106,7 @@ class _WalkthroughPageState extends State<walkthroughPage>
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           //header logo
           Positioned(
@@ -205,17 +204,22 @@ class _WalkthroughPageState extends State<walkthroughPage>
                         ButtonTheme(
                             minWidth: MediaQuery.of(context).size.width,
                             height: 50.0,
-                            child: RaisedButton(
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(10.0),
-                                //side: BorderSide(color: Colors.red)
-                              ),
-                              child: Text('Start Investing',style: buttonDefaultStyle,),
-                              onPressed: () {
-                                Navigator.pushNamed(context, '/signup');
-                              },
-                              color: accent,
-                            )),
+                            child:  ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        paydayGreen, // Set button color
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                  Navigator.pushNamed(context, '/signup');},
+                                  child: Text(
+                                    'Start Investing',
+                                    style: lightBodyStyle,
+                                  ),
+                                ),
+                            ),
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.02,
@@ -226,18 +230,22 @@ class _WalkthroughPageState extends State<walkthroughPage>
                           ButtonTheme(
                               minWidth: MediaQuery.of(context).size.width ,
                               height: 50.0,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(10.0),
-                                    side: BorderSide(color: accent)
+                              child: 
+                               ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor:
+                                        paydayGreen, // Set button color
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                  Navigator.pushNamed(context, '/login');},
+                                  child: Text(
+                                    'Login',
+                                    style: lightBodyStyle,
+                                  ),
                                 ),
-                                child: Text('Login',style: buttonLightStyle,),
-                                color: Colors.transparent,
-                                onPressed: ()=>{
-                                  Navigator.pushNamed(context, '/login')
-                                },
-                                highlightElevation: 0.5,
-                              )
                           ),
                         ),
                       Container(
@@ -251,6 +259,9 @@ class _WalkthroughPageState extends State<walkthroughPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
                             if(!_showPrevious)IconButton(
+                              onPressed: () {
+                                
+                              },
                               color: Colors.transparent,
                               icon: Icon(Icons.arrow_back_ios,color: Colors.transparent,),
                             ),
@@ -401,6 +412,9 @@ class _WalkthroughPageState extends State<walkthroughPage>
                                 },
                                 alignment: Alignment.centerRight),
                             if(!_showNext)IconButton(
+                              onPressed: () {
+                                
+                              },
                               color: Colors.transparent,
                               icon: Icon(Icons.arrow_back_ios,color: Colors.transparent,),
                             ),

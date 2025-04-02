@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+import 'package:flutter/material.dart' as DatePicker;
 //import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
 import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/styles.dart';
@@ -9,9 +9,7 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class setupInvestmentPage extends StatefulWidget {
-  setupInvestmentPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  setupInvestmentPage();
 
   @override
   _SetupInvestmentPageState createState() => _SetupInvestmentPageState();
@@ -26,7 +24,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
   String nextIcon = 'assets/nexticon.png';
   String headerText = 'Validate your identity';
   String middleHeaderText = 'Valid Identification';
-  String bodyText ='A copy of a valid government issued ID clearly displaying the name on your PayDay Investor account.';
+  String bodyText =
+      'A copy of a valid government issued ID clearly displaying the name on your PayDay Investor account.';
   String startinvestingIcon = 'assets/startinvesting.png';
   String targetIcon = 'assets/target.png';
   String vacationIcon = 'assets/vacationicon.png';
@@ -49,15 +48,17 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
   String _date = 'yyyy/mm/dd';
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) => normalScreenParamSet());
   }
-  void normalScreenParamSet(){
+
+  void normalScreenParamSet() {
     goalNameSetupTop = 0;
     goalAmountSetupTop = MediaQuery.of(context).size.height * 1.2;
     groupGoalInviteSetupTop = MediaQuery.of(context).size.height * 1.2;
   }
+
   @override
   Widget build(BuildContext context) {
     BorderRadiusGeometry radius = BorderRadius.only(
@@ -101,7 +102,6 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                 yAxis: 0,
               ),
             ),
-
             AnimatedPositioned(
               top: goalNameSetupTop,
               right: 0,
@@ -155,7 +155,9 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           Container(
                             width: MediaQuery.of(context).size.width * 0.02,
                           ),
-                          Image(image: AssetImage(infoIcon),),
+                          Image(
+                            image: AssetImage(infoIcon),
+                          ),
                         ],
                       ),
                     ),
@@ -175,7 +177,11 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                     Container(
                       alignment: Alignment.center,
                       margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                      child:Text('What is your financial goal targeted towards?',style: purple18Style,textAlign: TextAlign.center,),
+                      child: Text(
+                        'What is your financial goal targeted towards?',
+                        style: purple18Style,
+                        textAlign: TextAlign.center,
+                      ),
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.02,
@@ -191,116 +197,128 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                             Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   FloatingActionButton.extended(
-                                    label: Text('vacation',style: dark14Style,),
+                                    label: Text(
+                                      'vacation',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'vacation',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Home Purchase',style: dark14Style,),
+                                    label: Text(
+                                      'Home Purchase',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Home',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Rent',style: dark14Style,),
+                                    label: Text(
+                                      'Rent',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Rent',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ]),
                             Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   FloatingActionButton.extended(
-                                    label: Text('Education',style: dark14Style,),
+                                    label: Text(
+                                      'Education',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Education',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Business capital',style: dark14Style,),
+                                    label: Text(
+                                      'Business capital',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Business',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Event',style: dark14Style,),
+                                    label: Text(
+                                      'Event',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Event',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ]),
                             Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   FloatingActionButton.extended(
-                                    label: Text('Retirement Planning',style: dark14Style,),
+                                    label: Text(
+                                      'Retirement Planning',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Retirement',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Emergency Fund',style: dark14Style,),
+                                    label: Text(
+                                      'Emergency Fund',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Emergency',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ]),
                             Row(
                                 mainAxisSize: MainAxisSize.max,
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceEvenly,
+                                    MainAxisAlignment.spaceEvenly,
                                 children: <Widget>[
                                   FloatingActionButton.extended(
-                                    label: Text('Car',style: dark14Style,),
+                                    label: Text(
+                                      'Car',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Car',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Expensive purchase',style: dark14Style,),
+                                    label: Text(
+                                      'Expensive purchase',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Expensive',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                   FloatingActionButton.extended(
-                                    label: Text('Others',style: dark14Style,),
+                                    label: Text(
+                                      'Others',
+                                      style: dark14Style,
+                                    ),
                                     heroTag: 'Others',
                                     backgroundColor: accent,
-
-                                    onPressed: (){
-                                    },
+                                    onPressed: () {},
                                   ),
                                 ]),
                           ]),
@@ -315,7 +333,11 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('What is the Goal title?',style: purple22Style,textAlign: TextAlign.center,),
+                            Text(
+                              'What is the Goal title?',
+                              style: purple22Style,
+                              textAlign: TextAlign.center,
+                            ),
                             Container(
                               color: paydayLightGray2,
                               padding: EdgeInsets.all(5),
@@ -323,8 +345,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: MediaQuery.of(context).size.height * 0.05,
                               child: TextField(
-                                //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: paydayGreen))),
-                              ),
+                                  //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: paydayGreen))),
+                                  ),
                             ),
                           ]),
                     ),
@@ -332,9 +354,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                 ),
               ),
             ),
-
             AnimatedPositioned(
-              top:goalAmountSetupTop,
+              top: goalAmountSetupTop,
               right: 0,
               left: 0,
               duration: Duration(seconds: 1),
@@ -351,7 +372,10 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                         url: vacationIcon,
                         time: Duration(seconds: 2),
                         width: MediaQuery.of(context).size.width * 0.1,
-                        beginx:0.04,endx: -0, beginy: 0,endy: -0.0,
+                        beginx: 0.04,
+                        endx: -0,
+                        beginy: 0,
+                        endy: -0.0,
                         height: MediaQuery.of(context).size.height * 0.05,
                         transition: PositionedTransition,
                       ),
@@ -384,7 +408,11 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('What is the Target Amount?',style: purple18Style,textAlign: TextAlign.center,),
+                            Text(
+                              'What is the Target Amount?',
+                              style: purple18Style,
+                              textAlign: TextAlign.center,
+                            ),
                             Container(
                               color: paydayLightGray2,
                               padding: EdgeInsets.all(5),
@@ -392,8 +420,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: MediaQuery.of(context).size.height * 0.05,
                               child: TextField(
-                                //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: paydayGreen))),
-                              ),
+                                  //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: paydayGreen))),
+                                  ),
                             ),
                           ]),
                     ),
@@ -407,33 +435,43 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('When do you intend to achieve this goal?',style: purple18Style,textAlign: TextAlign.center,),
-
+                            Text(
+                              'When do you intend to achieve this goal?',
+                              style: purple18Style,
+                              textAlign: TextAlign.center,
+                            ),
                             Container(
                               height: MediaQuery.of(context).size.height * 0.05,
                               width: MediaQuery.of(context).size.width * 0.8,
-                              child:RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(5.0)),
-                                elevation: 4.0,
-                                onPressed: () {
-                                  DatePicker.showDatePicker(context,
-                                      theme: DatePickerTheme(
-                                        containerHeight: 210.0,
-                                      ),
-                                      showTitleActions: true,
-                                      minTime: DateTime(2000, 1, 1),
-                                      maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
-                                        print('confirm $date');
-                                        _date = '${date.year} - ${date.month} - ${date.day}';
-                                        setState(() {});
-                                      }, currentTime: DateTime.now(), locale: LocaleType.en);
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(5.0)),
+                                    elevation: 4.0,
+                                    backgroundColor: accent),
+                                onPressed: () async {
+                                  DateTime? pickedDate = await showDatePicker(
+                                    context: context,
+                                    initialDate: DateTime.now(),
+                                    firstDate: DateTime(2000, 1, 1),
+                                    lastDate: DateTime(2022, 12, 31),
+                                  );
+
+                                  if (pickedDate != null) {
+                                    print('confirm $pickedDate');
+                                    setState(() {
+                                      _date =
+                                          '${pickedDate.year} - ${pickedDate.month} - ${pickedDate.day}';
+                                    });
+                                  }
                                 },
                                 child: Container(
                                   alignment: Alignment.center,
                                   height: 50.0,
                                   child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
                                     children: <Widget>[
                                       Row(
                                         children: <Widget>[
@@ -454,14 +492,10 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                           )
                                         ],
                                       ),
-                                      Text(
-                                          "  Change",
-                                          style: purpleThickStyle
-                                      ),
+                                      Text("  Change", style: purpleThickStyle),
                                     ],
                                   ),
                                 ),
-                                color: Colors.white,
                               ),
                             ),
                           ]),
@@ -476,71 +510,96 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text('Are you funding this goal with people?',style: purple18Style,textAlign: TextAlign.center,),
-
+                            Text(
+                              'Are you funding this goal with people?',
+                              style: purple18Style,
+                              textAlign: TextAlign.center,
+                            ),
                             Container(
-                                height: MediaQuery.of(context).size.height * 0.1,
+                                height:
+                                    MediaQuery.of(context).size.height * 0.1,
                                 width: MediaQuery.of(context).size.width * 0.8,
-                                child:Row(
+                                child: Row(
                                   mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
                                     Container(
-                                      alignment: Alignment.center,color: accent,
+                                      alignment: Alignment.center,
+                                      color: accent,
                                       child: ButtonTheme(
-                                          minWidth: MediaQuery.of(context).size.width *0.35,
+                                          minWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.35,
                                           height: 50.0,
-                                          child:OutlineButton(
-                                            color: accent,
-                                            child: Text('No, it’s just me',style: green14Style,textAlign: TextAlign.center,),
-                                            onPressed: () => {
-                                              Navigator.pushNamed(context, '/kycUpload')
-                                            }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: paydayGreen,
-                                              style: BorderStyle.solid,
-                                              width: 0.8,
+                                          child: OutlinedButton(
+                                            style: OutlinedButton.styleFrom(
+                                              shape: buttonShape,
+                                              backgroundColor: paydayGreen,
+                                              side: BorderSide(
+                                                color: paydayGreen,
+                                                style: BorderStyle.solid,
+                                                width: 0.8,
+                                              ),
+                                              elevation: 0.8,
                                             ),
-                                            highlightElevation: 0.8,
-                                          )
-                                      ),
-                                      width: MediaQuery.of(context).size.width * 0.35,
+                                            child: Text(
+                                              'No, it’s just me',
+                                              style: green14Style,
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            onPressed: () => {
+                                              Navigator.pushNamed(
+                                                  context, '/kycUpload')
+                                            }, //callback when button is clicked
+                                          )),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.35,
                                       height: 50,
                                     ),
                                     Container(
-                                      alignment: Alignment.center,color: accent,
+                                      alignment: Alignment.center,
+                                      color: accent,
                                       child: ButtonTheme(
-                                          minWidth: MediaQuery.of(context).size.width *0.35,
+                                          minWidth: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.35,
                                           height: 50.0,
-                                          child:OutlineButton(
-                                            color: accent,
-                                            child: Text('Yes, I’m setting up a Group Goal',style: gray14Style,),
-                                            onPressed: () => {
-                                              Navigator.pushNamed(context, '/kycUpload')
-                                            }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: paydayGray,
-                                              style: BorderStyle.solid,
-                                              width: 0.8,
+                                          child: OutlinedButton(
+                                            child: Text(
+                                              'Yes, I’m setting up a Group Goal',
+                                              style: gray14Style,
                                             ),
-                                            highlightElevation: 0.8,
-                                          )
-
-                                      ),
-                                      width: MediaQuery.of(context).size.width * 0.35,
+                                            onPressed: () => {
+                                              Navigator.pushNamed(
+                                                  context, '/kycUpload')
+                                            },
+                                            style: OutlinedButton.styleFrom(
+                                              shape: buttonShape,
+                                              backgroundColor: accent,
+                                              side: BorderSide(
+                                                color: paydayGray,
+                                                style: BorderStyle.solid,
+                                                width: 0.8,
+                                              ),
+                                              elevation: 0.8,
+                                            ),
+                                          )),
+                                      width: MediaQuery.of(context).size.width *
+                                          0.35,
                                       height: 50,
                                     ),
                                   ],
-                                )
-                            ),
+                                )),
                           ]),
                     ),
                   ],
                 ),
               ),
             ),
-
             AnimatedPositioned(
               top: groupGoalInviteSetupTop,
               right: 0,
@@ -559,7 +618,10 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                         url: groupGoalIcon,
                         time: Duration(seconds: 2),
                         width: MediaQuery.of(context).size.width * 0.2,
-                        beginx:0.04,endx: -0, beginy: 0,endy: -0.0,
+                        beginx: 0.04,
+                        endx: -0,
+                        beginy: 0,
+                        endy: -0.0,
                         height: MediaQuery.of(context).size.height * 0.1,
                         transition: PositionedTransition,
                       ),
@@ -579,7 +641,9 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           Container(
                             width: MediaQuery.of(context).size.width * 0.02,
                           ),
-                          Image(image: AssetImage(infoIcon),),
+                          Image(
+                            image: AssetImage(infoIcon),
+                          ),
                         ],
                       ),
                     ),
@@ -605,8 +669,11 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           children: [
                             Container(
                               padding: EdgeInsets.fromLTRB(18, 0, 18, 0),
-                              child:Text('Enter the email address of the people you’d like to invite to join in investing towards this goal.',
-                                style: purple18Style,textAlign: TextAlign.center,),
+                              child: Text(
+                                'Enter the email address of the people you’d like to invite to join in investing towards this goal.',
+                                style: purple18Style,
+                                textAlign: TextAlign.center,
+                              ),
                             ),
                             Container(
                               height: MediaQuery.of(context).size.height * 0.04,
@@ -618,7 +685,10 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: MediaQuery.of(context).size.height * 0.05,
                               child: TextField(
-                                decoration: InputDecoration(hintText: 'mail@example.com',),textAlign: TextAlign.center,
+                                decoration: InputDecoration(
+                                  hintText: 'mail@example.com',
+                                ),
+                                textAlign: TextAlign.center,
                               ),
                             ),
                           ]),
@@ -633,8 +703,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                           backgroundColor: paydayGreen,
                           child: Icon(Icons.add),
                         ),
-                        label: Text('Add more people'),backgroundColor: accent,
-
+                        label: Text('Add more people'),
+                        backgroundColor: accent,
                       ),
                     ),
                     Container(
@@ -644,18 +714,21 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                 ),
               ),
             ),
-
-            if(showSkip)AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.64,
-              width: MediaQuery.of(context).size.width,
-              duration: Duration(seconds: 1),
-              child: Container(
+            if (showSkip)
+              AnimatedPositioned(
+                top: MediaQuery.of(context).size.height * 0.64,
                 width: MediaQuery.of(context).size.width,
-                alignment: Alignment.center,
-                child: Text('skip, continue later',style: footerGreenBiggerStyle,),
-                height: MediaQuery.of(context).size.height * 0.1,),
-            ),
-
+                duration: Duration(seconds: 1),
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  alignment: Alignment.center,
+                  child: Text(
+                    'skip, continue later',
+                    style: footerGreenBiggerStyle,
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+              ),
             AnimatedPositioned(
               top: MediaQuery.of(context).size.height * 0.7,
               width: MediaQuery.of(context).size.width,
@@ -666,45 +739,64 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                 child: ButtonTheme(
                     minWidth: MediaQuery.of(context).size.width * 0.85,
                     height: 50.0,
-                    child: RaisedButton(
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: paydayGreen,
+                      ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: 50,
+                          ),
                           Text(
                             'Proceed',
                             style: lightBodyStyle,
                           ),
-                          Container( width: MediaQuery.of(context).size.width *0.3,height: 50,),
-                          Image(width: 50, height: 50, image: AssetImage(nextIcon),)
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.3,
+                            height: 50,
+                          ),
+                          Image(
+                            width: 50,
+                            height: 50,
+                            image: AssetImage(nextIcon),
+                          )
                         ],
                       ),
                       onPressed: () {
                         setState(() {
                           _currentPage = ++_currentPage % 3;
-                          switch(_currentPage){
+                          switch (_currentPage) {
                             case 0:
                               goalNameSetupTop = 0;
-                              goalAmountSetupTop = -MediaQuery.of(context).size.height * 1.2;
-                              groupGoalInviteSetupTop = -MediaQuery.of(context).size.height * 1.2;
+                              goalAmountSetupTop =
+                                  -MediaQuery.of(context).size.height * 1.2;
+                              groupGoalInviteSetupTop =
+                                  -MediaQuery.of(context).size.height * 1.2;
                               break;
                             case 1:
-                              goalNameSetupTop = MediaQuery.of(context).size.height * 1.2;
+                              goalNameSetupTop =
+                                  MediaQuery.of(context).size.height * 1.2;
                               goalAmountSetupTop = 0;
-                              groupGoalInviteSetupTop = -MediaQuery.of(context).size.height * 1.2;
+                              groupGoalInviteSetupTop =
+                                  -MediaQuery.of(context).size.height * 1.2;
                               break;
                             case 2:
                               showSkip = true;
-                              goalNameSetupTop = MediaQuery.of(context).size.height * 1.2;;
-                              goalAmountSetupTop = MediaQuery.of(context).size.height * 1.2;
+                              goalNameSetupTop =
+                                  MediaQuery.of(context).size.height * 1.2;
+                              ;
+                              goalAmountSetupTop =
+                                  MediaQuery.of(context).size.height * 1.2;
                               groupGoalInviteSetupTop = 0;
                               break;
                           }
                         });
                       },
-                      color: paydayGreen,
                     )),
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
@@ -713,7 +805,6 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
         ),
         body: Scaffold(
           body: Stack(
-            overflow: Overflow.visible,
             children: <Widget>[
               AnimatedPositioned(
                 top: 0,
@@ -725,9 +816,9 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                       width: MediaQuery.of(context).size.width,
                       decoration: new BoxDecoration(
                           image: new DecorationImage(
-                            fit: BoxFit.fill,
-                            image: AssetImage(bgMain),
-                          ))),
+                        fit: BoxFit.fill,
+                        image: AssetImage(bgMain),
+                      ))),
                   transition: Transform,
                   animPattern: Curves.easeIn,
                   pixle: Colors.transparent,
@@ -750,6 +841,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                         Row(
                           children: <Widget>[
                             IconButton(
+                              onPressed: () {},
                               icon: Icon(
                                 Icons.arrow_back_ios,
                                 size: 30,
@@ -766,7 +858,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                     time: Duration(seconds: 3), beginx: 0.03,
                                     endx: -0, beginy: 0.2, endy: -0.0,
                                     width:
-                                    MediaQuery.of(context).size.width * 0.3,
+                                        MediaQuery.of(context).size.width * 0.3,
                                     //height: MediaQuery.of(context).size.height * 0.3,
                                     transition: PositionedTransition,
                                   ),
@@ -777,7 +869,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                   animType: "nothing",
                                   xAxis: -MediaQuery.of(context).size.width * 0,
                                   yAxis:
-                                  -MediaQuery.of(context).size.height * 0,
+                                      -MediaQuery.of(context).size.height * 0,
                                 ),
                               ),
                             ),
@@ -828,26 +920,26 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                   url: targetIcon,
                                   time: Duration(seconds: 2),
                                   width:
-                                  MediaQuery.of(context).size.width * 0.8,
+                                      MediaQuery.of(context).size.width * 0.8,
                                   beginx: 0.03,
                                   endx: -0,
                                   beginy: 0,
                                   endy: -0.0,
                                   height:
-                                  MediaQuery.of(context).size.height * 0.1,
+                                      MediaQuery.of(context).size.height * 0.1,
                                   transition: PositionedTransition,
                                 ),
                                 imgAnimation2(
                                   url: arrowIcon,
                                   time: Duration(seconds: 2),
                                   width:
-                                  MediaQuery.of(context).size.width * 0.8,
+                                      MediaQuery.of(context).size.width * 0.8,
                                   beginx: 0.05,
                                   endx: 0.15,
                                   beginy: -0.15,
                                   endy: -0.3,
                                   height:
-                                  MediaQuery.of(context).size.height * 0.1,
+                                      MediaQuery.of(context).size.height * 0.1,
                                   transition: PositionedTransition,
                                 )
                               ],
@@ -867,7 +959,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               children: <Widget>[
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
@@ -875,8 +967,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                       width: MediaQuery.of(context).size.width *
                                           0.08,
                                       height:
-                                      MediaQuery.of(context).size.height *
-                                          0.08,
+                                          MediaQuery.of(context).size.height *
+                                              0.08,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -890,35 +982,49 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                       color: accent,
                                       child: ButtonTheme(
                                           minWidth:
-                                          MediaQuery.of(context).size.width,
+                                              MediaQuery.of(context).size.width,
                                           height: MediaQuery.of(context)
-                                              .size
-                                              .height *
+                                                  .size
+                                                  .height *
                                               0.1,
                                           buttonColor: accent,
-                                          child: OutlineButton(
-                                            color: accent,
-                                            child: Text('Yes, I want to setup a goal',style: dark16Style,),
+                                          child: OutlinedButton(
+                                            child: Text(
+                                              'Yes, I want to setup a goal',
+                                              style: dark16Style,
+                                            ),
                                             onPressed: () => {
                                               setState(() {
                                                 panelController.show();
-                                                maximumHeight = MediaQuery.of(context).size.height * 0.8;
-                                                initialHeight = MediaQuery.of(context).size.height * 0.8;
+                                                maximumHeight =
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.8;
+                                                initialHeight =
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        0.8;
                                               })
-                                            }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: accent,
-                                              style: BorderStyle.solid,
-                                              width: 0.8,
+                                            },
+                                            style: OutlinedButton.styleFrom(
+                                              shape: buttonShape,
+                                              backgroundColor: accent,
+                                              side: BorderSide(
+                                                color: accent,
+                                                style: BorderStyle.solid,
+                                                width: 0.8,
+                                              ),
+                                              elevation: 0.8,
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                   ],
                                 ),
                                 Row(
                                   mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
+                                      MainAxisAlignment.spaceAround,
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: <Widget>[
@@ -926,8 +1032,8 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                       width: MediaQuery.of(context).size.width *
                                           0.08,
                                       height:
-                                      MediaQuery.of(context).size.height *
-                                          0.08,
+                                          MediaQuery.of(context).size.height *
+                                              0.08,
                                       alignment: Alignment.center,
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
@@ -941,14 +1047,13 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                       color: accent,
                                       child: ButtonTheme(
                                           minWidth:
-                                          MediaQuery.of(context).size.width,
+                                              MediaQuery.of(context).size.width,
                                           height: MediaQuery.of(context)
-                                              .size
-                                              .height *
+                                                  .size
+                                                  .height *
                                               0.1,
                                           buttonColor: accent,
-                                          child: OutlineButton(
-                                            color: accent,
+                                          child: OutlinedButton(
                                             child: Text(
                                               'Yes, I want to setup a goal',
                                               style: dark16Style,
@@ -956,13 +1061,17 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                             onPressed: () => {
                                               Navigator.pushNamed(
                                                   context, '/kycUpload')
-                                            }, //callback when button is clicked
-                                            borderSide: BorderSide(
-                                              color: accent,
-                                              style: BorderStyle.solid,
-                                              width: 0.8,
+                                            },
+                                            style: OutlinedButton.styleFrom(
+                                              shape: buttonShape,
+                                              backgroundColor: accent,
+                                              side: BorderSide(
+                                                color: accent,
+                                                style: BorderStyle.solid,
+                                                width: 0.8,
+                                              ),
+                                              elevation: 0.8,
                                             ),
-                                            highlightElevation: 0.8,
                                           )),
                                     ),
                                   ],
@@ -984,7 +1093,10 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                             child: ButtonTheme(
                                 minWidth: MediaQuery.of(context).size.width,
                                 height: 50.0,
-                                child: RaisedButton(
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    backgroundColor: paydayGreen,
+                                  ),
                                   child: Text(
                                     'Proceed',
                                     style: lightBodyStyle,
@@ -992,7 +1104,6 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                   onPressed: () {
                                     setState(() {});
                                   },
-                                  color: paydayGreen,
                                 )),
                             width: MediaQuery.of(context).size.width,
                             height: MediaQuery.of(context).size.height * 0.1,

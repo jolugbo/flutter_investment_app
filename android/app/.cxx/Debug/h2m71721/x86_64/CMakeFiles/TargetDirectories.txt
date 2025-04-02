@@ -1,0 +1,2 @@
+C:/Users/Olufemi/source/repos/flutter_investment_app-master/flutter_investment_app-master/android/app/.cxx/Debug/h2m71721/x86_64/CMakeFiles/edit_cache.dir
+C:/Users/Olufemi/source/repos/flutter_investment_app-master/flutter_investment_app-master/android/app/.cxx/Debug/h2m71721/x86_64/CMakeFiles/rebuild_cache.dir

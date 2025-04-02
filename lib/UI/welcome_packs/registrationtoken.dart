@@ -5,9 +5,8 @@ import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/styles.dart';
 
 class registerationTokenPage extends StatefulWidget {
-  registerationTokenPage({Key key, this.title}) : super(key: key);
+  registerationTokenPage();
 
-  final String title;
 
 
   @override
@@ -23,7 +22,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
 
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
     //WidgetsBinding.instance.addPostFrameCallback((_) => doMotion());
   }
@@ -34,7 +33,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
     tokenEntryWidth = MediaQuery.of(context).size.width * 0.12;
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
@@ -69,6 +68,9 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                 child: Row(
                   children: <Widget>[
                     IconButton(
+                      onPressed: () {
+                        
+                      },
                       icon: Icon(
                         Icons.arrow_back_ios,size: 30,
                         color: paydayDark,

@@ -51,19 +51,19 @@ Tuple2<Uint8List, Uint8List> deriveKeyAndIV(String passphrase, Uint8List salt) {
   bool enoughBytesForKey = false;
   Uint8List preHash = Uint8List(0);
 
-  while (!enoughBytesForKey) {
-    int preHashLength = currentHash.length + password.length + salt.length;
-    if (currentHash.length > 0)
-      preHash = Uint8List.fromList(
-          currentHash + password + salt);
-    else
-      preHash = Uint8List.fromList(
-          password + salt);
+  // while (!enoughBytesForKey) {
+  //   int preHashLength = currentHash.length + password.length + salt.length;
+  //   if (currentHash.length > 0)
+  //     preHash = Uint8List.fromList(
+  //         currentHash + password + salt);
+  //   else
+  //     preHash = Uint8List.fromList(
+  //         password + salt);
 
-    currentHash = md5.convert(preHash).bytes;
-    concatenatedHashes = Uint8List.fromList(concatenatedHashes + currentHash);
-    if (concatenatedHashes.length >= 48) enoughBytesForKey = true;
-  }
+  //   currentHash = md5.convert(preHash).bytes;
+  //   concatenatedHashes = Uint8List.fromList(concatenatedHashes + currentHash);
+  //   if (concatenatedHashes.length >= 48) enoughBytesForKey = true;
+  // }
 
   var keyBtyes = concatenatedHashes.sublist(0, 32);
   var ivBtyes = concatenatedHashes.sublist(32, 48);

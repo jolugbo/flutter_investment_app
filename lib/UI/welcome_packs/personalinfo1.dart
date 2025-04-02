@@ -6,9 +6,8 @@ import 'package:payday_investor/utills/styles.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class personalinfo1Page extends StatefulWidget {
-  personalinfo1Page({Key key, this.title}) : super(key: key);
+  personalinfo1Page();
 
-  final String title;
 
 
   @override
@@ -24,9 +23,8 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
 
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
-    //WidgetsBinding.instance.addPostFrameCallback((_) => doMotion());
   }
 
   @override
@@ -35,7 +33,7 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
     tokenEntryWidth = MediaQuery.of(context).size.width * 0.12;
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
+        //overflow: Overflow.visible,
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
@@ -72,6 +70,9 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                     Row(
                       children: <Widget>[
                         IconButton(
+                          onPressed: () {
+                            
+                          },
                           icon: Icon(
                             Icons.arrow_back_ios,size: 30,
                             color: paydayDark,
@@ -223,8 +224,11 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                         child: ButtonTheme(
                             minWidth: MediaQuery.of(context).size.width,
                             height: 50.0,
-                            child: RaisedButton(
-                              shape: buttonShape,
+                            child: ElevatedButton(
+  style: ElevatedButton.styleFrom(
+    shape: buttonShape, // Button shape
+    backgroundColor: paydayGreen, // Button color
+  ),
                               child: Text(
                                 'Confirm & Proceed',
                                 style: lightBodyStyle,
@@ -233,7 +237,6 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                                 Navigator.pushNamed(
                                     context, '/personalinfo2');
                               },
-                              color: paydayGreen,
                             )),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.1,

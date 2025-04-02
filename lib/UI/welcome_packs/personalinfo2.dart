@@ -1,17 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
 import 'package:payday_investor/utills/imageanimations.dart';
 import 'package:payday_investor/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class personalinfo2Page extends StatefulWidget {
-  personalinfo2Page({Key key, this.title}) : super(key: key);
-
-  final String title;
-
+  personalinfo2Page();
 
   @override
   _Personalinfo2PageState createState() => _Personalinfo2PageState();
@@ -24,10 +20,10 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
   String houseIcon = 'assets/house.png';
   String bgMain = 'assets/purplebg.png';
   String _date = 'yyyy/mm/dd';
-  String _currentSelectedItem = 'Lagos';
+  String? _currentSelectedItem = 'Lagos';
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
     //WidgetsBinding.instance.addPostFrameCallback((_) => doMotion());
   }
@@ -37,7 +33,6 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
     var parser = EmojiParser();
     return Scaffold(
       body: Stack(
-        overflow: Overflow.visible,
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
@@ -49,9 +44,9 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                   width: MediaQuery.of(context).size.width,
                   decoration: new BoxDecoration(
                       image: new DecorationImage(
-                        fit: BoxFit.fill,
-                        image: AssetImage(bgMain),
-                      ))),
+                    fit: BoxFit.fill,
+                    image: AssetImage(bgMain),
+                  ))),
               transition: Transform,
               animPattern: Curves.easeIn,
               pixle: Colors.transparent,
@@ -74,8 +69,10 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                     Row(
                       children: <Widget>[
                         IconButton(
+                          onPressed: () {},
                           icon: Icon(
-                            Icons.arrow_back_ios,size: 30,
+                            Icons.arrow_back_ios,
+                            size: 30,
                             color: paydayDark,
                           ),
                         ),
@@ -86,7 +83,8 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                             child: WidgetAnimator(
                               component: imgAnimation2(
                                 url: leafIcon,
-                                time: Duration(seconds: 3),beginx:0.0 ,endx: -0, beginy: 0 ,endy: -0.0,
+                                time: Duration(seconds: 3), beginx: 0.0,
+                                endx: -0, beginy: 0, endy: -0.0,
                                 width: MediaQuery.of(context).size.width * 0.3,
                                 //height: MediaQuery.of(context).size.height * 0.3,
                                 transition: PositionedTransition,
@@ -110,7 +108,8 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
               top: MediaQuery.of(context).size.height * 0.1,
               duration: Duration(seconds: 1),
               child: Container(
-                  padding: EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                  padding:
+                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
                   alignment: Alignment.topLeft,
                   width: MediaQuery.of(context).size.width,
                   child: Column(
@@ -118,9 +117,11 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
-                      Text('Confirm your details',
+                      Text(
+                        'Confirm your details',
                         style: dark18Style,
-                        textAlign: TextAlign.left,),
+                        textAlign: TextAlign.left,
+                      ),
                       Text(
                         'Personal Information',
                         style: purple28Style,
@@ -143,28 +144,34 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.04,
-                        child:
-                        Text('Date of Birth',style: purple14Style,),
+                        child: Text(
+                          'Date of Birth',
+                          style: purple14Style,
+                        ),
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.05,
                         width: MediaQuery.of(context).size.width,
-                        child:RaisedButton(
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(5.0)),
-                          elevation: 4.0,
-                          onPressed: () {
-                            DatePicker.showDatePicker(context,
-                                theme: DatePickerTheme(
-                                  containerHeight: 210.0,
-                                ),
-                                showTitleActions: true,
-                                minTime: DateTime(2000, 1, 1),
-                                maxTime: DateTime(2022, 12, 31), onConfirm: (date) {
-                                  print('confirm $date');
-                                  _date = '${date.year} - ${date.month} - ${date.day}';
-                                  setState(() {});
-                                }, currentTime: DateTime.now(), locale: LocaleType.en);
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            shape: buttonShape, // Button shape
+                            backgroundColor: accent, // Button color
+                          ),
+                          onPressed: () async {
+                            DateTime? pickedDate = await showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000, 1, 1),
+                              lastDate: DateTime(2022, 12, 31),
+                            );
+
+                            if (pickedDate != null) {
+                              print('confirm $pickedDate');
+                              setState(() {
+                                _date =
+                                    '${pickedDate.year} - ${pickedDate.month} - ${pickedDate.day}';
+                              });
+                            }
                           },
                           child: Container(
                             alignment: Alignment.center,
@@ -198,7 +205,6 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               ],
                             ),
                           ),
-                          color: Colors.white,
                         ),
                       ),
                       Container(
@@ -218,23 +224,27 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               isExpanded: true,
                               elevation: 15,
                               value: _currentSelectedItem,
-                              hint: Text('Select State',textAlign: TextAlign.right,),
+                              hint: Text(
+                                'Select State',
+                                textAlign: TextAlign.right,
+                              ),
                               underline: Container(
                                 height: 1.2,
                                 color: paydayDark,
                               ),
                               items: [
                                 DropdownMenuItem(
-                                  child: Padding(
-                                    padding: const EdgeInsets.only(left: 30.0),
-                                    child: Text("Lagos"),
-                                  ),
-                                  value: 'Lagos'
-                                ),
+                                    child: Padding(
+                                      padding:
+                                          const EdgeInsets.only(left: 30.0),
+                                      child: Text("Lagos"),
+                                    ),
+                                    value: 'Lagos'),
                                 DropdownMenuItem(
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 30.0),
-                                    child: Text("Imo"),),
+                                    child: Text("Imo"),
+                                  ),
                                   value: "Imo",
                                 ),
                                 DropdownMenuItem(
@@ -246,11 +256,11 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                                 ),
                                 DropdownMenuItem(
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 30.0),
+                                      padding:
+                                          const EdgeInsets.only(left: 30.0),
                                       child: Text("Abuja"),
                                     ),
-                                    value: 'Abuja'
-                                )
+                                    value: 'Abuja')
                               ],
                               onChanged: (value) {
                                 setState(() {
@@ -261,37 +271,41 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                           ),
                           Container(
                               margin: EdgeInsets.only(top: 15.0, left: 2.0),
-                              child: Image(image: AssetImage(nestIcon),)
-                          ),
+                              child: Image(
+                                image: AssetImage(nestIcon),
+                              )),
                         ],
                       ),
                       Container(
                         height: MediaQuery.of(context).size.height * 0.04,
                       ),
                       Container(
-                        child:Column(
+                        child: Column(
                           mainAxisSize: MainAxisSize.max,
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              'Current Home Address',style: purple14Style,
+                              'Current Home Address',
+                              style: purple14Style,
                             ),
                             TextField(
                               textAlignVertical: TextAlignVertical.bottom,
                               textAlign: TextAlign.left,
                               maxLines: 1,
                               style: TextStyle(
-                                //fontSize: 13,
-                              ),
+                                  //fontSize: 13,
+                                  ),
                               cursorColor: paydayGreen,
                               decoration: InputDecoration(
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
-                              ),),
+                                focusedBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(color: paydayGreen),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-
                       Container(
                         height: MediaQuery.of(context).size.height * 0.04,
                       ),
@@ -309,7 +323,10 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               isExpanded: true,
                               elevation: 15,
                               value: _currentSelectedItem,
-                              hint: Text('Select State',textAlign: TextAlign.right,),
+                              hint: Text(
+                                'Select State',
+                                textAlign: TextAlign.right,
+                              ),
                               underline: Container(
                                 height: 1.2,
                                 color: paydayDark,
@@ -317,15 +334,16 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               items: [
                                 DropdownMenuItem(
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 30.0),
+                                      padding:
+                                          const EdgeInsets.only(left: 30.0),
                                       child: Text("Lagos"),
                                     ),
-                                    value: 'Lagos'
-                                ),
+                                    value: 'Lagos'),
                                 DropdownMenuItem(
                                   child: Padding(
                                     padding: const EdgeInsets.only(left: 30.0),
-                                    child: Text("Imo"),),
+                                    child: Text("Imo"),
+                                  ),
                                   value: "Imo",
                                 ),
                                 DropdownMenuItem(
@@ -337,11 +355,11 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                                 ),
                                 DropdownMenuItem(
                                     child: Padding(
-                                      padding: const EdgeInsets.only(left: 30.0),
+                                      padding:
+                                          const EdgeInsets.only(left: 30.0),
                                       child: Text("Abuja"),
                                     ),
-                                    value: 'Abuja'
-                                )
+                                    value: 'Abuja')
                               ],
                               onChanged: (value) {
                                 setState(() {
@@ -352,8 +370,9 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                           ),
                           Container(
                               margin: EdgeInsets.only(top: 15.0, left: 2.0),
-                              child: Image(image: AssetImage(houseIcon),)
-                          ),
+                              child: Image(
+                                image: AssetImage(houseIcon),
+                              )),
                         ],
                       ),
                       Container(
@@ -361,17 +380,18 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                         child: ButtonTheme(
                             minWidth: MediaQuery.of(context).size.width,
                             height: 50.0,
-                            child: RaisedButton(
-                              shape: buttonShape,
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                shape: buttonShape, // Button shape
+                                backgroundColor: paydayGreen, // Button color
+                              ),
                               child: Text(
                                 'Confirm & Proceed',
                                 style: lightBodyStyle,
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/personalinfo3');
+                                Navigator.pushNamed(context, '/personalinfo3');
                               },
-                              color: paydayGreen,
                             )),
                         width: MediaQuery.of(context).size.width,
                         height: MediaQuery.of(context).size.height * 0.1,
@@ -382,7 +402,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
               top: MediaQuery.of(context).size.height * 0.92,
               duration: Duration(seconds: 1),
               child: Container(
-                //color: Colors.red,
+                  //color: Colors.red,
                   alignment: Alignment.center,
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width,

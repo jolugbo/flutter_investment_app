@@ -5,13 +5,13 @@ import 'package:animator/animator.dart';
 
 
 class WidgetAnimator extends StatefulWidget {
-  WidgetAnimator({Key key, this.animType, this.component,this.test,this.scaleSize,this.time,this.animPattern,this.pixle,this.xAxis,this.yAxis,this.transition}) : super(key: key);
+  WidgetAnimator({Key? key, required this.animType, required this.component,this.test,this.scaleSize = 1,required this.time,required this.animPattern,required this.pixle,required this.xAxis,required this.yAxis,required this.transition}) : super(key: key);
   final String animType;
   final Widget component;
   final Duration time;
   final double yAxis;
   final double xAxis;
-  final double scaleSize;
+  double scaleSize;
   final Curve animPattern;
   final Color pixle;
   final Type transition;
@@ -61,26 +61,27 @@ class WidgetAnimatorState extends State<WidgetAnimator> {
   }
 }
 
-class imgAnimation extends AnimatedWidget{
-  const imgAnimation({Key key, AnimationController controller})
-      : super(key: key, listenable: controller,);
-  Animation<double> get _progress => listenable;
+class ImgAnimation extends AnimatedWidget {
+  const ImgAnimation({Key? key, required AnimationController controller})
+      : super(key: key, listenable: controller);
+
+  Animation<double> get _progress => listenable as Animation<double>;
+
   @override
   Widget build(BuildContext context) {
-    return
-      Transform.scale(
-        scale: _progress.value+1,
-        child: Image(width: MediaQuery.of(context).size.height * 0.4, height: MediaQuery.of(context).size.height * 0.25, image: AssetImage(
-            'assets/femi.png'
-        )),
-
-      );
+    return Transform.scale(
+      scale: _progress.value + 1, // Now _progress is correctly cast to Animation<double>
+      child: Image(
+        width: MediaQuery.of(context).size.height * 0.4,
+        height: MediaQuery.of(context).size.height * 0.25,
+        image: const AssetImage('assets/femi.png'),
+      ),
+    );
   }
-
 }
 
 class ComponentAnimation extends StatelessWidget{
-  ComponentAnimation({Key key, this.component,this.time,this.width,this.height,this.transition}) : super(key: key);
+  ComponentAnimation({Key? key, required this.component,required this.time,required this.width,required this.height,required this.transition}) : super(key: key);
   final Widget component;
   final Duration time;
   final double width;
@@ -141,12 +142,13 @@ class ComponentAnimation extends StatelessWidget{
         ),
       );
     }
+    return Center();
   }
 }
 
 
 class imgAnimation2 extends StatelessWidget{
-  imgAnimation2({Key key, this.url,this.time,this.width,this.height,this.transition,this.beginx,this.endx,this.beginy,this.endy}) : super(key: key);
+  imgAnimation2({Key? key, required this.url,required this.time,required this.width, this.height = 10,required this.transition,required this.beginx,required this.endx,required this.beginy,required this.endy}) : super(key: key);
   final String url;
   final Duration time;
   final double width;
@@ -156,6 +158,7 @@ class imgAnimation2 extends StatelessWidget{
   final double beginy;
   final double endy;
   final Type transition;
+
   Widget build(BuildContext context) {
     if(transition == RotationTransition){
     return Animator<double>(
@@ -218,5 +221,6 @@ class imgAnimation2 extends StatelessWidget{
         ),
       );
     }
+    return Center();
   }
 }

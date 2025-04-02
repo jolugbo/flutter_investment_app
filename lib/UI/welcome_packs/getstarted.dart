@@ -7,9 +7,7 @@ import 'package:payday_investor/utills/styles.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class getStartedPage extends StatefulWidget {
-  getStartedPage({Key key, this.title}) : super(key: key);
-
-  final String title;
+  getStartedPage();
 
   @override
   _GetStartedPageState createState() => _GetStartedPageState();
@@ -35,10 +33,10 @@ class _GetStartedPageState extends State<getStartedPage>
   double sliderPosition = 1.2;
   double initialHeight = 0;
   PanelController panelController = PanelController();
-  Widget slider;
+  Widget slider = Container();
 
   @override
-  State<StatefulWidget> initState() {
+  void initState() {
     super.initState();
   }
 
@@ -48,11 +46,9 @@ class _GetStartedPageState extends State<getStartedPage>
       topLeft: Radius.circular(24.0),
       topRight: Radius.circular(24.0),
     );
-    return
-      Material(
+    return Material(
       child: Scaffold(
         body: Stack(
-          overflow: Overflow.visible,
           children: <Widget>[
             AnimatedPositioned(
               top: MediaQuery.of(context).size.height * 0.25,
@@ -65,7 +61,11 @@ class _GetStartedPageState extends State<getStartedPage>
                   width: MediaQuery.of(context).size.width,
                   child: imgAnimation2(
                     url: bgMain2,
-                    time: Duration(seconds: 2),beginx:0.1,endx: -0, beginy: -0.04,endy: 0,
+                    time: Duration(seconds: 2),
+                    beginx: 0.1,
+                    endx: -0,
+                    beginy: -0.04,
+                    endy: 0,
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     transition: PositionedTransition,
@@ -94,6 +94,7 @@ class _GetStartedPageState extends State<getStartedPage>
                       Row(
                         children: <Widget>[
                           IconButton(
+                            onPressed: () {},
                             icon: Icon(
                               Icons.arrow_back_ios,
                               size: 30,
@@ -106,9 +107,14 @@ class _GetStartedPageState extends State<getStartedPage>
                               tag: "iconTag",
                               child: WidgetAnimator(
                                 component: imgAnimation2(
-                                  url: leafIcon,beginx:0.0,endx: -0, beginy: 0,endy: -0.0,
+                                  url: leafIcon,
+                                  beginx: 0.0,
+                                  endx: -0,
+                                  beginy: 0,
+                                  endy: -0.0,
                                   time: Duration(seconds: 3),
-                                  width: MediaQuery.of(context).size.width * 0.3,
+                                  width:
+                                      MediaQuery.of(context).size.width * 0.3,
                                   transition: PositionedTransition,
                                 ),
                                 transition: Transform,
@@ -130,7 +136,7 @@ class _GetStartedPageState extends State<getStartedPage>
                 top: MediaQuery.of(context).size.height * 0.92,
                 duration: Duration(seconds: 1),
                 child: Container(
-                  //color: Colors.red,
+                    //color: Colors.red,
                     alignment: Alignment.center,
                     height: MediaQuery.of(context).size.height * 0.1,
                     width: MediaQuery.of(context).size.width,
@@ -178,9 +184,10 @@ class _GetStartedPageState extends State<getStartedPage>
                           height: MediaQuery.of(context).size.height * 0.01,
                         ),
                         Container(
-                            child: Text('Your PayDay Investor account has been setup successfully. \n',
-                              style: purple18Style,
-                            )),
+                            child: Text(
+                          'Your PayDay Investor account has been setup successfully. \n',
+                          style: purple18Style,
+                        )),
                         Container(
                           alignment: Alignment.center,
                           child: Image(
@@ -188,10 +195,15 @@ class _GetStartedPageState extends State<getStartedPage>
                           ),
                         ),
                         Container(
-                            padding: EdgeInsets.fromLTRB(0,MediaQuery.of(context).size.height * 0.02,0,MediaQuery.of(context).size.width * 0.02),
+                            padding: EdgeInsets.fromLTRB(
+                                0,
+                                MediaQuery.of(context).size.height * 0.02,
+                                0,
+                                MediaQuery.of(context).size.width * 0.02),
                             child: Text(
                               'Your investment account is restricted to the following financial thresholds:',
-                              style: purple16Style,textAlign: TextAlign.left,
+                              style: purple16Style,
+                              textAlign: TextAlign.left,
                             )),
                         Container(
                           alignment: Alignment.center,
@@ -203,8 +215,13 @@ class _GetStartedPageState extends State<getStartedPage>
                                 Container(
                                   child: Row(
                                     children: <Widget>[
-                                      Icon(Icons.check,color: paydayGreen,),
-                                      Text(' Single maximum deposit of N20,000  ',style: purple16Style),
+                                      Icon(
+                                        Icons.check,
+                                        color: paydayGreen,
+                                      ),
+                                      Text(
+                                          ' Single maximum deposit of N20,000  ',
+                                          style: purple16Style),
                                     ],
                                   ),
                                 ),
@@ -212,8 +229,13 @@ class _GetStartedPageState extends State<getStartedPage>
                                   //height: MediaQuery.of(context).size.height * 0.05,
                                   child: Row(
                                     children: <Widget>[
-                                      Icon(Icons.check,color: paydayGreen,),
-                                      Text(' Single maximum withdrawal of N30,000  ',style: purple16Style),
+                                      Icon(
+                                        Icons.check,
+                                        color: paydayGreen,
+                                      ),
+                                      Text(
+                                          ' Single maximum withdrawal of N30,000  ',
+                                          style: purple16Style),
                                     ],
                                   ),
                                 ),
@@ -221,8 +243,12 @@ class _GetStartedPageState extends State<getStartedPage>
                                   //height: MediaQuery.of(context).size.height * 0.05,
                                   child: Row(
                                     children: <Widget>[
-                                      Icon(Icons.check,color: paydayGreen,),
-                                      Text(' Maximum balance of N1,000,000 ',style: purple16Style),
+                                      Icon(
+                                        Icons.check,
+                                        color: paydayGreen,
+                                      ),
+                                      Text(' Maximum balance of N1,000,000 ',
+                                          style: purple16Style),
                                     ],
                                   ),
                                 ),
@@ -233,23 +259,31 @@ class _GetStartedPageState extends State<getStartedPage>
                         ),
                         Container(
                             child: Text(
-                              'Upgrade your profile to unleash the full potential of your PayDay Investor account',
-                              style: purple16Style,
-                              textAlign: TextAlign.left,
-                            )),
+                          'Upgrade your profile to unleash the full potential of your PayDay Investor account',
+                          style: purple16Style,
+                          textAlign: TextAlign.left,
+                        )),
                         Container(
                           height: MediaQuery.of(context).size.height * 0.02,
                         ),
                         Container(
-                          alignment: Alignment.center,color: accent,
+                          alignment: Alignment.center,
+                          color: accent,
                           child: ButtonTheme(
                               minWidth: MediaQuery.of(context).size.width,
-                              height: 50.0,buttonColor: accent,
-                              child: OutlineButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                              height: 50.0,
+                              buttonColor: accent,
+                              child: OutlinedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: buttonShape,
+                                  side: BorderSide(
+                                    color: paydayGreen,
+                                    style: BorderStyle.solid,
+                                    width: 0.8,
+                                  ),
+                                  elevation: 0.8,
+                                  backgroundColor: accent,
                                 ),
-                                color: accent,
                                 child: Text(
                                   'Upgrade your profile',
                                   style: green14Style,
@@ -257,12 +291,6 @@ class _GetStartedPageState extends State<getStartedPage>
                                 onPressed: () => {
                                   Navigator.pushNamed(context, '/kycUpload')
                                 }, //callback when button is clicked
-                                borderSide: BorderSide(
-                                  color: paydayGreen,
-                                  style: BorderStyle.solid,
-                                  width: 0.8,
-                                ),
-                                highlightElevation: 0.8,
                               )),
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.08,
@@ -275,9 +303,10 @@ class _GetStartedPageState extends State<getStartedPage>
                           child: ButtonTheme(
                               minWidth: MediaQuery.of(context).size.width,
                               height: 50.0,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
+                              child: ElevatedButton(
+                                style: ElevatedButton.styleFrom(
+                                  shape: buttonShape, // Button shape
+                                  backgroundColor: paydayGreen, // Button color
                                 ),
                                 child: Text(
                                   'Get started',
@@ -288,7 +317,6 @@ class _GetStartedPageState extends State<getStartedPage>
                                     sliderPosition = 0;
                                   });
                                 },
-                                color: paydayGreen,
                               )),
                           width: MediaQuery.of(context).size.width,
                           height: MediaQuery.of(context).size.height * 0.08,
@@ -312,10 +340,10 @@ class _GetStartedPageState extends State<getStartedPage>
                         color: Colors.transparent,
                       ),
                       ClipRRect(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(18)),
+                        borderRadius:
+                            BorderRadius.vertical(top: Radius.circular(18)),
                         clipBehavior: Clip.hardEdge,
-                        child:
-                        Container(
+                        child: Container(
                           height: MediaQuery.of(context).size.height * 0.6,
                           width: MediaQuery.of(context).size.width,
                           color: accent,
@@ -323,7 +351,8 @@ class _GetStartedPageState extends State<getStartedPage>
                             children: <Widget>[
                               AnimatedPositioned(
                                 top: MediaQuery.of(context).size.height * 0.01,
-                                bottom: MediaQuery.of(context).size.height * 0.03,
+                                bottom:
+                                    MediaQuery.of(context).size.height * 0.03,
                                 //right: -MediaQuery.of(context).size.width * 0.05,
                                 duration: Duration(seconds: 1),
                                 child: WidgetAnimator(
@@ -332,9 +361,14 @@ class _GetStartedPageState extends State<getStartedPage>
                                     width: MediaQuery.of(context).size.width,
                                     child: imgAnimation2(
                                       url: bgMain2,
-                                      time: Duration(seconds: 4),beginx:0.3,endx: 0.2, beginy: -0.04,endy: 0,
+                                      time: Duration(seconds: 4),
+                                      beginx: 0.3,
+                                      endx: 0.2,
+                                      beginy: -0.04,
+                                      endy: 0,
                                       width: MediaQuery.of(context).size.width,
-                                      height: MediaQuery.of(context).size.height,
+                                      height:
+                                          MediaQuery.of(context).size.height,
                                       transition: PositionedTransition,
                                     ),
                                   ),
@@ -352,202 +386,365 @@ class _GetStartedPageState extends State<getStartedPage>
                                   child: Container(
                                     alignment: Alignment.topCenter,
                                     child: Column(
-                                      crossAxisAlignment: CrossAxisAlignment.center,
-                                      mainAxisAlignment: MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
                                       mainAxisSize: MainAxisSize.max,
                                       children: <Widget>[
                                         Container(
                                           alignment: Alignment.topCenter,
-                                          height: MediaQuery.of(context).size.height * 0.02,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.02,
                                           child: ButtonTheme(
                                               height: 10.0,
-                                              child: OutlineButton(
+                                              child: OutlinedButton(
                                                 child: Image(
-                                                  image:AssetImage(darkbarIcon),
-                                                  width: MediaQuery.of(context).size.width * 0.2,),
+                                                  image:
+                                                      AssetImage(darkbarIcon),
+                                                  width: MediaQuery.of(context)
+                                                          .size
+                                                          .width *
+                                                      0.2,
+                                                ),
                                                 onPressed: () => {
                                                   setState(() {
                                                     sliderPosition = 1.2;
                                                   })
-                                                }, //callback when button is clicked
-                                                borderSide: BorderSide(
-                                                  color: Colors.transparent,
-                                                  style: BorderStyle.solid,
-                                                  //width: 0.8,
+                                                },
+                                                style: OutlinedButton.styleFrom(
+                                                  side: BorderSide(
+                                                    color: Colors.transparent,
+                                                    style: BorderStyle.solid,
+                                                    //width: 0.8,
+                                                  ),
+                                                  elevation: 0.8,
                                                 ),
-                                                highlightElevation: 0.8,
                                               )),
                                         ),
                                         Container(
-                                          height: MediaQuery.of(context).size.height * 0.03,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.03,
                                         ),
-                                        Text( 'Get started on PayDay Investor', style: darkMediumStyle,textAlign: TextAlign.center,),
+                                        Text(
+                                          'Get started on PayDay Investor',
+                                          style: darkMediumStyle,
+                                          textAlign: TextAlign.center,
+                                        ),
                                         Container(
-                                          height: MediaQuery.of(context).size.height * 0.03,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.03,
                                         ),
                                         Padding(
-                                          padding:
-                                          EdgeInsets.symmetric(
+                                          padding: EdgeInsets.symmetric(
                                               horizontal: 10.0),
                                           child: Container(
                                               height: 1.0,
-                                              width: MediaQuery.of(
-                                                  context)
-                                                  .size
-                                                  .width *
+                                              width: MediaQuery.of(context)
+                                                      .size
+                                                      .width *
                                                   0.9,
                                               color: paydayGray),
                                         ),
                                         Container(
-                                          height:
-                                          MediaQuery.of(context)
-                                              .size
-                                              .height *
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
                                               0.02,
                                         ),
                                         Container(
-                                          width:MediaQuery.of(context).size.width * 0.8,
+                                          width: MediaQuery.of(context)
+                                                  .size
+                                                  .width *
+                                              0.8,
                                           child: Text(
                                             'Get started on your PayDay Investor account. select one from the options below to continue',
-                                            style: purpleSmallerBodyStyle,textAlign: TextAlign.center,
+                                            style: purpleSmallerBodyStyle,
+                                            textAlign: TextAlign.center,
                                           ),
                                         ),
                                         Container(
-                                          height:
-                                          MediaQuery.of(context).size.height * 0.05,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.05,
                                         ),
                                         Container(
-                                          height: MediaQuery.of(context).size.height * 0.3,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              0.3,
                                           child: Column(
                                               mainAxisSize: MainAxisSize.max,
-                                              crossAxisAlignment: CrossAxisAlignment.center,
-                                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.spaceAround,
                                               children: [
                                                 Row(
-                                                    mainAxisSize:MainAxisSize.max,
-                                                    crossAxisAlignment:CrossAxisAlignment.center,
-                                                    mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                                    children: <
-                                                        Widget>[
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: <Widget>[
                                                       ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width * 0.11,
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.11,
                                                           height: 50.0,
-                                                          child: OutlineButton(
-                                                            child: Image(image:AssetImage(startinvestingIcon),width: MediaQuery.of(context).size.width * 0.2,),
-                                                            onPressed: () => {
-                                                              Navigator.pushNamed(context, '/setUpGoal')
-                                                            }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              style: BorderStyle.solid,
-                                                              //width: 0.8,
+                                                          child: OutlinedButton(
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  startinvestingIcon),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
                                                             ),
-                                                            highlightElevation: 0.8,
+                                                            onPressed: () => {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  '/setUpGoal')
+                                                            },
+                                                            style:
+                                                                OutlinedButton
+                                                                    .styleFrom(
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                //width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
+                                                            ),
                                                           )),
                                                       ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width * 0.11,
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.11,
                                                           height: 50.0,
-                                                          child: OutlineButton(
-                                                            child: Image(image:AssetImage(dashboardIcon),width: MediaQuery.of(context).size.width * 0.2,),
-                                                            onPressed: () => {
-
-                                                            }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              style: BorderStyle.solid,
-                                                              //width: 0.8,
+                                                          child: OutlinedButton(
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  dashboardIcon),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
                                                             ),
-                                                            highlightElevation: 0.8,
+                                                            onPressed: () => {},
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                //width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
+                                                            ),
                                                           )),
                                                       ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width * 0.11,
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.11,
                                                           height: 50.0,
-                                                          child: OutlineButton(
-                                                            child: Image(image:AssetImage(portfolioIcon),width: MediaQuery.of(context).size.width * 0.2,),
-                                                            onPressed: () => {
-                                                              Navigator.pushNamed(context, '/roboAdvisor')
-                                                            }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              style: BorderStyle.solid,
-                                                              //width: 0.8,
+                                                          child: OutlinedButton(
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  portfolioIcon),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
                                                             ),
-                                                            highlightElevation: 0.8,
+                                                            onPressed: () => {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  '/roboAdvisor')
+                                                            }, //callback when button is clicked
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                //width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
+                                                            ),
                                                           )),
                                                     ]),
                                                 Row(
-                                                    mainAxisSize:MainAxisSize.max,
-                                                    crossAxisAlignment:CrossAxisAlignment.center,
-                                                    mainAxisAlignment:MainAxisAlignment.spaceAround,
-                                                    children: <
-                                                        Widget>[
+                                                    mainAxisSize:
+                                                        MainAxisSize.max,
+                                                    crossAxisAlignment:
+                                                        CrossAxisAlignment
+                                                            .center,
+                                                    mainAxisAlignment:
+                                                        MainAxisAlignment
+                                                            .spaceAround,
+                                                    children: <Widget>[
+                                                      ButtonTheme(
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.11,
+                                                          height: 50.0,
+                                                          child: OutlinedButton(
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                //width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
+                                                            ),
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  kycdocumentationIcon),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                            ),
+                                                            onPressed: () => {
+                                                              Navigator
+                                                                  .pushNamed(
+                                                                      context,
+                                                                      '/login')
+                                                            }, //callback when button is clicked
+                                                          )),
+                                                      ButtonTheme(
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.11,
+                                                          height: 50.0,
+                                                          child: OutlinedButton(
+                                                            style:
+                                                                OutlinedButton
+                                                                    .styleFrom(
+                                                              shape:
+                                                                  buttonShape,
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                              ),
+                                                              elevation: 0.8,
+                                                              backgroundColor:
+                                                                  paydayGreen,
+                                                            ),
 
-                                                      ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width * 0.11,
-                                                          height: 50.0,
-                                                          child: OutlineButton(
-                                                            child: Image(image:AssetImage(kycdocumentationIcon),width: MediaQuery.of(context).size.width * 0.2,),
-                                                            onPressed: () => {
-                                                              Navigator.pushNamed(context, '/login')
-                                                            }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              style: BorderStyle.solid,
-                                                              //width: 0.8,
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  fundwalletIcon),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
                                                             ),
-                                                            highlightElevation: 0.8,
+                                                            onPressed: () => {
+                                                              Navigator
+                                                                  .pushNamed(
+                                                                      context,
+                                                                      '/login')
+                                                            }, //callback when button is clicked
                                                           )),
                                                       ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width * 0.11,
+                                                          minWidth: MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width *
+                                                              0.11,
                                                           height: 50.0,
-                                                          child: OutlineButton(
-                                                            shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.circular(10.0),
+                                                          child: OutlinedButton(
+                                                            style:
+                                                                ElevatedButton
+                                                                    .styleFrom(
+                                                              shape:
+                                                                  buttonShape,
+                                                              side: BorderSide(
+                                                                color: Colors
+                                                                    .transparent,
+                                                                style:
+                                                                    BorderStyle
+                                                                        .solid,
+                                                                //width: 0.8,
+                                                              ),
+                                                              elevation: 0.8,
+                                                              backgroundColor:
+                                                                  paydayGreen,
                                                             ),
-                                                            child: Image(image:AssetImage(fundwalletIcon),width: MediaQuery.of(context).size.width * 0.2,),
+
+                                                            child: Image(
+                                                              image: AssetImage(
+                                                                  supportIcon),
+                                                              width: MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width *
+                                                                  0.2,
+                                                            ),
                                                             onPressed: () => {
-                                                              Navigator.pushNamed(context, '/login')
+                                                              Navigator
+                                                                  .pushNamed(
+                                                                      context,
+                                                                      '/login')
                                                             }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              style: BorderStyle.solid,
-                                                              //width: 0.8,
-                                                            ),
-                                                            highlightElevation: 0.8,
-                                                          )),
-                                                      ButtonTheme(
-                                                          minWidth: MediaQuery.of(context).size.width * 0.11,
-                                                          height: 50.0,
-                                                          child: OutlineButton(
-                                                            shape: RoundedRectangleBorder(
-                                                              borderRadius: BorderRadius.circular(10.0),
-                                                            ),
-                                                            child: Image(image:AssetImage(supportIcon),width: MediaQuery.of(context).size.width * 0.2,),
-                                                            onPressed: () => {
-                                                              Navigator.pushNamed(context, '/login')
-                                                            }, //callback when button is clicked
-                                                            borderSide: BorderSide(
-                                                              color: Colors.transparent,
-                                                              style: BorderStyle.solid,
-                                                              //width: 0.8,
-                                                            ),
-                                                            highlightElevation: 0.8,
                                                           )),
                                                     ]),
                                               ]),
                                         ),
                                       ],
                                     ),
-                                  )
-                              ),
+                                  )),
                             ],
                           ),
                           //padding: EdgeInsets.fromLTRB(MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.width * 0.08, MediaQuery.of(context).size.width * 0.1, MediaQuery.of(context).size.width * 0.1),
                         ),
                       ),
                     ],
-                  )
-              ),
+                  )),
             ),
           ],
         ),
