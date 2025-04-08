@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/percent_indicator.dart';
 
 class personalinfo1Page extends StatefulWidget {
@@ -75,7 +75,7 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                           },
                           icon: Icon(
                             Icons.arrow_back_ios,size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -135,7 +135,7 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                           animationDuration: 2500,
                           percent: 0.3,
                           linearStrokeCap: LinearStrokeCap.roundAll,
-                          progressColor: paydayOrange,
+                          progressColor: wizardOrange,
                         ),
                       ),
                       Container(
@@ -157,9 +157,9 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                               style: TextStyle(
                                 fontSize: 13,
                               ),
-                              cursorColor: paydayGreen,
+                              cursorColor: wizardGreen,
                               decoration: InputDecoration(
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: wizardGreen),),
                               ),),
                           ],
                         ),
@@ -183,9 +183,9 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                               style: TextStyle(
                                 fontSize: 13,
                               ),
-                              cursorColor: paydayGreen,
+                              cursorColor: wizardGreen,
                               decoration: InputDecoration(
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: wizardGreen),),
                               ),),
                           ],
                         ),
@@ -209,9 +209,9 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                               style: TextStyle(
                                 fontSize: 13,
                               ),
-                              cursorColor: paydayGreen,
+                              cursorColor: wizardGreen,
                               decoration: InputDecoration(
-                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: paydayGreen),),
+                                focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: wizardGreen),),
                               ),),
                           ],
                         ),
@@ -227,7 +227,7 @@ class _Personalinfo1PageState extends State<personalinfo1Page>
                             child: ElevatedButton(
   style: ElevatedButton.styleFrom(
     shape: buttonShape, // Button shape
-    backgroundColor: paydayGreen, // Button color
+    backgroundColor: wizardGreen, // Button color
   ),
                               child: Text(
                                 'Confirm & Proceed',

@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
 class getStartedPage extends StatefulWidget {
@@ -98,7 +98,7 @@ class _GetStartedPageState extends State<getStartedPage>
                             icon: Icon(
                               Icons.arrow_back_ios,
                               size: 30,
-                              color: paydayDark,
+                              color: wizardDark,
                             ),
                           ),
                           Container(
@@ -185,7 +185,7 @@ class _GetStartedPageState extends State<getStartedPage>
                         ),
                         Container(
                             child: Text(
-                          'Your PayDay Investor account has been setup successfully. \n',
+                          'Your wealth wizard account has been setup successfully. \n',
                           style: purple18Style,
                         )),
                         Container(
@@ -217,7 +217,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                     children: <Widget>[
                                       Icon(
                                         Icons.check,
-                                        color: paydayGreen,
+                                        color: wizardGreen,
                                       ),
                                       Text(
                                           ' Single maximum deposit of N20,000  ',
@@ -231,7 +231,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                     children: <Widget>[
                                       Icon(
                                         Icons.check,
-                                        color: paydayGreen,
+                                        color: wizardGreen,
                                       ),
                                       Text(
                                           ' Single maximum withdrawal of N30,000  ',
@@ -245,7 +245,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                     children: <Widget>[
                                       Icon(
                                         Icons.check,
-                                        color: paydayGreen,
+                                        color: wizardGreen,
                                       ),
                                       Text(' Maximum balance of N1,000,000 ',
                                           style: purple16Style),
@@ -259,7 +259,7 @@ class _GetStartedPageState extends State<getStartedPage>
                         ),
                         Container(
                             child: Text(
-                          'Upgrade your profile to unleash the full potential of your PayDay Investor account',
+                          'Upgrade your profile to unleash the full potential of your wealth wizard account',
                           style: purple16Style,
                           textAlign: TextAlign.left,
                         )),
@@ -277,7 +277,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                 style: ElevatedButton.styleFrom(
                                   shape: buttonShape,
                                   side: BorderSide(
-                                    color: paydayGreen,
+                                    color: wizardGreen,
                                     style: BorderStyle.solid,
                                     width: 0.8,
                                   ),
@@ -306,7 +306,7 @@ class _GetStartedPageState extends State<getStartedPage>
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   shape: buttonShape, // Button shape
-                                  backgroundColor: paydayGreen, // Button color
+                                  backgroundColor: wizardGreen, // Button color
                                 ),
                                 child: Text(
                                   'Get started',
@@ -330,7 +330,7 @@ class _GetStartedPageState extends State<getStartedPage>
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
-                    color: paydayOverlayLightPurple,
+                    color: wizardOverlayLightPurple,
                   ),
                   child: Column(
                     children: <Widget>[
@@ -431,7 +431,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                               0.03,
                                         ),
                                         Text(
-                                          'Get started on PayDay Investor',
+                                          'Get started on wealth wizard',
                                           style: darkMediumStyle,
                                           textAlign: TextAlign.center,
                                         ),
@@ -450,7 +450,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                                       .size
                                                       .width *
                                                   0.9,
-                                              color: paydayGray),
+                                              color: wizardGray),
                                         ),
                                         Container(
                                           height: MediaQuery.of(context)
@@ -464,7 +464,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                                   .width *
                                               0.8,
                                           child: Text(
-                                            'Get started on your PayDay Investor account. select one from the options below to continue',
+                                            'Get started on your wealth wizard account. select one from the options below to continue',
                                             style: purpleSmallerBodyStyle,
                                             textAlign: TextAlign.center,
                                           ),
@@ -671,7 +671,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                                               ),
                                                               elevation: 0.8,
                                                               backgroundColor:
-                                                                  paydayGreen,
+                                                                  wizardGreen,
                                                             ),
 
                                                             child: Image(
@@ -713,7 +713,7 @@ class _GetStartedPageState extends State<getStartedPage>
                                                               ),
                                                               elevation: 0.8,
                                                               backgroundColor:
-                                                                  paydayGreen,
+                                                                  wizardGreen,
                                                             ),
 
                                                             child: Image(

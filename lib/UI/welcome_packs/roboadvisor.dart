@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class roboAdvisorPage extends StatefulWidget {
@@ -91,7 +91,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -197,7 +197,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -237,7 +237,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -277,7 +277,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -318,7 +318,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -406,7 +406,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -446,7 +446,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -486,7 +486,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -578,7 +578,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -618,7 +618,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -658,7 +658,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -748,7 +748,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -788,7 +788,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -828,7 +828,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -869,7 +869,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -960,7 +960,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -1000,7 +1000,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               children: <Widget>[
                                 Radio(
                                   value: 0,
-                                  activeColor: paydayDeepGreen,
+                                  activeColor: wizardDeepGreen,
                                   groupValue: _radioValue,
                                   onChanged: (val) {
                                     setState(() {
@@ -1072,7 +1072,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                                 animationDuration: 2500,
                                 percent: percent/100,
                                 linearStrokeCap: LinearStrokeCap.roundAll,
-                                progressColor: paydayOrange,
+                                progressColor: wizardOrange,
                               ),
                             ],
                           ),
@@ -1082,7 +1082,7 @@ class _RoboAdvisorPageState extends State<roboAdvisorPage>
                               child:ElevatedButton(
   style: ElevatedButton.styleFrom(
     shape: buttonShape, // Button shape
-    backgroundColor: paydayGreen, // Button color
+    backgroundColor: wizardGreen, // Button color
   ),
                                 child: Image(image: AssetImage(nextIcon)),
                                 onPressed: () {

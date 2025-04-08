@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 
 class registerationTokenPage extends StatefulWidget {
   registerationTokenPage();
@@ -73,7 +73,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                       },
                       icon: Icon(
                         Icons.arrow_back_ios,size: 30,
-                        color: paydayDark,
+                        color: wizardDark,
                       ),
                     ),
                     Container(
@@ -122,7 +122,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                       Container(
                         height: MediaQuery.of(context).size.height * 0.01,
                       ),
-                      Text('Your PayDay Investor account is being created.',
+                      Text('Your wealth wizard account is being created.',
                         style: dark15Style,
                         textAlign: TextAlign.left,),
                       Container(
@@ -293,7 +293,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '1',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -301,7 +301,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '2',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -309,7 +309,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '3',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -325,7 +325,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '4',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -333,7 +333,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '5',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -341,7 +341,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '6',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -356,7 +356,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '7',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -364,7 +364,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '8',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -372,7 +372,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '9',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -389,7 +389,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Icon(Icons.backspace,color: accent,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -397,7 +397,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                     RawMaterialButton(
                                       onPressed: () {},
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( '0',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -408,7 +408,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                                               context, '/personalinfo1');
                                         },
                                       elevation: 2.0,
-                                      fillColor: paydayGreen,
+                                      fillColor: wizardGreen,
                                       child: Text( 'OK',style: securityStyle,),//,backgroundColor: Colors.green,
                                       padding: EdgeInsets.all(15.0),
                                       shape: CircleBorder(side: BorderSide(color: accent)),
@@ -425,7 +425,7 @@ class _RegisterationTokenPageState extends State<registerationTokenPage>
                     ])),
                 transition: ScaleTransition,
                 animPattern: Curves.easeInOutCirc,
-                pixle: paydayGreen,
+                pixle: wizardGreen,
                 time: Duration(seconds: 1),
                 animType: "nothing",
                 xAxis: 0,

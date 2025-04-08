@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 
 class loginPage extends StatefulWidget {
   loginPage({super.key});
@@ -192,7 +192,7 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor:
-                                    paydayGreen, // Set button color
+                                    wizardGreen, // Set button color
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0),
                                 ),
@@ -216,7 +216,7 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                           child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
-                              text: 'New to PayDay Investor?  ',
+                              text: 'New to wealth wizard?  ',
                               style: footerGrayStyle,
                               children: <TextSpan>[
                                 TextSpan(
@@ -323,7 +323,7 @@ class _LoginPageState extends State<loginPage> with TickerProviderStateMixin {
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
                                     backgroundColor:
-                                        paydayGreen, // Set button color
+                                        wizardGreen, // Set button color
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10.0),
                                     ),

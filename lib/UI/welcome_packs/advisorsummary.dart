@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class advisorSummaryPage extends StatefulWidget {
@@ -20,9 +20,9 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
   double tokenEntryHeight = 0;
   String bgMain = 'assets/purplebg.png';
   String infoIcon = 'assets/infoicon.png';
-  Color maleColor = paydayGray;
+  Color maleColor = wizardGray;
   String roboAdvisorIcon = 'assets/roboadvisor.png';
-  Color femaleColor = paydayGreen;
+  Color femaleColor = wizardGreen;
   String camIcon = 'assets/camera.png';
   int _radioValue = 0;
 
@@ -80,7 +80,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -180,7 +180,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                       alignment: Alignment.center,
                                       child: Text('45%',style: buttonLightStyle,),
                                       decoration: new BoxDecoration(
-                                        color: paydayPink,
+                                        color: wizardPink,
                                       ),
                                     ),
                                   ),
@@ -199,8 +199,8 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text('ARM Money Market Fund',style: dark16Style,textAlign: TextAlign.left,),
-                                                  Text('Learn more about ARM Money Market Fund',style: dark10Style,textAlign: TextAlign.left,),
+                                                  Text('Wealth Wizard Money Market Fund',style: dark16Style,textAlign: TextAlign.left,),
+                                                  Text('Learn more about Wealth Wizard Money Market Fund',style: dark10Style,textAlign: TextAlign.left,),
                                                 ],
                                               ),
                                               Container(
@@ -215,7 +215,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                               height: 2.0,
                                               alignment: Alignment.centerRight,
                                               width: MediaQuery.of(context).size.width *0.8,
-                                              color: paydayGray),
+                                              color: wizardGray),
                                         ],
                                       )
                                   ),
@@ -235,7 +235,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                       alignment: Alignment.center,
                                       child: Text('25%',style: buttonLightStyle,),
                                       decoration: new BoxDecoration(
-                                        color: paydayBlue2,
+                                        color: wizardBlue2,
                                       ),
                                     ),
                                   ),
@@ -254,8 +254,8 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text('ARM EuroBond',style: dark16Style,textAlign: TextAlign.left,),
-                                                  Text('Learn more about ARM EuroBond',style: dark10Style,textAlign: TextAlign.left,),
+                                                  Text('Wealth Wizard EuroBond',style: dark16Style,textAlign: TextAlign.left,),
+                                                  Text('Learn more about Wealth Wizard EuroBond',style: dark10Style,textAlign: TextAlign.left,),
                                                 ],
                                               ),
                                               Container(
@@ -270,7 +270,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                               height: 2.0,
                                               alignment: Alignment.centerRight,
                                               width: MediaQuery.of(context).size.width *0.8,
-                                              color: paydayGray),
+                                              color: wizardGray),
                                         ],
                                       )
                                   ),
@@ -290,7 +290,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                       alignment: Alignment.center,
                                       child: Text('30%',style: buttonDarkStyle,),
                                       decoration: new BoxDecoration(
-                                        color: paydayGreen2,
+                                        color: wizardGreen2,
                                       ),
                                     ),
                                   ),
@@ -309,8 +309,8 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text('ARM Agribusiness',style: dark16Style,textAlign: TextAlign.left,),
-                                                  Text('Learn more about ARM Agribusiness',style: dark10Style,textAlign: TextAlign.left,),
+                                                  Text('Wealth Wizard Agribusiness',style: dark16Style,textAlign: TextAlign.left,),
+                                                  Text('Learn more about Wealth Wizard Agribusiness',style: dark10Style,textAlign: TextAlign.left,),
                                                 ],
                                               ),
                                               Container(
@@ -325,7 +325,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                               height: 2.0,
                                               alignment: Alignment.centerRight,
                                               width: MediaQuery.of(context).size.width *0.8,
-                                              color: paydayGray),
+                                              color: wizardGray),
                                         ],
                                       )
                                   ),
@@ -345,7 +345,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                       alignment: Alignment.center,
                                       child: Text('15%',style: buttonDarkStyle,),
                                       decoration: new BoxDecoration(
-                                        color: paydayYellow,
+                                        color: wizardYellow,
                                       ),
                                     ),
                                   ),
@@ -364,8 +364,8 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                                 mainAxisAlignment: MainAxisAlignment.end,
                                                 crossAxisAlignment: CrossAxisAlignment.start,
                                                 children: <Widget>[
-                                                  Text('ARM Discovery Fund',style: dark16Style,textAlign: TextAlign.left,),
-                                                  Text('Learn more about ARM Discovery Fund',style: dark10Style,textAlign: TextAlign.left,),
+                                                  Text('Wealth Wizard Discovery Fund',style: dark16Style,textAlign: TextAlign.left,),
+                                                  Text('Learn more about Wealth Wizard Discovery Fund',style: dark10Style,textAlign: TextAlign.left,),
                                                 ],
                                               ),
                                               Container(
@@ -380,7 +380,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                                               height: 2.0,
                                               alignment: Alignment.centerRight,
                                               width: MediaQuery.of(context).size.width *0.8,
-                                              color: paydayGray),
+                                              color: wizardGray),
                                         ],
                                       )
                                   ),
@@ -400,7 +400,7 @@ class _AdvisorSummaryPageState extends State<advisorSummaryPage>
                             child: ElevatedButton(
   style: ElevatedButton.styleFrom(
     shape: buttonShape, // Button shape
-    backgroundColor: paydayGreen, // Button color
+    backgroundColor: wizardGreen, // Button color
   ),
   onPressed: () {
     // Add your action here

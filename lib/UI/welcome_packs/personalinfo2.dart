@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class personalinfo2Page extends StatefulWidget {
@@ -73,7 +73,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -136,7 +136,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                           animationDuration: 2500,
                           percent: 0.6,
                           linearStrokeCap: LinearStrokeCap.roundAll,
-                          progressColor: paydayOrange,
+                          progressColor: wizardOrange,
                         ),
                       ),
                       Container(
@@ -187,7 +187,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                                           Icon(
                                             Icons.date_range,
                                             size: 18.0,
-                                            color: paydayPurple,
+                                            color: wizardPurple,
                                           ),
                                           Text(
                                             " $_date",
@@ -230,7 +230,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               ),
                               underline: Container(
                                 height: 1.2,
-                                color: paydayDark,
+                                color: wizardDark,
                               ),
                               items: [
                                 DropdownMenuItem(
@@ -296,10 +296,10 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               style: TextStyle(
                                   //fontSize: 13,
                                   ),
-                              cursorColor: paydayGreen,
+                              cursorColor: wizardGreen,
                               decoration: InputDecoration(
                                 focusedBorder: UnderlineInputBorder(
-                                  borderSide: BorderSide(color: paydayGreen),
+                                  borderSide: BorderSide(color: wizardGreen),
                                 ),
                               ),
                             ),
@@ -329,7 +329,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               ),
                               underline: Container(
                                 height: 1.2,
-                                color: paydayDark,
+                                color: wizardDark,
                               ),
                               items: [
                                 DropdownMenuItem(
@@ -383,7 +383,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 shape: buttonShape, // Button shape
-                                backgroundColor: paydayGreen, // Button color
+                                backgroundColor: wizardGreen, // Button color
                               ),
                               child: Text(
                                 'Confirm & Proceed',

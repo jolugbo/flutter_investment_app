@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -24,7 +24,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
   String headerText = 'Validate your identity';
   String middleHeaderText = 'Valid Identification';
   String bodyText =
-      'A copy of a valid government issued ID clearly displaying the name on your PayDay Investor account.';
+      'A copy of a valid government issued ID clearly displaying the name on your wealth wizard account.';
   String startinvestingIcon = 'assets/startinvesting.png';
   String fundwalletIcon = 'assets/fundwallet.png';
   String dashboardIcon = 'assets/dashboard.png';
@@ -93,7 +93,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -156,7 +156,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                           animationDuration: 2500,
                           percent: 0.33,
                           linearStrokeCap: LinearStrokeCap.roundAll,
-                          progressColor: paydayOrange,
+                          progressColor: wizardOrange,
                         ),
                       ),
                       AnimatedCrossFade(
@@ -246,7 +246,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                                   shape: buttonShape,
                                   backgroundColor: accent,
                                   side: BorderSide(
-                                    color: paydayGreen,
+                                    color: wizardGreen,
                                     style: BorderStyle.solid,
                                     width: 0.8,
                                   ),
@@ -296,7 +296,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                             children: <Widget>[
                               Icon(
                                 Icons.check,
-                                color: paydayGreen,
+                                color: wizardGreen,
                               ),
                               Text(
                                 'International Passport',
@@ -317,7 +317,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 shape: buttonShape,
-                                backgroundColor: paydayGreen,
+                                backgroundColor: wizardGreen,
                               ),
                               child: Text(
                                 'Upload Identification',
@@ -332,14 +332,14 @@ class _KYCUploadPageState extends State<kycUploadPage>
                                       headerText = 'Validate your identity';
                                       middleHeaderText = 'Valid Identification';
                                       bodyText =
-                                          'A copy of a valid government issued ID clearly displaying the name on your PayDay Investor account.';
+                                          'A copy of a valid government issued ID clearly displaying the name on your wealth wizard account.';
                                       break;
                                     case 1:
                                       showFirst = false;
                                       headerText = 'Validate your address';
                                       middleHeaderText = 'Utility Bill';
                                       bodyText =
-                                          'A copy of a bill not more than 3 months old clearly displaying the address on your PayDay Investor account.';
+                                          'A copy of a bill not more than 3 months old clearly displaying the address on your wealth wizard account.';
                                       break;
                                     case 2:
                                       kycIcon = kycIcon3;
@@ -357,7 +357,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                                       headerText = 'Signature';
                                       middleHeaderText = 'Valid Identification';
                                       bodyText =
-                                          'A copy of a valid government issued ID clearly displaying the name on your PayDay Investor account.';
+                                          'A copy of a valid government issued ID clearly displaying the name on your wealth wizard account.';
                                   }
                                 });
                               },
@@ -426,7 +426,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                 height: MediaQuery.of(context).size.height,
                 width: MediaQuery.of(context).size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -594,7 +594,7 @@ class _KYCUploadPageState extends State<kycUploadPage>
                                           height: 0.5,
                                           width:
                                               MediaQuery.of(context).size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height:

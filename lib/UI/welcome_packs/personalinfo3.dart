@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 
 class personalinfo3Page extends StatefulWidget {
@@ -19,13 +19,13 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
   double tokenEntryHeight = 0;
   String bgMain = 'assets/purplebg.png';
   String maleIcon = 'assets/maleicon.png';
-  Color maleColor = paydayGray;
+  Color maleColor = wizardGray;
   String femaleIcon = 'assets/femalegendericon.png';
   String femaleIcon2 = 'assets/femalegendericon2.png';
   String maleIcon2 = 'assets/maleicon2.png';
   String femaleIcon1 = 'assets/femalegendericon.png';
   String maleIcon1 = 'assets/maleicon.png';
-  Color femaleColor = paydayGreen;
+  Color femaleColor = wizardGreen;
   String camIcon = 'assets/cameraicon.png';
   String uploadIcon = 'assets/uploadicon.png';
   int? _radioValue = 0;
@@ -84,7 +84,7 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -146,7 +146,7 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                           animationDuration: 2500,
                           percent: 1,
                           linearStrokeCap: LinearStrokeCap.roundAll,
-                          progressColor: paydayOrange,
+                          progressColor: wizardOrange,
                         ),
                       ),
                       Container(
@@ -182,8 +182,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                       onPressed: () {
                                         setState(() {
                                           _radioValue = 0;
-                                          maleColor = paydayGray;
-                                          femaleColor = paydayGreen;
+                                          maleColor = wizardGray;
+                                          femaleColor = wizardGreen;
                                           femaleIcon = femaleIcon1;
                                           maleIcon = maleIcon1;
                                         });
@@ -199,13 +199,13 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                             alignment: Alignment.center,
                                             child: Radio(
                                               value: 0,
-                                              activeColor: paydayDeepGreen,
+                                              activeColor: wizardDeepGreen,
                                               groupValue: _radioValue,
                                               onChanged: (val) {
                                                 setState(() {
                                                   _radioValue = val;
-                                                  maleColor = paydayGray;
-                                                  femaleColor = paydayGreen;
+                                                  maleColor = wizardGray;
+                                                  femaleColor = wizardGreen;
                                                   femaleIcon = femaleIcon1;
                                                   maleIcon = maleIcon1;
                                                 });
@@ -246,8 +246,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                           elevation: 4),
                                       onPressed: () {
                                         setState(() {
-                                          femaleColor = paydayGray;
-                                          maleColor = paydayGreen;
+                                          femaleColor = wizardGray;
+                                          maleColor = wizardGreen;
                                           femaleIcon = femaleIcon2;
                                           maleIcon = maleIcon2;
                                           _radioValue = 1;
@@ -263,13 +263,13 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                                 shape: BoxShape.circle),
                                             alignment: Alignment.center,
                                             child: Radio(
-                                              activeColor: paydayDeepGreen,
+                                              activeColor: wizardDeepGreen,
                                               value: 1,
                                               groupValue: _radioValue,
                                               onChanged: (val) {
                                                 setState(() {
-                                                  femaleColor = paydayGray;
-                                                  maleColor = paydayGreen;
+                                                  femaleColor = wizardGray;
+                                                  maleColor = wizardGreen;
                                                   femaleIcon = femaleIcon2;
                                                   maleIcon = maleIcon2;
                                                   _radioValue = val;
@@ -351,7 +351,7 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                             child: ElevatedButton(
   style: ElevatedButton.styleFrom(
     shape: buttonShape, // Button shape
-    backgroundColor: paydayGreen, // Button color
+    backgroundColor: wizardGreen, // Button color
   ),
                               child: Text(
                                 'Confirm & Proceed',

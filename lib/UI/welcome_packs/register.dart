@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/UI/externals/logins.dart';
+import 'package:wealth_wizard/constants/app_images.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 
 class registerPage extends StatefulWidget {
   registerPage();
@@ -13,12 +15,13 @@ class registerPage extends StatefulWidget {
 
 class _RegisterPageState extends State<registerPage>
     with TickerProviderStateMixin {
-  String bgMain1 = 'assets/leafBG.png';
-  String bgMain2 = 'assets/regbg.png';
-  String leafIcon = 'assets/leaficon.png';
-  String setupIcon = 'assets/setupicon.png';
+  String bgMain1 = AppImages.leafBG;
+  String bgMain2 = AppImages.regbg;
+  String leafIcon = AppImages.leaficon;
+  String setupIcon = AppImages.setupicon;
   double confimationPosition = 1;
   bool previouslySignedIn = true;
+  bool _isSwitched = false;
   final int _numCheckers = 4;
   int _currentChecker = 0;
 
@@ -37,7 +40,7 @@ class _RegisterPageState extends State<registerPage>
       height: 5.0,
       width: MediaQuery.of(context).size.width * 0.18,
       decoration: BoxDecoration(
-        color: isActive ? paydayGreen : paydayGray,
+        color: isActive ? wizardGreen : wizardGray,
         borderRadius: BorderRadius.all(Radius.circular(12)),
       ),
     );
@@ -45,6 +48,7 @@ class _RegisterPageState extends State<registerPage>
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
     return Scaffold(
       resizeToAvoidBottomInset: true,
       body: Stack(
@@ -52,12 +56,12 @@ class _RegisterPageState extends State<registerPage>
         children: <Widget>[
           AnimatedPositioned(
             top: 0,
-            right: -MediaQuery.of(context).size.width * 0.2,
+            right: -size.width * 0.2,
             duration: Duration(seconds: 1),
             child: WidgetAnimator(
               component: Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width,
+                height: size.height * 0.3,
+                width: size.width,
                 child: imgAnimation2(
                   url: bgMain1,
                   beginx: 0.03,
@@ -65,8 +69,8 @@ class _RegisterPageState extends State<registerPage>
                   beginy: 0.2,
                   endy: -0.0,
                   time: Duration(seconds: 4),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  width: size.width,
+                  height: size.height,
                   transition: PositionedTransition,
                 ),
               ),
@@ -79,15 +83,16 @@ class _RegisterPageState extends State<registerPage>
               yAxis: 0,
             ),
           ),
+
           AnimatedPositioned(
-            top: MediaQuery.of(context).size.height * 0.25,
-            bottom: MediaQuery.of(context).size.height * 0.05,
-            right: -MediaQuery.of(context).size.width * 0.05,
+            top: size.height * 0.25,
+            bottom: size.height * 0.05,
+            right: -size.width * 0.05,
             duration: Duration(seconds: 1),
             child: WidgetAnimator(
               component: Container(
-                height: MediaQuery.of(context).size.height * 0.5,
-                width: MediaQuery.of(context).size.width,
+                height: size.height * 0.5,
+                width: size.width,
                 child: imgAnimation2(
                   url: bgMain2,
                   beginx: 0.03,
@@ -95,8 +100,8 @@ class _RegisterPageState extends State<registerPage>
                   beginy: 0.2,
                   endy: -0.0,
                   time: Duration(seconds: 3),
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
+                  width: size.width,
+                  height: size.height,
                   transition: PositionedTransition,
                 ),
               ),
@@ -109,25 +114,26 @@ class _RegisterPageState extends State<registerPage>
               yAxis: 0,
             ),
           ),
+
           AnimatedPositioned(
               top: 0,
               duration: Duration(seconds: 1),
               child: Container(
                 //color: Colors.red,
-                height: MediaQuery.of(context).size.height * 0.25,
-                width: MediaQuery.of(context).size.width,
+                height: size.height * 0.25,
+                width: size.width,
                 child: Hero(
                   tag: "iconTag",
                   child: WidgetAnimator(
                     component: imgAnimation2(
-                      url: 'assets/logo.png',
+                      url: AppImages.logo,
                       time: Duration(seconds: 3),
                       beginx: 0,
                       endx: -0,
                       beginy: 0,
                       endy: 0,
-                      width: MediaQuery.of(context).size.width * 0.4,
-                      height: MediaQuery.of(context).size.height * 0.3,
+                      width: size.width * 0.4,
+                      height: size.height * 0.3,
                       transition: PositionedTransition,
                     ),
                     transition: Transform,
@@ -141,14 +147,16 @@ class _RegisterPageState extends State<registerPage>
                   transitionOnUserGestures: true,
                 ),
               )),
+
+          //support center
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.92,
+              top: size.height * 0.92,
               duration: Duration(seconds: 1),
               child: Container(
                   //color: Colors.red,
                   alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height * 0.1,
+                  width: size.width,
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
@@ -160,40 +168,42 @@ class _RegisterPageState extends State<registerPage>
                           style: footerGreenStyle,
                           recognizer: TapGestureRecognizer()
                             ..onTap = () {
-                              Navigator.pushNamed(
-                                  context, '/termsAndCondition');
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => registerPage()));
                             },
                         ),
                       ],
                     ),
                   ))),
+
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.15,
+              top: size.height * 0.15,
               duration: Duration(seconds: 1),
               child: Container(
-                  padding:
-                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                  padding: EdgeInsets.all(size.width * 0.05),
                   alignment: Alignment.topLeft,
-                  width: MediaQuery.of(context).size.width,
+                  width: size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisSize: MainAxisSize.max,
                     children: <Widget>[
                       Text(
-                        'Create your PayDay Investor account',
-                        style: dark24Style,
+                        'Create your wealth wizard account',
+                        style: dark22Style,
                         textAlign: TextAlign.left,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         mainAxisSize: MainAxisSize.max,
                         children: <Widget>[
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.4,
+                            width: size.width * 0.4,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -204,8 +214,7 @@ class _RegisterPageState extends State<registerPage>
                                   style: purple14Style,
                                 ),
                                 Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.06,
+                                  height: size.height * 0.06,
                                   child: TextField(
                                     textAlignVertical: TextAlignVertical.bottom,
                                     textAlign: TextAlign.left,
@@ -213,11 +222,11 @@ class _RegisterPageState extends State<registerPage>
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
-                                    cursorColor: paydayGreen,
+                                    cursorColor: wizardGreen,
                                     decoration: InputDecoration(
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: paydayGreen),
+                                            BorderSide(color: wizardGreen),
                                       ),
                                     ),
                                   ),
@@ -226,7 +235,7 @@ class _RegisterPageState extends State<registerPage>
                             ),
                           ),
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.4,
+                            width: size.width * 0.4,
                             child: Column(
                               mainAxisSize: MainAxisSize.max,
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -237,8 +246,7 @@ class _RegisterPageState extends State<registerPage>
                                   style: purple14Style,
                                 ),
                                 Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.06,
+                                  height: size.height * 0.06,
                                   child: TextField(
                                     textAlignVertical: TextAlignVertical.bottom,
                                     textAlign: TextAlign.left,
@@ -246,11 +254,11 @@ class _RegisterPageState extends State<registerPage>
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
-                                    cursorColor: paydayGreen,
+                                    cursorColor: wizardGreen,
                                     decoration: InputDecoration(
                                       focusedBorder: UnderlineInputBorder(
                                         borderSide:
-                                            BorderSide(color: paydayGreen),
+                                            BorderSide(color: wizardGreen),
                                       ),
                                     ),
                                   ),
@@ -261,7 +269,7 @@ class _RegisterPageState extends State<registerPage>
                         ],
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       Container(
                         child: Column(
@@ -274,7 +282,7 @@ class _RegisterPageState extends State<registerPage>
                               style: purple14Style,
                             ),
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: size.height * 0.06,
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.bottom,
                                 textAlign: TextAlign.left,
@@ -282,10 +290,10 @@ class _RegisterPageState extends State<registerPage>
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
-                                cursorColor: paydayGreen,
+                                cursorColor: wizardGreen,
                                 decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: paydayGreen),
+                                    borderSide: BorderSide(color: wizardGreen),
                                   ),
                                 ),
                               ),
@@ -294,7 +302,7 @@ class _RegisterPageState extends State<registerPage>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       Container(
                         child: Column(
@@ -307,7 +315,7 @@ class _RegisterPageState extends State<registerPage>
                               style: purple14Style,
                             ),
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: size.height * 0.06,
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.bottom,
                                 textAlign: TextAlign.left,
@@ -315,10 +323,10 @@ class _RegisterPageState extends State<registerPage>
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
-                                cursorColor: paydayGreen,
+                                cursorColor: wizardGreen,
                                 decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: paydayGreen),
+                                    borderSide: BorderSide(color: wizardGreen),
                                   ),
                                   suffixIcon: Icon(Icons.remove_red_eye),
                                 ),
@@ -334,7 +342,7 @@ class _RegisterPageState extends State<registerPage>
                         children: _buildPageIndicator(),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.02,
+                        height: size.height * 0.02,
                       ),
                       Container(
                         child: Column(
@@ -347,7 +355,7 @@ class _RegisterPageState extends State<registerPage>
                               style: purple14Style,
                             ),
                             Container(
-                              height: MediaQuery.of(context).size.height * 0.06,
+                              height: size.height * 0.06,
                               child: TextField(
                                 textAlignVertical: TextAlignVertical.bottom,
                                 textAlign: TextAlign.left,
@@ -355,10 +363,10 @@ class _RegisterPageState extends State<registerPage>
                                 style: TextStyle(
                                   fontSize: 18,
                                 ),
-                                cursorColor: paydayGreen,
+                                cursorColor: wizardGreen,
                                 decoration: InputDecoration(
                                   focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: paydayGreen),
+                                    borderSide: BorderSide(color: wizardGreen),
                                   ),
                                 ),
                               ),
@@ -367,7 +375,7 @@ class _RegisterPageState extends State<registerPage>
                         ),
                       ),
                       Container(
-                        width: MediaQuery.of(context).size.width,
+                        width: size.width,
                         //padding: const EdgeInsets.all(16.0),
                         alignment: Alignment.centerLeft,
                         //color: Colors.red,
@@ -376,13 +384,23 @@ class _RegisterPageState extends State<registerPage>
                           mainAxisSize: MainAxisSize.max,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: <Widget>[
+                            // Switch(
+                            //   value: _isSwitched,
+                            //   onChanged: (value) {
+                            //     setState(() {
+                            //       _isSwitched = value;
+                            //     });
+                            //   },
+                            //   activeColor: Colors.green,
+                            //   inactiveThumbColor: Colors.grey,
+                            // ),
                             Switch(
-                              value: true,
-                              activeTrackColor: paydayGreen,
+                              value: _isSwitched,
+                              activeTrackColor: wizardGreen,
                               onChanged: (value) {},
-                              inactiveTrackColor: paydayGreen,
-                              activeColor: paydayGreen,
-                              inactiveThumbColor: accent,
+                              inactiveTrackColor: accent,
+                              activeColor: accent,
+                              inactiveThumbColor: Colors.grey,
                             ),
                             Flexible(
                                 child: RichText(
@@ -429,12 +447,12 @@ class _RegisterPageState extends State<registerPage>
                         child: Hero(
                           tag: "btnInvestingTag",
                           child: ButtonTheme(
-                              minWidth: MediaQuery.of(context).size.width,
+                              minWidth: size.width,
                               height: 50.0,
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
                                   shape: buttonShape, // Button shape
-                                  backgroundColor: paydayGreen, // Button color
+                                  backgroundColor: wizardGreen, // Button color
                                 ),
                                 onPressed: () {
                                   confimationPosition = 0.03;
@@ -445,15 +463,15 @@ class _RegisterPageState extends State<registerPage>
                                 ),
                               )),
                         ),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: size.width,
+                        height: size.height * 0.1,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.01,
+                        height: size.height * 0.01,
                       ),
                       Container(
                         alignment: Alignment.center,
-                        width: MediaQuery.of(context).size.width,
+                        width: size.width,
                         child: RichText(
                           textAlign: TextAlign.center,
                           text: TextSpan(
@@ -465,8 +483,12 @@ class _RegisterPageState extends State<registerPage>
                                 style: footerGreenStyle,
                                 recognizer: TapGestureRecognizer()
                                   ..onTap = () {
-                                    Navigator.pushNamed(
-                                        context, '/termsAndCondition');
+                                    Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => loginPage()));
+                                    // Navigator.pushNamed(
+                                    //     context, '/termsAndCondition');
                                   },
                               ),
                             ],
@@ -476,18 +498,15 @@ class _RegisterPageState extends State<registerPage>
                     ],
                   ))),
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * confimationPosition,
-              height: MediaQuery.of(context).size.height * 0.95,
+              top: size.height * confimationPosition,
+              height: size.height * 0.95,
               duration: Duration(milliseconds: 500),
               child: Container(
                   color: accent,
                   padding: EdgeInsets.fromLTRB(
-                      MediaQuery.of(context).size.width * 0.05,
-                      0,
-                      MediaQuery.of(context).size.width * 0.05,
-                      0),
+                      size.width * 0.05, 0, size.width * 0.05, 0),
                   alignment: Alignment.topLeft,
-                  width: MediaQuery.of(context).size.width,
+                  width: size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -495,13 +514,13 @@ class _RegisterPageState extends State<registerPage>
                     children: <Widget>[
                       Container(
                         alignment: Alignment.center,
-                        height: MediaQuery.of(context).size.height * 0.15,
+                        height: size.height * 0.15,
                         child: Image(
                           image: AssetImage(leafIcon),
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.01,
+                        height: size.height * 0.01,
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -511,7 +530,7 @@ class _RegisterPageState extends State<registerPage>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
+                        height: size.height * 0.05,
                       ),
                       Container(
                         alignment: Alignment.center,
@@ -520,14 +539,13 @@ class _RegisterPageState extends State<registerPage>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                       ),
                       Container(
                           alignment: Alignment.center,
-                          padding: EdgeInsets.all(
-                              MediaQuery.of(context).size.width * 0.07),
+                          padding: EdgeInsets.all(size.width * 0.07),
                           child: Text(
-                            'Your PayDay Investor account is being created and an email verification link has been sent to',
+                            'Your wealth wizard account is being created and an email verification link has been sent to',
                             style: dark16Style,
                             textAlign: TextAlign.center,
                           )),
@@ -541,8 +559,8 @@ class _RegisterPageState extends State<registerPage>
                       Container(
                           //color: Colors.red,
                           alignment: Alignment.center,
-                          height: MediaQuery.of(context).size.height * 0.1,
-                          width: MediaQuery.of(context).size.width,
+                          height: size.height * 0.1,
+                          width: size.width,
                           child: RichText(
                             textAlign: TextAlign.center,
                             text: TextSpan(
@@ -565,27 +583,24 @@ class _RegisterPageState extends State<registerPage>
                       Container(
                         alignment: Alignment.center,
                         child: ButtonTheme(
-                            minWidth: MediaQuery.of(context).size.width,
+                            minWidth: size.width,
                             height: 50.0,
                             child: ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    shape: buttonShape, // Button shape
-    backgroundColor: paydayGreen, // Button color
-  ),
-  onPressed: () {
+                              style: ElevatedButton.styleFrom(
+                                shape: buttonShape, // Button shape
+                                backgroundColor: wizardGreen, // Button color
+                              ),
+                              onPressed: () {
                                 Navigator.pushNamed(
                                     context, '/registerationToken');
-  },
-  child: Text(
-    'Confirm email address',
-    style: lightBodyStyle,
-  ),
-)
-
-                            
-                            ),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.1,
+                              },
+                              child: Text(
+                                'Confirm email address',
+                                style: lightBodyStyle,
+                              ),
+                            )),
+                        width: size.width,
+                        height: size.height * 0.1,
                       ),
                     ],
                   ))),

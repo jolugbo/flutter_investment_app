@@ -2,8 +2,8 @@ import 'package:expandable/expandable.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 
 
 
@@ -265,7 +265,7 @@ class Card4 extends StatelessWidget{
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Card(
-            clipBehavior: Clip.antiAlias,color: paydayPurple2,
+            clipBehavior: Clip.antiAlias,color: wizardPurple2,
             child: Column(
               children: <Widget>[
                 ScrollOnExpand(
@@ -278,7 +278,7 @@ class Card4 extends StatelessWidget{
                       tapBodyToCollapse: true,
                     ),
                     header: Container(
-                        color: paydayPurple2,
+                        color: wizardPurple2,
                       child:Row(
                         mainAxisSize: MainAxisSize.max,
                         mainAxisAlignment: MainAxisAlignment.start,
@@ -312,7 +312,7 @@ class Card4 extends StatelessWidget{
                                 child: ElevatedButton(
   style: OutlinedButton.styleFrom(
     shape: buttonShape,
-    backgroundColor: paydayGreen,  elevation: 0.8,
+    backgroundColor: wizardGreen,  elevation: 0.8,
   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -340,7 +340,7 @@ class Card4 extends StatelessWidget{
                                 child: ElevatedButton(
   style: OutlinedButton.styleFrom(
     shape: buttonShape,
-    backgroundColor: paydayGreen,  elevation: 0.8,
+    backgroundColor: wizardGreen,  elevation: 0.8,
   ),
                                   child: Column(
                                     mainAxisSize: MainAxisSize.min,
@@ -373,19 +373,19 @@ class Card4 extends StatelessWidget{
                               height: MediaQuery.of(context).size.height * 0.02,
                             ),
                             Container(
-                              color: paydayLightGray2,
+                              color: wizardLightGray2,
                               padding: EdgeInsets.all(5),
                               margin: EdgeInsets.all(5),
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: MediaQuery.of(context).size.height * 0.05,
                               child:TextField(
                                 decoration: InputDecoration(labelText: 'Card number',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                borderSide: BorderSide(color: paydayGreen),),
+                                borderSide: BorderSide(color: wizardGreen),),
                                   focusedBorder: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: paydayGreen),
+                                    borderSide: BorderSide(color: wizardGreen),
                                   ),
                                   border: UnderlineInputBorder(
-                                    borderSide: BorderSide(color: paydayGreen),
+                                    borderSide: BorderSide(color: wizardGreen),
                                   )),),
                             ),
                             Container(
@@ -397,33 +397,33 @@ class Card4 extends StatelessWidget{
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                   children: <Widget>[
                                     Container(
-                                      color: paydayLightGray2,
+                                      color: wizardLightGray2,
                                       padding: EdgeInsets.all(5),
                                       height: MediaQuery.of(context).size.height * 0.05,
                                       width: MediaQuery.of(context).size.width * 0.33,
                                       child:TextField(
                                         decoration: InputDecoration(labelText: 'Card expiry date',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(color: paydayGreen),),
+                                        borderSide: BorderSide(color: wizardGreen),),
                                           focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: paydayGreen),
+                                            borderSide: BorderSide(color: wizardGreen),
                                           ),
                                           border: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: paydayGreen),
+                                            borderSide: BorderSide(color: wizardGreen),
                                           )),),
                                     ),
                                     Container(
-                                      color: paydayLightGray2,
+                                      color: wizardLightGray2,
                                       padding: EdgeInsets.all(5),
                                       height: MediaQuery.of(context).size.height * 0.05,
                                       width: MediaQuery.of(context).size.width * 0.33,
                                       child:TextField(
                                         decoration: InputDecoration(labelText: 'CVV / CVC',labelStyle: gray12Style,enabledBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(color: paydayGreen),),
+                                        borderSide: BorderSide(color: wizardGreen),),
                                           focusedBorder: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: paydayGreen),
+                                            borderSide: BorderSide(color: wizardGreen),
                                           ),
                                           border: UnderlineInputBorder(
-                                            borderSide: BorderSide(color: paydayGreen),
+                                            borderSide: BorderSide(color: wizardGreen),
                                           )),),
                                     ),
                                   ],
@@ -464,13 +464,13 @@ class Card4 extends StatelessWidget{
 //                height: MediaQuery.of(context).size.height * 0.02,
 //              ),
 //              Container(
-//                color: paydayLightGray2,
+//                color: wizardLightGray2,
 //                child:TextField(decoration: InputDecoration(labelText: 'Card holder',labelStyle: gray12Style),),
 //              ),Container(
 //                height: MediaQuery.of(context).size.height * 0.02,
 //              ),
 //              Container(
-//                color: paydayLightGray2,
+//                color: wizardLightGray2,
 //                child:TextField(decoration: InputDecoration(labelText: 'Card number',labelStyle: gray12Style),),
 //              ),
 //              Container(
@@ -481,12 +481,12 @@ class Card4 extends StatelessWidget{
 //                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                    children: <Widget>[
 //                      Container(
-//                        color: paydayLightGray2,
+//                        color: wizardLightGray2,
 //                        width: MediaQuery.of(context).size.width * 0.33,
 //                        child:TextField(decoration: InputDecoration(labelText: 'Card expiry date',labelStyle: gray12Style),),
 //                      ),
 //                      Container(
-//                        color: paydayLightGray2,
+//                        color: wizardLightGray2,
 //                        width: MediaQuery.of(context).size.width * 0.33,
 //                        child:TextField(decoration: InputDecoration(labelText: 'CVV / CVC',labelStyle: gray12Style),),
 //                      ),
@@ -606,13 +606,13 @@ class Card4 extends StatelessWidget{
 //                height: MediaQuery.of(context).size.height * 0.02,
 //              ),
 //              Container(
-//                color: paydayLightGray2,
+//                color: wizardLightGray2,
 //                child:TextField(decoration: InputDecoration(labelText: 'Card holder',labelStyle: gray12Style),),
 //              ),Container(
 //                height: MediaQuery.of(context).size.height * 0.02,
 //              ),
 //              Container(
-//                color: paydayLightGray2,
+//                color: wizardLightGray2,
 //                child:TextField(decoration: InputDecoration(labelText: 'Card number',labelStyle: gray12Style),),
 //              ),
 //              Container(
@@ -623,12 +623,12 @@ class Card4 extends StatelessWidget{
 //                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
 //                    children: <Widget>[
 //                      Container(
-//                        color: paydayLightGray2,
+//                        color: wizardLightGray2,
 //                        width: MediaQuery.of(context).size.width * 0.33,
 //                        child:TextField(decoration: InputDecoration(labelText: 'Card expiry date',labelStyle: gray12Style),),
 //                      ),
 //                      Container(
-//                        color: paydayLightGray2,
+//                        color: wizardLightGray2,
 //                        width: MediaQuery.of(context).size.width * 0.33,
 //                        child:TextField(decoration: InputDecoration(labelText: 'CVV / CVC',labelStyle: gray12Style),),
 //                      ),
@@ -726,7 +726,6 @@ class Card4 extends StatelessWidget{
 
 }
 
-
 class Card3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -800,3 +799,7 @@ class Card3 extends StatelessWidget {
         ));
   }
 }
+
+
+//registration form validation
+//

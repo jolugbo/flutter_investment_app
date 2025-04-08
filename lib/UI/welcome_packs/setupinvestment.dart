@@ -5,9 +5,9 @@ import 'package:fl_animated_linechart/common/pair.dart';
 import 'package:fl_animated_linechart/fl_animated_linechart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/linechart.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/linechart.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -60,8 +60,8 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
   Color setUpInvestColor = accent;
   Color setUpNairaColor = accent;
   Color setUpDollarColor = accent;
-  Color goalBtnColor = paydayGreen;
-  Color groupGoalBtnColor = paydayGray;
+  Color goalBtnColor = wizardGreen;
+  Color groupGoalBtnColor = wizardGray;
   TextStyle goalStyle = green14Style;
   TextStyle groupGoalStyle = gray14Style;
   bool showSkip = false;
@@ -235,7 +235,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       setUpInvest = true;
                                       setUpInvestColor = accent;
                                       setUpGoal = true;
-                                      setUpGoalColor = paydayGreen;
+                                      setUpGoalColor = wizardGreen;
                                     });
                                   },
                                   child: Text(
@@ -294,7 +294,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       setUpGoal = false;
                                       setUpGoalColor = accent;
                                       setUpInvest = false;
-                                      setUpInvestColor = paydayGreen;
+                                      setUpInvestColor = wizardGreen;
                                     });
                                   },
                                   child: Text(
@@ -322,7 +322,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: buttonShape,
-                            backgroundColor: paydayGreen, // Replaces `color`
+                            backgroundColor: wizardGreen, // Replaces `color`
                             elevation: 0.8, // Replaces `highlightElevation`
                           ),
                           onPressed: () {
@@ -434,7 +434,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showMMFCheck
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -449,7 +449,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             Container(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'ARM Money Market Fund',
+                                                'Wealth Wizard Money Market Fund',
                                                 style: gray16Style,
                                                 textAlign: TextAlign.center,
                                               ),
@@ -523,7 +523,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showFixedIncomeCheck
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -538,7 +538,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             Container(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'ARM Fixed Income Fund',
+                                                'Wealth Wizard Fixed Income Fund',
                                                 style: gray16Style,
                                                 textAlign: TextAlign.center,
                                               ),
@@ -621,7 +621,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showDiscoveryFundCheck
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -636,7 +636,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             Container(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'ARM Discovery Fund',
+                                                'Wealth Wizard Discovery Fund',
                                                 style: gray16Style,
                                                 textAlign: TextAlign.center,
                                               ),
@@ -712,7 +712,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showEthicalFundCheck
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -727,7 +727,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             Container(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'ARM Ethical Fund',
+                                                'Wealth Wizard Ethical Fund',
                                                 style: gray16Style,
                                                 textAlign: TextAlign.center,
                                               ),
@@ -890,7 +890,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showMMFCheck
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -905,7 +905,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                             Container(
                                               alignment: Alignment.center,
                                               child: Text(
-                                                'ARM EuroBond Fund',
+                                                'Wealth Wizard EuroBond Fund',
                                                 style: gray16Style,
                                                 textAlign: TextAlign.center,
                                               ),
@@ -1163,9 +1163,9 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                   onPressed: () => {
                                     setState(() {
                                       showNairaCheck = true;
-                                      setUpNairaColor = paydayGreen;
+                                      setUpNairaColor = wizardGreen;
                                       showDollarCheck = false;
-                                      //setUpGoalColor = paydayGreen;
+                                      //setUpGoalColor = wizardGreen;
                                       setUpDollarColor = accent;
                                     })
                                   },
@@ -1316,7 +1316,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       showNairaCheck = false;
                                       setUpNairaColor = accent;
                                       showDollarCheck = true;
-                                      setUpDollarColor = paydayGreen;
+                                      setUpDollarColor = wizardGreen;
                                     })
                                   },
                                 )),
@@ -1457,7 +1457,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showRecurrentOptions
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -1581,7 +1581,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               Radius.circular(15)),
                                           side: BorderSide(
                                               color: showManualOptions
-                                                  ? paydayGreen
+                                                  ? wizardGreen
                                                   : accent), // Moved inside shape
                                         ),
                                         elevation: 0.8,
@@ -1780,7 +1780,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                            }
 //                          });
 //                        },
-//                        color: paydayGreen,
+//                        color: wizardGreen,
 //                      )),
 //                  height: size.height * 0.1,
 //                ),
@@ -1845,7 +1845,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                           icon: Icon(
                             Icons.arrow_back_ios,
                             size: 30,
-                            color: paydayDark,
+                            color: wizardDark,
                           ),
                         ),
                         Container(
@@ -1929,7 +1929,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -2044,7 +2044,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                     .size
                                                     .width *
                                                 0.02,
-                                            color: paydayGreen,
+                                            color: wizardGreen,
                                           ),
                                           Image(
                                               image: AssetImage(infoIcon),
@@ -2061,7 +2061,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -2105,7 +2105,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2134,7 +2134,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2168,7 +2168,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2209,7 +2209,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2237,7 +2237,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2265,7 +2265,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2306,7 +2306,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2334,7 +2334,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2375,7 +2375,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2403,7 +2403,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2431,7 +2431,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                               .styleFrom(
                                                             side: BorderSide(
                                                               color:
-                                                                  paydayGreen, // Border color
+                                                                  wizardGreen, // Border color
                                                               style: BorderStyle
                                                                   .solid,
                                                             ),
@@ -2467,7 +2467,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               textAlign: TextAlign.center,
                                             ),
                                             Container(
-                                              color: paydayLightGray2,
+                                              color: wizardLightGray2,
                                               padding: EdgeInsets.all(5),
                                               margin: EdgeInsets.all(5),
                                               width: MediaQuery.of(context)
@@ -2500,7 +2500,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                           shape: buttonShape,
                                                           elevation: 0.8,
                                                           backgroundColor:
-                                                              paydayGreen),
+                                                              wizardGreen),
                                                   child: Row(
                                                     mainAxisSize:
                                                         MainAxisSize.min,
@@ -2562,7 +2562,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -2678,7 +2678,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.04,
@@ -2698,7 +2698,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                               textAlign: TextAlign.center,
                                             ),
                                             Container(
-                                              color: paydayLightGray2,
+                                              color: wizardLightGray2,
                                               padding: EdgeInsets.all(5),
                                               margin: EdgeInsets.all(5),
                                               width: MediaQuery.of(context)
@@ -2714,16 +2714,16 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                 enabledBorder:
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
-                                                      color: paydayGreen),
+                                                      color: wizardGreen),
                                                 ),
                                                 focusedBorder:
                                                     UnderlineInputBorder(
                                                   borderSide: BorderSide(
-                                                      color: paydayGreen),
+                                                      color: wizardGreen),
                                                 ),
                                                 border: UnderlineInputBorder(
                                                   borderSide: BorderSide(
-                                                      color: paydayGreen),
+                                                      color: wizardGreen),
                                                 ),
                                               )),
                                             ),
@@ -2808,7 +2808,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                       .date_range,
                                                                   size: 18.0,
                                                                   color:
-                                                                      paydayPurple,
+                                                                      wizardPurple,
                                                                 ),
                                                                 Text(
                                                                   " $_date",
@@ -2907,11 +2907,11 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 goalStyle =
                                                                     green14Style;
                                                                 goalBtnColor =
-                                                                    paydayGreen;
+                                                                    wizardGreen;
                                                                 groupGoalStyle =
                                                                     gray14Style;
                                                                 groupGoalBtnColor =
-                                                                    paydayGray;
+                                                                    wizardGray;
                                                               })
                                                             },
                                                           )),
@@ -2965,11 +2965,11 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 groupGoalStyle =
                                                                     green14Style;
                                                                 groupGoalBtnColor =
-                                                                    paydayGreen;
+                                                                    wizardGreen;
                                                                 goalStyle =
                                                                     gray14Style;
                                                                 goalBtnColor =
-                                                                    paydayGray;
+                                                                    wizardGray;
                                                               })
                                                             }, //callback when button is clicked
                                                           )),
@@ -2993,7 +2993,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             shape: buttonShape,
-                                            backgroundColor: paydayGreen,
+                                            backgroundColor: wizardGreen,
                                             elevation:
                                                 0.8, // Replaced highlightElevation
                                           ),
@@ -3056,7 +3056,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -3194,7 +3194,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.04,
@@ -3224,7 +3224,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                   0.04,
                                             ),
                                             Container(
-                                              color: paydayLightGray2,
+                                              color: wizardLightGray2,
                                               alignment: Alignment.bottomCenter,
                                               padding: EdgeInsets.all(5),
                                               margin: EdgeInsets.all(5),
@@ -3250,13 +3250,13 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Chip(
                                         elevation: 24,
                                         avatar: CircleAvatar(
-                                          backgroundColor: paydayGreen,
+                                          backgroundColor: wizardGreen,
                                           child: Icon(
                                             Icons.add,
                                           ),
                                         ),
                                         shape: RoundedRectangleBorder(
-                                          side: BorderSide(color: paydayGreen),
+                                          side: BorderSide(color: wizardGreen),
                                           borderRadius:
                                               BorderRadius.circular(15.0),
                                         ),
@@ -3282,7 +3282,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             shape: buttonShape,
-                                            backgroundColor: paydayGreen,
+                                            backgroundColor: wizardGreen,
                                             elevation: 0.8,
                                           ),
                                           child: Row(
@@ -3345,7 +3345,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -3457,7 +3457,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                     .width *
                                                 0.7,
                                             child: Text(
-                                              'The ARM Fixed Income Fund is an open-ended, low risk mutual fund which invests in high quality fixed income securities such as Treasury Bills, Bank Placements, Commercial Paper, etc.',
+                                              'The Wealth Wizard Fixed Income Fund is an open-ended, low risk mutual fund which invests in high quality fixed income securities such as Treasury Bills, Bank Placements, Commercial Paper, etc.',
                                               style: dark14Style,
                                               textAlign: TextAlign.left,
                                             ),
@@ -3471,7 +3471,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 0.5,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       padding:
@@ -3534,7 +3534,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -3544,7 +3544,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                         height: 50.0,
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
-                                              backgroundColor: paydayGreen),
+                                              backgroundColor: wizardGreen),
                                           child: Text(
                                             'Invest now',
                                             style: lightBodyStyle,
@@ -3577,7 +3577,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -3691,7 +3691,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                     .width *
                                                 0.75,
                                             child: Text(
-                                              'The ARM Money Market Fund is suitable for Investors who have cash in their bank accounts and wish to earn higher rates than the traditional savings or current account and offset the effects of inflation.',
+                                              'The Wealth Wizard Money Market Fund is suitable for Investors who have cash in their bank accounts and wish to earn higher rates than the traditional savings or current account and offset the effects of inflation.',
                                               style: dark14Style,
                                               textAlign: TextAlign.left,
                                             ),
@@ -3705,7 +3705,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       child: Column(
@@ -3766,7 +3766,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       alignment: Alignment.center,
@@ -3855,7 +3855,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -3997,7 +3997,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       child: Column(
@@ -4043,7 +4043,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                             shape: buttonShape,
                                                             backgroundColor:
                                                                 weeklyChecked
-                                                                    ? paydayGreen
+                                                                    ? wizardGreen
                                                                     : accent,
                                                             elevation: 0.8,
                                                           ),
@@ -4079,7 +4079,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                             backgroundColor:
                                                                 weeklyChecked
                                                                     ? accent
-                                                                    : paydayGreen,
+                                                                    : wizardGreen,
                                                           ),
                                                           child: Text(
                                                             'Monthly',
@@ -4158,7 +4158,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 LinearStrokeCap
                                                                     .roundAll,
                                                             progressColor:
-                                                                paydayOrange,
+                                                                wizardOrange,
                                                           ),
                                                         ),
                                                       ],
@@ -4173,7 +4173,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                           style: ElevatedButton
                                                               .styleFrom(
                                                             backgroundColor:
-                                                                paydayGreen,
+                                                                wizardGreen,
                                                           ),
                                                           child: Image(
                                                             width: MediaQuery.of(
@@ -4209,7 +4209,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.01,
@@ -4241,7 +4241,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -4381,7 +4381,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       child: Column(
@@ -4416,7 +4416,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                       .width *
                                                   0.7,
                                               alignment: Alignment.center,
-                                              color: paydayLightPurple,
+                                              color: wizardLightPurple,
                                               child: TextField()),
                                           Container(
                                             height: MediaQuery.of(context)
@@ -4475,7 +4475,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 LinearStrokeCap
                                                                     .roundAll,
                                                             progressColor:
-                                                                paydayOrange,
+                                                                wizardOrange,
                                                           ),
                                                         ),
                                                       ],
@@ -4490,7 +4490,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                           style: ElevatedButton
                                                               .styleFrom(
                                                             backgroundColor:
-                                                                paydayGreen,
+                                                                wizardGreen,
                                                           ),
                                                           child: Image(
                                                             width: MediaQuery.of(
@@ -4526,7 +4526,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.01,
@@ -4558,7 +4558,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -4698,7 +4698,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       child: Column(
@@ -4782,7 +4782,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                     .date_range,
                                                                 size: 18.0,
                                                                 color:
-                                                                    paydayPurple,
+                                                                    wizardPurple,
                                                               ),
                                                               Text(
                                                                 " $_date",
@@ -4856,7 +4856,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 LinearStrokeCap
                                                                     .roundAll,
                                                             progressColor:
-                                                                paydayOrange,
+                                                                wizardOrange,
                                                           ),
                                                         ),
                                                       ],
@@ -4871,7 +4871,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                           style: ElevatedButton
                                                               .styleFrom(
                                                             backgroundColor:
-                                                                paydayGreen,
+                                                                wizardGreen,
                                                           ),
                                                           child: Image(
                                                             width: MediaQuery.of(
@@ -4907,7 +4907,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -4939,7 +4939,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -5076,7 +5076,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       child: Column(
@@ -5123,7 +5123,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                             size.height * 0.02,
                                                       ),
                                                       Container(
-                                                        color: paydayLightGray2,
+                                                        color: wizardLightGray2,
                                                         padding:
                                                             EdgeInsets.all(5),
                                                         margin:
@@ -5144,21 +5144,21 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                     borderSide:
                                                                         BorderSide(
                                                                             color:
-                                                                                paydayGreen),
+                                                                                wizardGreen),
                                                                   ),
                                                                   focusedBorder:
                                                                       UnderlineInputBorder(
                                                                     borderSide:
                                                                         BorderSide(
                                                                             color:
-                                                                                paydayGreen),
+                                                                                wizardGreen),
                                                                   ),
                                                                   border:
                                                                       UnderlineInputBorder(
                                                                     borderSide:
                                                                         BorderSide(
                                                                             color:
-                                                                                paydayGreen),
+                                                                                wizardGreen),
                                                                   )),
                                                         ),
                                                       ),
@@ -5179,7 +5179,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                             children: <Widget>[
                                                               Container(
                                                                 color:
-                                                                    paydayLightGray2,
+                                                                    wizardLightGray2,
                                                                 padding:
                                                                     EdgeInsets
                                                                         .all(5),
@@ -5204,23 +5204,23 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                           enabledBorder:
                                                                               UnderlineInputBorder(
                                                                             borderSide:
-                                                                                BorderSide(color: paydayGreen),
+                                                                                BorderSide(color: wizardGreen),
                                                                           ),
                                                                           focusedBorder:
                                                                               UnderlineInputBorder(
                                                                             borderSide:
-                                                                                BorderSide(color: paydayGreen),
+                                                                                BorderSide(color: wizardGreen),
                                                                           ),
                                                                           border:
                                                                               UnderlineInputBorder(
                                                                             borderSide:
-                                                                                BorderSide(color: paydayGreen),
+                                                                                BorderSide(color: wizardGreen),
                                                                           )),
                                                                 ),
                                                               ),
                                                               Container(
                                                                 color:
-                                                                    paydayLightGray2,
+                                                                    wizardLightGray2,
                                                                 padding:
                                                                     EdgeInsets
                                                                         .all(5),
@@ -5245,17 +5245,17 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                           enabledBorder:
                                                                               UnderlineInputBorder(
                                                                             borderSide:
-                                                                                BorderSide(color: paydayGreen),
+                                                                                BorderSide(color: wizardGreen),
                                                                           ),
                                                                           focusedBorder:
                                                                               UnderlineInputBorder(
                                                                             borderSide:
-                                                                                BorderSide(color: paydayGreen),
+                                                                                BorderSide(color: wizardGreen),
                                                                           ),
                                                                           border:
                                                                               UnderlineInputBorder(
                                                                             borderSide:
-                                                                                BorderSide(color: paydayGreen),
+                                                                                BorderSide(color: wizardGreen),
                                                                           )),
                                                                 ),
                                                               ),
@@ -5283,7 +5283,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 ElevatedButton(
                                                               style: ElevatedButton.styleFrom(
                                                                   backgroundColor:
-                                                                      paydayGreen,
+                                                                      wizardGreen,
                                                                   shape:
                                                                       buttonShape),
                                                               child: Row(
@@ -5369,7 +5369,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                             15)),
                                                                     side: BorderSide(
                                                                         color:
-                                                                            paydayGreen)),
+                                                                            wizardGreen)),
                                                                 elevation: 4.0),
                                                             child: Column(
                                                               mainAxisSize:
@@ -5444,7 +5444,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                             15)),
                                                                     side: BorderSide(
                                                                         color:
-                                                                            paydayGreen)),
+                                                                            wizardGreen)),
                                                                 elevation: 0.8),
                                                             child: Column(
                                                               mainAxisSize:
@@ -5512,7 +5512,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -5544,7 +5544,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -5686,7 +5686,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       child: Column(
@@ -5721,7 +5721,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                       .width *
                                                   0.7,
                                               alignment: Alignment.center,
-                                              color: paydayLightPurple,
+                                              color: wizardLightPurple,
                                               child: TextField(
                                                 decoration: textFieldDecoration,
                                               )),
@@ -5737,7 +5737,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                         child: ElevatedButton(
                                           style: ElevatedButton.styleFrom(
                                             shape: buttonShape,
-                                            backgroundColor: paydayGreen,
+                                            backgroundColor: wizardGreen,
                                             elevation:
                                                 0.8, // Replaced highlightElevation
                                           ),
@@ -5801,7 +5801,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -5829,7 +5829,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                 alignment: Alignment.center,
                                 child: ExpandableTheme(
                                   data: ExpandableThemeData(
-                                    iconColor: paydayGray,
+                                    iconColor: wizardGray,
                                     useInkWell: true,
                                   ),
                                   child: ListView(
@@ -5942,7 +5942,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                 width: MediaQuery.of(context)
                                                     .size
                                                     .width,
-                                                color: paydayGray),
+                                                color: wizardGray),
                                           ),
                                           Container(
                                             child: Column(
@@ -5976,7 +5976,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                       child: Card(
                                                         clipBehavior:
                                                             Clip.antiAlias,
-                                                        color: paydayPurple2,
+                                                        color: wizardPurple2,
                                                         child: Column(
                                                           children: <Widget>[
                                                             ScrollOnExpand(
@@ -5999,7 +5999,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                 header:
                                                                     Container(
                                                                   color:
-                                                                      paydayPurple2,
+                                                                      wizardPurple2,
                                                                   child: Row(
                                                                     mainAxisSize:
                                                                         MainAxisSize
@@ -6053,7 +6053,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                               height: size.height * 0.02,
                                                                             ),
                                                                             Container(
-                                                                              color: paydayLightGray2,
+                                                                              color: wizardLightGray2,
                                                                               padding: EdgeInsets.all(5),
                                                                               margin: EdgeInsets.all(5),
                                                                               width: size.width * 0.75,
@@ -6063,13 +6063,13 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                     labelText: 'Card number',
                                                                                     labelStyle: gray12Style,
                                                                                     enabledBorder: UnderlineInputBorder(
-                                                                                      borderSide: BorderSide(color: paydayGreen),
+                                                                                      borderSide: BorderSide(color: wizardGreen),
                                                                                     ),
                                                                                     focusedBorder: UnderlineInputBorder(
-                                                                                      borderSide: BorderSide(color: paydayGreen),
+                                                                                      borderSide: BorderSide(color: wizardGreen),
                                                                                     ),
                                                                                     border: UnderlineInputBorder(
-                                                                                      borderSide: BorderSide(color: paydayGreen),
+                                                                                      borderSide: BorderSide(color: wizardGreen),
                                                                                     )),
                                                                               ),
                                                                             ),
@@ -6082,7 +6082,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                                                                   children: <Widget>[
                                                                                     Container(
-                                                                                      color: paydayLightGray2,
+                                                                                      color: wizardLightGray2,
                                                                                       padding: EdgeInsets.all(5),
                                                                                       height: size.height * 0.05,
                                                                                       width: size.width * 0.33,
@@ -6091,18 +6091,18 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                             labelText: 'Card expiry date',
                                                                                             labelStyle: gray12Style,
                                                                                             enabledBorder: UnderlineInputBorder(
-                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                              borderSide: BorderSide(color: wizardGreen),
                                                                                             ),
                                                                                             focusedBorder: UnderlineInputBorder(
-                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                              borderSide: BorderSide(color: wizardGreen),
                                                                                             ),
                                                                                             border: UnderlineInputBorder(
-                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                              borderSide: BorderSide(color: wizardGreen),
                                                                                             )),
                                                                                       ),
                                                                                     ),
                                                                                     Container(
-                                                                                      color: paydayLightGray2,
+                                                                                      color: wizardLightGray2,
                                                                                       padding: EdgeInsets.all(5),
                                                                                       height: size.height * 0.05,
                                                                                       width: size.width * 0.33,
@@ -6111,13 +6111,13 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                             labelText: 'CVV / CVC',
                                                                                             labelStyle: gray12Style,
                                                                                             enabledBorder: UnderlineInputBorder(
-                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                              borderSide: BorderSide(color: wizardGreen),
                                                                                             ),
                                                                                             focusedBorder: UnderlineInputBorder(
-                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                              borderSide: BorderSide(color: wizardGreen),
                                                                                             ),
                                                                                             border: UnderlineInputBorder(
-                                                                                              borderSide: BorderSide(color: paydayGreen),
+                                                                                              borderSide: BorderSide(color: wizardGreen),
                                                                                             )),
                                                                                       ),
                                                                                     ),
@@ -6146,7 +6146,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                   style: ElevatedButton.styleFrom(
                                                                                     shape: RoundedRectangleBorder(
                                                                                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                                                      side: BorderSide(color: paydayGreen), // Moved inside shape
+                                                                                      side: BorderSide(color: wizardGreen), // Moved inside shape
                                                                                     ),
                                                                                     elevation: 0.8, // Replaced highlightElevation
                                                                                   ),
@@ -6187,7 +6187,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                   style: ElevatedButton.styleFrom(
                                                                                     shape: RoundedRectangleBorder(
                                                                                       borderRadius: BorderRadius.all(Radius.circular(15)),
-                                                                                      side: BorderSide(color: paydayGreen), // Moved inside shape
+                                                                                      side: BorderSide(color: wizardGreen), // Moved inside shape
                                                                                     ),
                                                                                     elevation: 0.8, // Replaced highlightElevation
                                                                                   ),
@@ -6257,7 +6257,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                       child: Card(
                                                         clipBehavior:
                                                             Clip.antiAlias,
-                                                        color: paydayPurple2,
+                                                        color: wizardPurple2,
                                                         child: Column(
                                                           children: <Widget>[
                                                             ScrollOnExpand(
@@ -6272,7 +6272,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                   header:
                                                                       Container(
                                                                     color:
-                                                                        paydayPurple2,
+                                                                        wizardPurple2,
                                                                     child: Row(
                                                                       mainAxisSize:
                                                                           MainAxisSize
@@ -6318,7 +6318,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                           Container(
                                                                             child:
                                                                                 Text(
-                                                                              'Make a transfer to your dedicated account number to fund your PayDay Investor wallet',
+                                                                              'Make a transfer to your dedicated account number to fund your wealth wizard wallet',
                                                                               style: purple12Style,
                                                                               textAlign: TextAlign.center,
                                                                             ),
@@ -6333,7 +6333,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                             child: Container(
                                                                                 height: 1.0,
                                                                                 width: size.width,
-                                                                                color: paydayGray),
+                                                                                color: wizardGray),
                                                                           ),
                                                                           Container(
                                                                             height:
@@ -6356,7 +6356,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                     children: <TextSpan>[
                                                                                       TextSpan(
                                                                                         text: ' Wema Bank',
-                                                                                        style: TextStyle(color: paydayPurple, fontWeight: FontWeight.bold),
+                                                                                        style: TextStyle(color: wizardPurple, fontWeight: FontWeight.bold),
                                                                                       ),
                                                                                       TextSpan(
                                                                                         text: '\nAccount number: ',
@@ -6364,7 +6364,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                                       ),
                                                                                       TextSpan(
                                                                                         text: ' 1234567890',
-                                                                                        style: TextStyle(color: paydayPurple, fontWeight: FontWeight.bold),
+                                                                                        style: TextStyle(color: wizardPurple, fontWeight: FontWeight.bold),
                                                                                       ),
                                                                                     ],
                                                                                   ),
@@ -6426,7 +6426,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                       child: Card(
                                                         clipBehavior:
                                                             Clip.antiAlias,
-                                                        color: paydayPurple2,
+                                                        color: wizardPurple2,
                                                         child: Column(
                                                           children: <Widget>[
                                                             ScrollOnExpand(
@@ -6441,7 +6441,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                                   header:
                                                                       Container(
                                                                     color:
-                                                                        paydayPurple2,
+                                                                        wizardPurple2,
                                                                     child: Row(
                                                                       mainAxisSize:
                                                                           MainAxisSize
@@ -6549,7 +6549,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         shape: buttonShape,
-                        backgroundColor: paydayGreen, // Correct property
+                        backgroundColor: wizardGreen, // Correct property
                       ),
                       onPressed: () {
                         setState(() {
@@ -6594,7 +6594,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -6676,7 +6676,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                     .width *
                                                 0.7,
                                             child: Text(
-                                              'The ARM Eurobond Fund is an open-ended, low-risk mutual fund that is invested in Dollar denominated Eurobond floated by the Federal Government of Nigeria and top tier Nigerian corporates.',
+                                              'The Wealth Wizard Eurobond Fund is an open-ended, low-risk mutual fund that is invested in Dollar denominated Eurobond floated by the Federal Government of Nigeria and top tier Nigerian corporates.',
                                               style: dark14Style,
                                               textAlign: TextAlign.left,
                                             ),
@@ -6690,7 +6690,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 0.5,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       padding:
@@ -6753,7 +6753,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -6784,7 +6784,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           style: ElevatedButton.styleFrom(
                                             shape: buttonShape,
                                             backgroundColor:
-                                                paydayGreen, // Correct property
+                                                wizardGreen, // Correct property
                                           ),
                                           onPressed: () {
                                             setState(() {
@@ -6846,7 +6846,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -6929,7 +6929,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                     .width *
                                                 0.7,
                                             child: Text(
-                                              'The ARM Discovery Fund is suitable for investors who want high capital growth over the long term to meet various objectives such as college fund, or leaving a legacy for loved ones.',
+                                              'The Wealth Wizard Discovery Fund is suitable for investors who want high capital growth over the long term to meet various objectives such as college fund, or leaving a legacy for loved ones.',
                                               style: dark14Style,
                                               textAlign: TextAlign.left,
                                             ),
@@ -6943,7 +6943,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 0.5,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       padding:
@@ -7006,7 +7006,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -7018,7 +7018,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           style: ElevatedButton.styleFrom(
                                             shape: buttonShape,
                                             backgroundColor:
-                                                paydayGreen, // Correct property
+                                                wizardGreen, // Correct property
                                           ),
                                           onPressed: () {
                                             setState(() {
@@ -7080,7 +7080,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                 height: size.height,
                 width: size.width,
                 decoration: BoxDecoration(
-                  color: paydayOverlayLightPurple,
+                  color: wizardOverlayLightPurple,
                 ),
                 child: Column(
                   children: <Widget>[
@@ -7162,7 +7162,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                                     .width *
                                                 0.7,
                                             child: Text(
-                                              'The ARM Ethical Fund is suitable for Islamic investors who want long-term capital growth by investing strictly according to the principles of Islamic finance and ethical values.',
+                                              'The Wealth Wizard Ethical Fund is suitable for Islamic investors who want long-term capital growth by investing strictly according to the principles of Islamic finance and ethical values.',
                                               style: dark14Style,
                                               textAlign: TextAlign.left,
                                             ),
@@ -7176,7 +7176,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 0.5,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       padding:
@@ -7239,7 +7239,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                       child: Container(
                                           height: 1.0,
                                           width: size.width,
-                                          color: paydayGray),
+                                          color: wizardGray),
                                     ),
                                     Container(
                                       height: size.height * 0.02,
@@ -7251,7 +7251,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
                                           style: ElevatedButton.styleFrom(
                                             shape: buttonShape,
                                             backgroundColor:
-                                                paydayGreen, // Replaces `color`
+                                                wizardGreen, // Replaces `color`
                                           ),
                                           onPressed: () {
                                             setState(() {
@@ -7343,7 +7343,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                            }
 //                          });
 //                        },
-//                        color: paydayGreen,
+//                        color: wizardGreen,
 //                      )),
 //                  height: size.height * 0.1,
 //                ),
@@ -7391,7 +7391,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild:Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: wizardGreen,size: size.height * 0.08,),),
 //                                        secondChild:Container(
 //                                          width: size.width * 0.08,
 //                                          height: size.height * 0.08,
@@ -7421,7 +7421,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                  mainAxisAlignment:MainAxisAlignment.spaceAround,
 //                                                  crossAxisAlignment: CrossAxisAlignment.center,
 //                                                  children: <Widget>[
-//                                                    Text('ARM Money Market Fund',style: gray16Style,textAlign: TextAlign.center,),
+//                                                    Text('Wealth Wizard Money Market Fund',style: gray16Style,textAlign: TextAlign.center,),
 //                                                    AnimatedCrossFade(
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild: WidgetAnimator(
@@ -7453,7 +7453,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                })
 //                                              },
 //                                              borderSide: BorderSide(
-//                                                color: showMMFCheck ? paydayGreen:accent,
+//                                                color: showMMFCheck ? wizardGreen:accent,
 //                                                style: BorderStyle.solid,
 //                                                width: 0.8,
 //                                              ),
@@ -7471,7 +7471,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild: Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: wizardGreen,size: size.height * 0.08,),),
 //                                        secondChild: Container(
 //                                          width: size.width * 0.08,
 //                                          height: size.height * 0.08,
@@ -7501,7 +7501,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                  mainAxisAlignment:MainAxisAlignment.spaceAround,
 //                                                  crossAxisAlignment: CrossAxisAlignment.center,
 //                                                  children: <Widget>[
-//                                                    Text('ARM Fixed Income Fund',style: gray16Style,textAlign: TextAlign.center,),
+//                                                    Text('Wealth Wizard Fixed Income Fund',style: gray16Style,textAlign: TextAlign.center,),
 //                                                    AnimatedCrossFade(
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild:WidgetAnimator(
@@ -7536,7 +7536,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                })
 //                                              }, //callback when button is clicked
 //                                              borderSide: BorderSide(
-//                                                color: showFixedIncomeCheck? paydayGreen:accent,
+//                                                color: showFixedIncomeCheck? wizardGreen:accent,
 //                                                style: BorderStyle.solid,
 //                                                width: 0.8,
 //                                              ),
@@ -7561,7 +7561,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild:Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: wizardGreen,size: size.height * 0.08,),),
 //                                        secondChild:Container(
 //                                          width: size.width * 0.08,
 //                                          height: size.height * 0.08,
@@ -7592,7 +7592,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                  mainAxisAlignment:MainAxisAlignment.spaceAround,
 //                                                  crossAxisAlignment: CrossAxisAlignment.center,
 //                                                  children: <Widget>[
-//                                                    Text('ARM Discovery Fund',style: gray16Style,textAlign: TextAlign.center,),
+//                                                    Text('Wealth Wizard Discovery Fund',style: gray16Style,textAlign: TextAlign.center,),
 //                                                    AnimatedCrossFade(
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild: WidgetAnimator(
@@ -7624,7 +7624,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                })
 //                                              },
 //                                              borderSide: BorderSide(
-//                                                color: showDiscoveryFundCheck ? paydayGreen:accent,
+//                                                color: showDiscoveryFundCheck ? wizardGreen:accent,
 //                                                style: BorderStyle.solid,
 //                                                width: 0.8,
 //                                              ),
@@ -7642,7 +7642,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                      AnimatedCrossFade(
 //                                        duration: const Duration(milliseconds: 200),
 //                                        firstChild: Container(
-//                                          child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
+//                                          child: Icon(Icons.check,color: wizardGreen,size: size.height * 0.08,),),
 //                                        secondChild: Container(
 //                                          width: size.width * 0.08,
 //                                          height: size.height * 0.08,
@@ -7671,7 +7671,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                  mainAxisAlignment:MainAxisAlignment.spaceAround,
 //                                                  crossAxisAlignment: CrossAxisAlignment.center,
 //                                                  children: <Widget>[
-//                                                    Text('ARM Ethical Fund',style: gray16Style,textAlign: TextAlign.center,),
+//                                                    Text('Wealth Wizard Ethical Fund',style: gray16Style,textAlign: TextAlign.center,),
 //                                                    AnimatedCrossFade(
 //                                                      duration: const Duration(seconds: 1),
 //                                                      firstChild:WidgetAnimator(
@@ -7706,7 +7706,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                })
 //                                              }, //callback when button is clicked
 //                                              borderSide: BorderSide(
-//                                                color: showEthicalFundCheck? paydayGreen:accent,
+//                                                color: showEthicalFundCheck? wizardGreen:accent,
 //                                                style: BorderStyle.solid,
 //                                                width: 0.8,
 //                                              ),
@@ -7777,7 +7777,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                            }
 //                          });
 //                        },
-//                        color: paydayGreen,
+//                        color: wizardGreen,
 //                      )),
 //                  height: size.height * 0.1,
 //                ),
@@ -7825,7 +7825,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                        AnimatedCrossFade(
 //                                          duration: const Duration(milliseconds: 200),
 //                                          firstChild:Container(
-//                                            child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
+//                                            child: Icon(Icons.check,color: wizardGreen,size: size.height * 0.08,),),
 //                                          secondChild:Container(
 //                                            width: size.width * 0.08,
 //                                            height: size.height * 0.08,
@@ -7885,7 +7885,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                  })
 //                                                },
 //                                                borderSide: BorderSide(
-//                                                  color: showRecurrentOptions ? paydayGreen:accent,
+//                                                  color: showRecurrentOptions ? wizardGreen:accent,
 //                                                  style: BorderStyle.solid,
 //                                                  width: 0.8,
 //                                                ),
@@ -7903,7 +7903,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                        AnimatedCrossFade(
 //                                          duration: const Duration(milliseconds: 200),
 //                                          firstChild: Container(
-//                                            child: Icon(Icons.check,color: paydayGreen,size: size.height * 0.08,),),
+//                                            child: Icon(Icons.check,color: wizardGreen,size: size.height * 0.08,),),
 //                                          secondChild: Container(
 //                                            width: size.width * 0.08,
 //                                            height: size.height * 0.08,
@@ -7966,7 +7966,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //                                                  })
 //                                                }, //callback when button is clicked
 //                                                borderSide: BorderSide(
-//                                                  color: showManualOptions? paydayGreen:accent,
+//                                                  color: showManualOptions? wizardGreen:accent,
 //                                                  style: BorderStyle.solid,
 //                                                  width: 0.8,
 //                                                ),
@@ -7996,7 +7996,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 //        controller: panelController,
 //       // minHeight: initialHeight,
 //        isDraggable: true,panelSnapping: true,
-//       // maxHeight: maximumHeight,backdropColor: paydayPurple,
+//       // maxHeight: maximumHeight,backdropColor: wizardPurple,
 //        borderRadius: radius,
 //        panel: Stack(
 //          children: <Widget>[
@@ -8058,7 +8058,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                      child: Container(
 ////                          height: 1.0,
 ////                          width: size.width,
-////                          color: paydayGray),
+////                          color: wizardGray),
 ////                    ),
 ////                    Container(
 ////                      child: Column(
@@ -8095,7 +8095,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                            Navigator.pushNamed(context, '/kycUpload')
 ////                                          }, //callback when button is clicked
 ////                                          borderSide: BorderSide(
-////                                            color: paydayGreen,
+////                                            color: wizardGreen,
 ////                                            style: BorderStyle.solid,
 ////                                            width: 2,
 ////                                          ),
@@ -8117,7 +8117,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                            Navigator.pushNamed(context, '/kycUpload')
 ////                                          }, //callback when button is clicked
 ////                                          borderSide: BorderSide(
-////                                            color: paydayGreen,
+////                                            color: wizardGreen,
 ////                                            style: BorderStyle.solid,
 ////                                            width: 2,
 ////                                          ),
@@ -8164,7 +8164,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                            percent: 0.8,
 ////                                            center: Text("80%"),
 ////                                            linearStrokeCap: LinearStrokeCap.roundAll,
-////                                            progressColor: paydayOrange,
+////                                            progressColor: wizardOrange,
 ////                                          ),
 ////                                        ),
 ////                                      ],
@@ -8182,7 +8182,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                                              recurrerntFrequencyTop = size.height * 1.2;
 ////                                            });
 ////                                          },
-////                                          color: paydayGreen,
+////                                          color: wizardGreen,
 ////                                        )),
 ////                                  )
 ////                                ],)
@@ -8198,7 +8198,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                      child: Container(
 ////                          height: 1.0,
 ////                          width: size.width,
-////                          color: paydayGray),
+////                          color: wizardGray),
 ////                    ),
 ////                    Container(
 ////                      height: size.height * 0.01,
@@ -8265,7 +8265,7 @@ class _SetUpInvestmentPageState extends State<setUpInvestmentPage>
 ////                          }
 ////                        });
 ////                      },
-////                      color: paydayGreen,
+////                      color: wizardGreen,
 ////                    )),
 ////                height: size.height * 0.1,
 ////              ),

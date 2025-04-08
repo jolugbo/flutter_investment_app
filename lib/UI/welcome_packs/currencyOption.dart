@@ -3,8 +3,8 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/material.dart' as DatePicker;
 //import 'package:flutter_sliding_up_panel/sliding_up_panel_widget.dart';
-import 'package:payday_investor/utills/imageanimations.dart';
-import 'package:payday_investor/utills/styles.dart';
+import 'package:wealth_wizard/utills/imageanimations.dart';
+import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:sliding_up_panel/sliding_up_panel.dart';
 
@@ -25,7 +25,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
   String headerText = 'Validate your identity';
   String middleHeaderText = 'Valid Identification';
   String bodyText =
-      'A copy of a valid government issued ID clearly displaying the name on your PayDay Investor account.';
+      'A copy of a valid government issued ID clearly displaying the name on your wealth wizard account.';
   String startinvestingIcon = 'assets/startinvesting.png';
   String targetIcon = 'assets/target.png';
   String vacationIcon = 'assets/vacationicon.png';
@@ -169,7 +169,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                       child: Container(
                           height: 1.0,
                           width: MediaQuery.of(context).size.width,
-                          color: paydayGray),
+                          color: wizardGray),
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.02,
@@ -339,13 +339,13 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               textAlign: TextAlign.center,
                             ),
                             Container(
-                              color: paydayLightGray2,
+                              color: wizardLightGray2,
                               padding: EdgeInsets.all(5),
                               margin: EdgeInsets.all(5),
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: MediaQuery.of(context).size.height * 0.05,
                               child: TextField(
-                                  //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: paydayGreen))),
+                                  //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: wizardGreen))),
                                   ),
                             ),
                           ]),
@@ -396,7 +396,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                       child: Container(
                           height: 1.0,
                           width: MediaQuery.of(context).size.width,
-                          color: paydayGray),
+                          color: wizardGray),
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.04,
@@ -414,13 +414,13 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               textAlign: TextAlign.center,
                             ),
                             Container(
-                              color: paydayLightGray2,
+                              color: wizardLightGray2,
                               padding: EdgeInsets.all(5),
                               margin: EdgeInsets.all(5),
                               width: MediaQuery.of(context).size.width * 0.75,
                               height: MediaQuery.of(context).size.height * 0.05,
                               child: TextField(
-                                  //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: paydayGreen))),
+                                  //decoration: InputDecoration(border: InputBorder(borderSide: BorderSide(color: wizardGreen))),
                                   ),
                             ),
                           ]),
@@ -481,7 +481,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                                 Icon(
                                                   Icons.date_range,
                                                   size: 18.0,
-                                                  color: paydayPurple,
+                                                  color: wizardPurple,
                                                 ),
                                                 Text(
                                                   " $_date",
@@ -537,9 +537,9 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                           child: OutlinedButton(
                                             style: OutlinedButton.styleFrom(
                                               shape: buttonShape,
-                                              backgroundColor: paydayGreen,
+                                              backgroundColor: wizardGreen,
                                               side: BorderSide(
-                                                color: paydayGreen,
+                                                color: wizardGreen,
                                                 style: BorderStyle.solid,
                                                 width: 0.8,
                                               ),
@@ -581,7 +581,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                               shape: buttonShape,
                                               backgroundColor: accent,
                                               side: BorderSide(
-                                                color: paydayGray,
+                                                color: wizardGray,
                                                 style: BorderStyle.solid,
                                                 width: 0.8,
                                               ),
@@ -655,7 +655,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                       child: Container(
                           height: 1.0,
                           width: MediaQuery.of(context).size.width,
-                          color: paydayGray),
+                          color: wizardGray),
                     ),
                     Container(
                       height: MediaQuery.of(context).size.height * 0.04,
@@ -679,7 +679,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               height: MediaQuery.of(context).size.height * 0.04,
                             ),
                             Container(
-                              color: paydayLightGray2,
+                              color: wizardLightGray2,
                               padding: EdgeInsets.all(5),
                               margin: EdgeInsets.all(5),
                               width: MediaQuery.of(context).size.width * 0.75,
@@ -700,7 +700,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                       //height: MediaQuery.of(context).size.height * 0.27,
                       child: Chip(
                         avatar: CircleAvatar(
-                          backgroundColor: paydayGreen,
+                          backgroundColor: wizardGreen,
                           child: Icon(Icons.add),
                         ),
                         label: Text('Add more people'),
@@ -741,7 +741,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                     height: 50.0,
                     child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: paydayGreen,
+                        backgroundColor: wizardGreen,
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
@@ -845,7 +845,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                               icon: Icon(
                                 Icons.arrow_back_ios,
                                 size: 30,
-                                color: paydayDark,
+                                color: wizardDark,
                               ),
                             ),
                             Container(
@@ -1095,7 +1095,7 @@ class _SetupInvestmentPageState extends State<setupInvestmentPage>
                                 height: 50.0,
                                 child: ElevatedButton(
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: paydayGreen,
+                                    backgroundColor: wizardGreen,
                                   ),
                                   child: Text(
                                     'Proceed',
