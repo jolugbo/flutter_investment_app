@@ -182,6 +182,13 @@ final dark22Style = TextStyle(
   fontStyle: FontStyle.normal,
   fontWeight: FontWeight.normal,
 );
+final dark22BoldStyle = TextStyle(
+  color: wizardDark,
+  fontFamily: generalFont,
+  fontSize: 22.0,
+  height: 1,
+  fontWeight: FontWeight.bold,
+);
 final green18Style = TextStyle(
   color: wizardGreen,
   fontFamily: generalFont,

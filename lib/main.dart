@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
           // When navigating to the "/" route, build the FirstScreen widget.
           //'/': (context) => WalkThrough(),
           // When navigating to the "/second" route, build the SecondScreen widget.
-        '/registerationToken': (context) => registerationTokenPage(),
+        //'/registerationToken': (context) => registrationTokenPage(),
         '/signup': (context) => registerPage(),
         '/personalinfo1': (context) => personalinfo1Page(),
         '/personalinfo2': (context) => personalinfo2Page(),

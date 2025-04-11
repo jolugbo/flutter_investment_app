@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:wealth_wizard/UI/welcome_packs/getstarted.dart';
+import 'package:wealth_wizard/constants/app_images.dart';
 import 'package:wealth_wizard/utills/imageanimations.dart';
 import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -14,20 +16,20 @@ class personalinfo3Page extends StatefulWidget {
 
 class _Personalinfo3PageState extends State<personalinfo3Page>
     with TickerProviderStateMixin {
-  String leafIcon = 'assets/leaficon.png';
+  String leafIcon = AppImages.leaficon;
+  String bgMain = AppImages.purplebg;
   double tokenEntryWidth = 0;
   double tokenEntryHeight = 0;
-  String bgMain = 'assets/purplebg.png';
-  String maleIcon = 'assets/maleicon.png';
+  String maleIcon = AppImages.maleIcon;
   Color maleColor = wizardGray;
-  String femaleIcon = 'assets/femalegendericon.png';
-  String femaleIcon2 = 'assets/femalegendericon2.png';
-  String maleIcon2 = 'assets/maleicon2.png';
-  String femaleIcon1 = 'assets/femalegendericon.png';
-  String maleIcon1 = 'assets/maleicon.png';
+  String femaleIcon = AppImages.femaleIcon;
+  String femaleIcon2 = AppImages.femaleIcon2;
+  String maleIcon2 = AppImages.maleIcon2;
+  String femaleIcon1 = AppImages.femaleIcon1;
+  String maleIcon1 = AppImages.maleIcon1;
   Color femaleColor = wizardGreen;
-  String camIcon = 'assets/cameraicon.png';
-  String uploadIcon = 'assets/uploadicon.png';
+  String camIcon = AppImages.camIcon;
+  String uploadIcon = AppImages.uploadIcon;
   int? _radioValue = 0;
 
   @override
@@ -39,12 +41,12 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
-    tokenEntryHeight = size.height * 0.06;
-    tokenEntryWidth = size.width * 0.12;
     return Scaffold(
       body: Stack(
         //overflow: Overflow.visible,
         children: <Widget>[
+         
+          //Region background animation
           AnimatedPositioned(
             top: 0,
             //right: -size.width * 0.2,
@@ -67,6 +69,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
               yAxis: 0,
             ),
           ),
+         
+          //Region Header(logo back button)
           Positioned(
               top: 0,
               child: Container(
@@ -80,12 +84,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                     Row(
                       children: <Widget>[
                         IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            size: 30,
-                            color: wizardDark,
-                          ),
+                          icon: const Icon(Icons.arrow_back_ios),
+                          onPressed: () => Navigator.pop(context),
                         ),
                         Container(
                           width: size.width * 0.8,
@@ -114,7 +114,10 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                     ),
                   ],
                 ),
-              )),
+              )
+            ),
+         
+          //Region Personal Information form
           AnimatedPositioned(
               top: size.height * 0.1,
               duration: Duration(seconds: 1),
@@ -239,7 +242,7 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                                   Container(
                                     width: size.width * 0.22,
                                     height: size.height * 0.15,
-                                    child:  ElevatedButton(
+                                    child: ElevatedButton(
                                       style: ElevatedButton.styleFrom(
                                           shape: buttonShape, // Button shape
                                           backgroundColor: maleColor,
@@ -349,23 +352,31 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                             minWidth: size.width,
                             height: 50.0,
                             child: ElevatedButton(
-  style: ElevatedButton.styleFrom(
-    shape: buttonShape, // Button shape
-    backgroundColor: wizardGreen, // Button color
-  ),
+                              style: ElevatedButton.styleFrom(
+                                shape: buttonShape, // Button shape
+                                backgroundColor: wizardGreen, // Button color
+                              ),
                               child: Text(
                                 'Confirm & Proceed',
                                 style: lightBodyStyle,
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/getStarted');
+                               Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            getStartedPage()));
+                               // Navigator.pushNamed(context, '/getStarted');
                               },
                             )),
                         width: size.width,
                         height: size.height * 0.1,
                       ),
                     ],
-                  ))),
+                  ))
+              ),
+          
+          //Region support
           AnimatedPositioned(
               top: size.height * 0.92,
               duration: Duration(seconds: 1),
@@ -391,7 +402,8 @@ class _Personalinfo3PageState extends State<personalinfo3Page>
                         ),
                       ],
                     ),
-                  ))),
+                  ))
+              ),
         ],
       ),
     );

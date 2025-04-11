@@ -1,442 +1,235 @@
-import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:wealth_wizard/UI/welcome_packs/personalinfo1.dart';
+import 'package:wealth_wizard/constants/app_images.dart';
 import 'package:wealth_wizard/utills/imageanimations.dart';
 import 'package:wealth_wizard/utills/styles.dart';
 
-class registerationTokenPage extends StatefulWidget {
-  registerationTokenPage();
-
-
-
+class RegistrationTokenPage extends StatefulWidget {
+  const RegistrationTokenPage({Key? key}) : super(key: key);
   @override
-  _RegisterationTokenPageState createState() => _RegisterationTokenPageState();
+  State<RegistrationTokenPage> createState() => _RegistrationTokenPageState();
 }
 
-class _RegisterationTokenPageState extends State<registerationTokenPage>
-    with TickerProviderStateMixin {
-  String leafIcon = 'assets/leaficon.png';
-  double tokenEntryWidth = 0;
-  double tokenEntryHeight = 0;
-  String bgMain1 = 'assets/leafBG.png';
+class _RegistrationTokenPageState extends State<RegistrationTokenPage> {
+  List<String> _otp = [];
+  String bgMain1 = AppImages.leafBG;
+  String leafIcon = AppImages.leaficon;
 
+  void _onKeyPressed(String value) {
+    setState(() {
+      if (value == 'OK') {
+        if (_otp.length == 6) {
+          // Handle OTP submission here
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => personalinfo1Page()));
+        }
+      } else if (value == 'X') {
+        if (_otp.isNotEmpty) {
+          _otp.removeLast();
+        }
+      } else {
+        if (_otp.length < 6) {
+          _otp.add(value);
+        }
+      }
+    });
+  }
 
-  @override
-  void initState() {
-    super.initState();
-    //WidgetsBinding.instance.addPostFrameCallback((_) => doMotion());
+  Widget _buildOtpBox(String? digit) {
+    return Container(
+      margin: const EdgeInsets.all(6),
+      width: 45,
+      height: 50,
+      decoration: BoxDecoration(
+        color: Colors.green.shade800,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      alignment: Alignment.center,
+      child: Text(
+        digit ?? '',
+        style: const TextStyle(color: Colors.white, fontSize: 20),
+      ),
+    );
+  }
+
+  Widget _buildKey(String label) {
+    return GestureDetector(
+      onTap: () => _onKeyPressed(label),
+      child: Container(
+        margin: const EdgeInsets.all(10),
+        width: 70,
+        height: 70,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          border: Border.all(color: Colors.white),
+        ),
+        alignment: Alignment.center,
+        child: label == 'X'
+            ? const Icon(Icons.backspace, color: Colors.white)
+            : Text(
+                label,
+                style: const TextStyle(color: Colors.white, fontSize: 24),
+              ),
+      ),
+    );
+  }
+
+  Widget _buildKeypad() {
+    const keys = [
+      ['1', '2', '3'],
+      ['4', '5', '6'],
+      ['7', '8', '9'],
+      ['X', '0', 'OK'],
+    ];
+    return Column(
+      children: keys
+          .map(
+            (row) => Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: row.map(_buildKey).toList(),
+            ),
+          )
+          .toList(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
-    tokenEntryHeight = MediaQuery.of(context).size.height * 0.06;
-    tokenEntryWidth = MediaQuery.of(context).size.width * 0.12;
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
-      body: Stack(
-        //overflow: Overflow.visible,
-        children: <Widget>[
-          AnimatedPositioned(
-            top: 0,
-            right: -MediaQuery.of(context).size.width * 0.2,
-            duration: Duration(seconds: 1),
-            child: WidgetAnimator(
-              component: Container(
-                height: MediaQuery.of(context).size.height * 0.3,
-                width: MediaQuery.of(context).size.width,
-                child: imgAnimation2(
-                  url: bgMain1,
-                  time: Duration(seconds: 2),beginx:0.10,endx: 0, beginy: 0.1,endy: 0,
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  transition: PositionedTransition,
-                ),
-              ),
-              transition: Transform,
-              animPattern: Curves.easeIn,
-              pixle: Colors.transparent,
-              time: Duration(seconds: 1),
-              animType: "nothing",
-              xAxis: 0,
-              yAxis: 0,
-            ),
-          ),
-          Positioned(
+      backgroundColor: Colors.white,
+      body: SafeArea(
+        child: Stack(
+          children: [
+            AnimatedPositioned(
               top: 0,
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width,
-                child: Row(
-                  children: <Widget>[
-                    IconButton(
-                      onPressed: () {
-                        
-                      },
-                      icon: Icon(
-                        Icons.arrow_back_ios,size: 30,
-                        color: wizardDark,
-                      ),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: Hero(
-                        tag: "iconTag",
-                        child: WidgetAnimator(
-                          component: imgAnimation2(
-                            url: leafIcon,
-                            time: Duration(seconds: 3),beginx:0.0,endx: -0, beginy: 0,endy: -0.0,
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            //height: MediaQuery.of(context).size.height * 0.3,
-                            transition: PositionedTransition,
-                          ),
-                          transition: Transform,
-                          animPattern: Curves.easeInOutCirc,
-                          pixle: Colors.transparent,
-                          time: Duration(seconds: 1),
-                          animType: "nothing",
-                          xAxis: -MediaQuery.of(context).size.width * 0,
-                          yAxis: -MediaQuery.of(context).size.height * 0,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              )),
-          AnimatedPositioned(
-            child: Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width,
-                alignment: Alignment.centerLeft,
-                padding: EdgeInsets.fromLTRB(
-                    MediaQuery.of(context).size.width * 0.05,0,
-                    MediaQuery.of(context).size.width * 0.05,0),
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Text(
-                        'Phone Verification',
-                        style: darkHeaderStyle,
-                        textAlign: TextAlign.left,
-                      ),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.01,
-                      ),
-                      Text('Your wealth wizard account is being created.',
-                        style: dark15Style,
-                        textAlign: TextAlign.left,),
-                      Container(
-                        height: MediaQuery.of(context).size.height * 0.008,
-                      ),
-                      RichText(
-                        textAlign: TextAlign.left,
-                        text: TextSpan(
-                          text: 'Enter the verification code we just sent to your number',
-                          style: dark15Style,
-                          children: <TextSpan>[
-                            TextSpan(
-                              text: ' 08012345678',
-                              style: footerGreenStyle,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ])
-            ),
-            top: MediaQuery.of(context).size.height * 0.1,
-            height: MediaQuery.of(context).size.height * 0.2,
-            duration: Duration(seconds: 1),
-          ),
-          AnimatedPositioned(
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(18),
+              right: -size.width * 0.2,
+              duration: Duration(seconds: 1),
               child: WidgetAnimator(
                 component: Container(
-                    height: MediaQuery.of(context).size.height,
-                    width: MediaQuery.of(context).size.width,
-                    color: Colors.transparent,
-                    padding: EdgeInsets.fromLTRB(
-                        MediaQuery.of(context).size.width * 0.02,
-                        MediaQuery.of(context).size.width * 0.08,
-                        MediaQuery.of(context).size.width * 0.02,
-                        MediaQuery.of(context).size.width * 0.1),
-                    alignment: Alignment.center,
-                    child: Column(children: <Widget>[
-                      Container(
-                        //height: MediaQuery.of(context).size.height * 0.5,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Container(
-                              height: MediaQuery.of(context).size.height * 0.05,
-                              child: Text('OTP will expire in \n4:59s', style: lightBodyStyle,textAlign: TextAlign.center,),
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: <Widget>[
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.elliptical(30, 30)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: tokenBox,
-                                      height: tokenEntryHeight,
-                                      width: tokenEntryWidth,
-                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      child: Text(
-                                        '',
-                                        style: securityStyle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.elliptical(30, 30)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: tokenBox,
-                                      height: tokenEntryHeight,
-                                      width: tokenEntryWidth,
-                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      child: Text(
-                                        '',
-                                        style: securityStyle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.elliptical(30, 30)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: tokenBox,
-                                      height: tokenEntryHeight,
-                                      width: tokenEntryWidth,
-                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      child: Text(
-                                        '',
-                                        style: securityStyle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.elliptical(30, 30)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: tokenBox,
-                                      height: tokenEntryHeight,
-                                      width: tokenEntryWidth,
-                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      child: Text(
-                                        '',
-                                        style: securityStyle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.elliptical(30, 30)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: tokenBox,
-                                      height: tokenEntryHeight,
-                                      width: tokenEntryWidth,
-                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      child: Text(
-                                        '',
-                                        style: securityStyle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                                ClipRRect(
-                                  borderRadius: BorderRadius.all(
-                                      Radius.elliptical(30, 30)),
-                                  child: Container(
-                                      alignment: Alignment.center,
-                                      decoration: tokenBox,
-                                      height: tokenEntryHeight,
-                                      width: tokenEntryWidth,
-                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-                                      child: Text(
-                                        '',
-                                        style: securityStyle2,
-                                        textAlign: TextAlign.center,
-                                      )),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.fromLTRB(
-                            MediaQuery.of(context).size.height * 0.05,
-                            MediaQuery.of(context).size.height * 0.05,
-                            MediaQuery.of(context).size.height * 0.05,
-                            0),
-                        height: MediaQuery.of(context).size.height * 0.45,
-                        child: Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '1',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '2',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '3',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-
-                                  ]),
-                              Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '4',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '5',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '6',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                  ]),
-                              Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '7',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '8',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '9',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-
-                                  ]),
-                              Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment:
-                                  MainAxisAlignment.spaceAround,
-                                  children: <Widget>[
-
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Icon(Icons.backspace,color: accent,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                      onPressed: () {},
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( '0',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-                                    RawMaterialButton(
-                                        onPressed: () {
-                                          Navigator.pushNamed(
-                                              context, '/personalinfo1');
-                                        },
-                                      elevation: 2.0,
-                                      fillColor: wizardGreen,
-                                      child: Text( 'OK',style: securityStyle,),//,backgroundColor: Colors.green,
-                                      padding: EdgeInsets.all(15.0),
-                                      shape: CircleBorder(side: BorderSide(color: accent)),
-                                    ),
-
-                                  ]),
-                              Container(
-                                height: MediaQuery.of(context).size.height * 0.05,
-                                alignment: Alignment.center,
-                                child: Text('Request new OTP', style: lightBodyStyle,textAlign: TextAlign.center,),
-                              ),
-                            ]),
-                      )
-                    ])),
-                transition: ScaleTransition,
-                animPattern: Curves.easeInOutCirc,
-                pixle: wizardGreen,
+                  height: size.height * 0.3,
+                  width: size.width,
+                  child: imgAnimation2(
+                    url: bgMain1,
+                    time: Duration(seconds: 2),
+                    beginx: 0.10,
+                    endx: 0,
+                    beginy: 0.1,
+                    endy: 0,
+                    width: size.width,
+                    height: size.height,
+                    transition: PositionedTransition,
+                  ),
+                ),
+                transition: Transform,
+                animPattern: Curves.easeIn,
+                pixle: Colors.transparent,
                 time: Duration(seconds: 1),
                 animType: "nothing",
                 xAxis: 0,
                 yAxis: 0,
               ),
             ),
-            top: MediaQuery.of(context).size.height * 0.3,
-            height: MediaQuery.of(context).size.height * 0.8,
-            duration: Duration(seconds: 1),
-          ),
-        ],
+
+            // Background wave image or animation placeholder can go here
+            SingleChildScrollView(
+              child: Column(
+                children: [
+                  // Back button & logo
+                  Row(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.arrow_back_ios),
+                        onPressed: () => Navigator.pop(context),
+                      ),
+                      const Spacer(),
+                    ],
+                  ),
+                  // Top text
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children:  [
+                        Text(
+                          'Phone Verification',
+                          style: dark22BoldStyle,
+                        ),
+                        SizedBox(height: 8),
+                        Text(
+                          'Your wealth wizard account is being created.',
+                          style: dark14Style,
+                        ),
+                        SizedBox(height: 6),
+                        Text.rich(
+                          TextSpan(
+                            text:
+                                'Enter the verification code we just sent to your number ',
+                            children: [
+                              TextSpan(
+                                text: '08012345678',
+                                style: TextStyle(
+                                    color: wizardGreen,
+                                    fontWeight: FontWeight.bold),
+                              )
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // OTP container
+                  Container(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 30,
+                      horizontal: 10,
+                    ),
+                    height: size.height * 0.8,
+                    decoration: BoxDecoration(
+                      color: wizardGreen,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(30),
+                        topRight: Radius.circular(30),
+                      ),
+                    ),
+                    child: Column(
+                      children: [
+                        const Text(
+                          'OTP will expire in\n4:59s',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        const SizedBox(height: 20),
+                        // OTP boxes
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: List.generate(
+                            6,
+                            (index) => _buildOtpBox(
+                              index < _otp.length ? _otp[index] : null,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(height: 30),
+                        // Keypad
+                        _buildKeypad(),
+                        const SizedBox(height: 20),
+                        const Text(
+                          'Request new OTP',
+                          style: TextStyle(
+                              color: Colors.white,
+                              decoration: TextDecoration.underline),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

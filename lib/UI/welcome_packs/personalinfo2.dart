@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_emoji/flutter_emoji.dart';
+import 'package:wealth_wizard/UI/welcome_packs/personalinfo3.dart';
+import 'package:wealth_wizard/constants/app_images.dart';
 import 'package:wealth_wizard/utills/imageanimations.dart';
 import 'package:wealth_wizard/utills/styles.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -15,12 +17,23 @@ class personalinfo2Page extends StatefulWidget {
 
 class _Personalinfo2PageState extends State<personalinfo2Page>
     with TickerProviderStateMixin {
-  String leafIcon = 'assets/leaficon.png';
-  String nestIcon = 'assets/nest.png';
-  String houseIcon = 'assets/house.png';
-  String bgMain = 'assets/purplebg.png';
+  String bgMain1 = AppImages.leafBG;
+  String leafIcon = AppImages.leaficon;
+  String bgMain = AppImages.purplebg;
+  String nestIcon = AppImages.nestIcon;
+  String houseIcon = AppImages.houseIcon;
   String _date = 'yyyy/mm/dd';
   String? _currentSelectedItem = 'Lagos';
+  DateTime dateSelected = DateTime.now();
+  String _PlaceofBirthSelected = 'Lagos';
+  String _StateofOriginSelected = 'Lagos';
+  final TextEditingController _addressController = new TextEditingController();
+  FocusNode _dateOfBirthNode = new FocusNode();
+  FocusNode _placeOfOriginNode = new FocusNode();
+  FocusNode _addressNode = new FocusNode();
+
+  //validators
+  bool dateOfBirthIsValid = false;
 
   @override
   void initState() {
@@ -31,17 +44,20 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
   @override
   Widget build(BuildContext context) {
     var parser = EmojiParser();
+    var size = MediaQuery.of(context).size;
+
     return Scaffold(
       body: Stack(
         children: <Widget>[
+          //Region background animation
           AnimatedPositioned(
             top: 0,
-            //right: -MediaQuery.of(context).size.width * 0.2,
+            //right: -size.width * 0.2,
             duration: Duration(seconds: 1),
             child: WidgetAnimator(
               component: Container(
-                  height: MediaQuery.of(context).size.height,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height,
+                  width: size.width,
                   decoration: new BoxDecoration(
                       image: new DecorationImage(
                     fit: BoxFit.fill,
@@ -56,11 +72,13 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
               yAxis: 0,
             ),
           ),
+
+          //Region Header(logo back button)
           Positioned(
               top: 0,
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.15,
-                width: MediaQuery.of(context).size.width,
+                height: size.height * 0.15,
+                width: size.width,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -69,15 +87,11 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                     Row(
                       children: <Widget>[
                         IconButton(
-                          onPressed: () {},
-                          icon: Icon(
-                            Icons.arrow_back_ios,
-                            size: 30,
-                            color: wizardDark,
-                          ),
+                          icon: const Icon(Icons.arrow_back_ios),
+                          onPressed: () => Navigator.pop(context),
                         ),
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.8,
+                          width: size.width * 0.8,
                           child: Hero(
                             tag: "iconTag",
                             child: WidgetAnimator(
@@ -85,8 +99,8 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                                 url: leafIcon,
                                 time: Duration(seconds: 3), beginx: 0.0,
                                 endx: -0, beginy: 0, endy: -0.0,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                //height: MediaQuery.of(context).size.height * 0.3,
+                                width: size.width * 0.3,
+                                //height: size.height * 0.3,
                                 transition: PositionedTransition,
                               ),
                               transition: Transform,
@@ -94,8 +108,8 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               pixle: Colors.transparent,
                               time: Duration(seconds: 1),
                               animType: "nothing",
-                              xAxis: -MediaQuery.of(context).size.width * 0,
-                              yAxis: -MediaQuery.of(context).size.height * 0,
+                              xAxis: -size.width * 0,
+                              yAxis: -size.height * 0,
                             ),
                           ),
                         ),
@@ -103,15 +117,17 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                     ),
                   ],
                 ),
-              )),
+              )
+            ),
+
+          //Region Personal Information form
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.1,
+              top: size.height * 0.1,
               duration: Duration(seconds: 1),
               child: Container(
-                  padding:
-                      EdgeInsets.all(MediaQuery.of(context).size.width * 0.05),
+                  padding: EdgeInsets.all(size.width * 0.05),
                   alignment: Alignment.topLeft,
-                  width: MediaQuery.of(context).size.width,
+                  width: size.width,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -128,9 +144,9 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                         textAlign: TextAlign.left,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: size.height * 0.03,
                         child: LinearPercentIndicator(
-                          width: MediaQuery.of(context).size.width - 50,
+                          width: size.width - 50,
                           animation: true,
                           lineHeight: 10.0,
                           animationDuration: 2500,
@@ -140,18 +156,18 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                         child: Text(
                           'Date of Birth',
                           style: purple14Style,
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.05,
-                        width: MediaQuery.of(context).size.width,
+                        height: size.height * 0.05,
+                        width: size.width,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                             shape: buttonShape, // Button shape
@@ -162,7 +178,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                               context: context,
                               initialDate: DateTime.now(),
                               firstDate: DateTime(2000, 1, 1),
-                              lastDate: DateTime(2022, 12, 31),
+                              lastDate: DateTime(2032, 12, 31),
                             );
 
                             if (pickedDate != null) {
@@ -198,17 +214,13 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                                     )
                                   ],
                                 ),
-//                                Text(
-//                                  "  Change",
-//                                  style: purpleThickStyle
-//                                ),
                               ],
                             ),
                           ),
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.06,
+                        height: size.height * 0.06,
                       ),
                       Text(
                         'Place of Birth ',
@@ -277,7 +289,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                         ],
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                       ),
                       Container(
                         child: Column(
@@ -307,7 +319,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                         ),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: size.height * 0.04,
                       ),
                       Text(
                         'State of Origin',
@@ -378,7 +390,7 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                       Container(
                         alignment: Alignment.center,
                         child: ButtonTheme(
-                            minWidth: MediaQuery.of(context).size.width,
+                            minWidth: size.width,
                             height: 50.0,
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
@@ -390,22 +402,27 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                                 style: lightBodyStyle,
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(context, '/personalinfo3');
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => personalinfo3Page()));
                               },
                             )),
-                        width: MediaQuery.of(context).size.width,
-                        height: MediaQuery.of(context).size.height * 0.1,
+                        width: size.width,
+                        height: size.height * 0.1,
                       ),
                     ],
-                  ))),
+                  ))
+              ),
+
+          //Region support
           AnimatedPositioned(
-              top: MediaQuery.of(context).size.height * 0.92,
+              top: size.height * 0.92,
               duration: Duration(seconds: 1),
               child: Container(
-                  //color: Colors.red,
                   alignment: Alignment.center,
-                  height: MediaQuery.of(context).size.height * 0.1,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height * 0.1,
+                  width: size.width,
                   child: RichText(
                     textAlign: TextAlign.center,
                     text: TextSpan(
@@ -423,7 +440,8 @@ class _Personalinfo2PageState extends State<personalinfo2Page>
                         ),
                       ],
                     ),
-                  ))),
+                  ))
+              ),
         ],
       ),
     );

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:wealth_wizard/UI/externals/logins.dart';
+import 'package:wealth_wizard/UI/welcome_packs/registrationtoken.dart';
 import 'package:wealth_wizard/constants/app_images.dart';
 import 'package:wealth_wizard/utills/imageanimations.dart';
 import 'package:wealth_wizard/utills/styles.dart';
@@ -54,6 +55,8 @@ class _RegisterPageState extends State<registerPage>
       body: Stack(
         //overflow: Overflow.visible,
         children: <Widget>[
+
+          //region background
           AnimatedPositioned(
             top: 0,
             right: -size.width * 0.2,
@@ -84,6 +87,7 @@ class _RegisterPageState extends State<registerPage>
             ),
           ),
 
+          //region background
           AnimatedPositioned(
             top: size.height * 0.25,
             bottom: size.height * 0.05,
@@ -115,6 +119,7 @@ class _RegisterPageState extends State<registerPage>
             ),
           ),
 
+          //region header logo
           AnimatedPositioned(
               top: 0,
               duration: Duration(seconds: 1),
@@ -146,7 +151,8 @@ class _RegisterPageState extends State<registerPage>
                   ),
                   transitionOnUserGestures: true,
                 ),
-              )),
+              )
+            ),
 
           //support center
           AnimatedPositioned(
@@ -178,6 +184,7 @@ class _RegisterPageState extends State<registerPage>
                     ),
                   ))),
 
+          //region registration form
           AnimatedPositioned(
               top: size.height * 0.15,
               duration: Duration(seconds: 1),
@@ -396,11 +403,16 @@ class _RegisterPageState extends State<registerPage>
                             // ),
                             Switch(
                               value: _isSwitched,
-                              activeTrackColor: wizardGreen,
-                              onChanged: (value) {},
+                              activeTrackColor: accent,
+                              onChanged: (value) {
+                                    setState(() {
+                                  _isSwitched = value;
+                                });
+                              },
                               inactiveTrackColor: accent,
-                              activeColor: accent,
+                              activeColor: wizardGreen,
                               inactiveThumbColor: Colors.grey,
+                              trackOutlineColor:WidgetStateProperty.all<Color>(accent),
                             ),
                             Flexible(
                                 child: RichText(
@@ -455,7 +467,9 @@ class _RegisterPageState extends State<registerPage>
                                   backgroundColor: wizardGreen, // Button color
                                 ),
                                 onPressed: () {
+                                  setState(() {
                                   confimationPosition = 0.03;
+                                  });
                                 },
                                 child: Text(
                                   'Create Account',
@@ -497,6 +511,9 @@ class _RegisterPageState extends State<registerPage>
                       ),
                     ],
                   ))),
+          
+          
+          //region details verification and redirection
           AnimatedPositioned(
               top: size.height * confimationPosition,
               height: size.height * 0.95,
@@ -591,8 +608,10 @@ class _RegisterPageState extends State<registerPage>
                                 backgroundColor: wizardGreen, // Button color
                               ),
                               onPressed: () {
-                                Navigator.pushNamed(
-                                    context, '/registerationToken');
+                                  Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => RegistrationTokenPage()));
                               },
                               child: Text(
                                 'Confirm email address',
@@ -603,7 +622,8 @@ class _RegisterPageState extends State<registerPage>
                         height: size.height * 0.1,
                       ),
                     ],
-                  ))),
+                  ))
+                ),
         ],
       ),
     );
